@@ -26,6 +26,7 @@
             this.canvas._applyCanvasStyle(this.backupCanvasEl);
             this.canvas.freeDrawingCursor = 'none';
             this._points = [ ];
+            this.strokeStyle = 'rgb(255,255,255)';
             this.width = 10;
             //init options
 
@@ -120,6 +121,7 @@
         _setBrushStyles: function() {
             "use strict";
             var ctx = this.canvas.contextTop;
+            ctx.strokeStyle = this.strokeStyle;
             ctx.lineWidth = this.width;
             ctx.lineCap = this.strokeLineCap;
             ctx.lineJoin = this.strokeLineJoin;

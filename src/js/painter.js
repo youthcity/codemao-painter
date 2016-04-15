@@ -308,6 +308,7 @@
                         color: cur_color
                     });
                     canvas.setDrawingMode(true);
+                    myself.vm.width = 15;
                 });
                 $btnRotation.on('click', function () {
                     cancelSelected();
