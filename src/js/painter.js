@@ -187,6 +187,14 @@
                     }
                 }
             });
+            function addLine() {
+                canvas.add(new fabric.Line([ 50, 100, 200, 200], {
+                    left: Math.random() * myself.width,
+                    top: Math.random() * myself.height,
+                    stroke: cur_color,
+                    strokeWidth: myself.vm.width
+                }));
+            }
             function addRect(width, height, x, y) {
                 var rect = new fabric.Rect({
                     top: y,
@@ -305,6 +313,10 @@
                 $('.btn-rect').on('click', function () {
                     myself.$btnPointer.click();
                     addRect(100, 100, 100, 100);
+                });
+                $('.btn-line').on('click', function () {
+                    myself.$btnPointer.click();
+                    addLine();
                 });
                 $('.btn-triangle').on('click', function () {
                     myself.$btnPointer.click();

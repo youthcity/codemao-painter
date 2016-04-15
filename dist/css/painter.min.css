@@ -89,6 +89,9 @@
 .btn-rotation.active{
     background-image:url(https://dn-codemao.qbox.me/images/painter/rotation-on.png);
 }
+.btn-line{
+    background-image:url(https://dn-codemao.qbox.me/images/painter/line-off.png);
+}
 .btn-circle{
     background-image:url(https://dn-codemao.qbox.me/images/painter/circle-off.png);
 }
