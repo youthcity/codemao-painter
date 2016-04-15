@@ -1,6 +1,10 @@
-#painter-container{position:absolute;top:0;left:0;z-index:90;visibility:hidden;width:100%;height:100%;margin-left:auto;margin-right:auto;}
 #painter-container{
-    background-image:url(https://assets.codemao.cn/images/painter/bg.jpg);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:101;visibility:hidden;width:100%;height:100%;margin-left:auto;margin-right:auto;}
+#painter-container{
+    background-image:url(https://dn-codemao.qbox.me/images/painter/bg.jpg);
     background-size:100%;
 }
 
@@ -15,7 +19,7 @@
     background-color: white;
     box-sizing:border-box;
 }
-.painter{border:0px solid rgba(0,0,0,0.3);box-shadow:0px 0px 2px rgba(0,0,0,0.3);box-shadow:0px 0px 2px solid rgba(0,0,0,0.3) inset;border-radius:2px;background-image:url(https://assets.codemao.cn/images/painter/grid.png);}
+.painter{border:0px solid rgba(0,0,0,0.3);box-shadow:0px 0px 2px rgba(0,0,0,0.3);box-shadow:0px 0px 2px solid rgba(0,0,0,0.3) inset;border-radius:2px;background-image:url(https://dn-codemao.qbox.me/images/painter/grid.png);}
 
 #painter-container .painter-wrapper {
     padding: 20px 20px 0 20px;
@@ -62,55 +66,55 @@
     margin:8px;
 }
 .btn-pencil{
-    background-image:url(https://assets.codemao.cn/images/painter/pencil-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/pencil-off.png);
 }
 .btn-pencil.active{
-    background-image:url(https://assets.codemao.cn/images/painter/pencil-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/pencil-on.png);
 }
 .btn-eraser{
-    background-image:url(https://assets.codemao.cn/images/painter/eraser-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/eraser-off.png);
 }
 .btn-eraser.active{
-    background-image:url(https://assets.codemao.cn/images/painter/eraser-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/eraser-on.png);
 }
 .btn-text{
-    background-image:url(https://assets.codemao.cn/images/painter/text-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/text-off.png);
 }
 .btn-text:active{
-    background-image:url(https://assets.codemao.cn/images/painter/text-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/text-on.png);
 }
 .btn-rotation{
-    background-image:url(https://assets.codemao.cn/images/painter/rotation-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/rotation-off.png);
 }
 .btn-rotation.active{
-    background-image:url(https://assets.codemao.cn/images/painter/rotation-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/rotation-on.png);
 }
 .btn-circle{
-    background-image:url(https://assets.codemao.cn/images/painter/circle-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/circle-off.png);
 }
 .btn-circle:active{
-    background-image:url(https://assets.codemao.cn/images/painter/circle-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/circle-on.png);
 }
 .btn-rect{
-    background-image:url(https://assets.codemao.cn/images/painter/rect-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/rect-off.png);
 }
 .btn-rect:active{
-    background-image:url(https://assets.codemao.cn/images/painter/rect-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/rect-on.png);
 }
 .btn-triangle{
-    background-image:url(https://assets.codemao.cn/images/painter/triangle-off.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/triangle-off.png);
 }
 .btn-triangle:active{
-    background-image:url(https://assets.codemao.cn/images/painter/triangle-on.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/triangle-on.png);
 }
 .painter-btn-close{
-    background-image:url(https://assets.codemao.cn/images/painter/close.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/close.png);
     width:54px;
     background-size:100%;
     height:55px;
 }
 .painter-btn-check{
-    background-image:url(https://assets.codemao.cn/images/painter/check.png);
+    background-image:url(https://dn-codemao.qbox.me/images/painter/check.png);
     width:54px;
     height:55px;
     background-size:100%;
@@ -158,7 +162,7 @@ input.painter-name:focus{
     width: 73px;
     height: 36px;
 
-    background-image: url(https://assets.codemao.cn/images/painter/color-text.png);
+    background-image: url(https://dn-codemao.qbox.me/images/painter/color-text.png);
 }
 
 .painter-color > input {
@@ -188,15 +192,15 @@ input.painter-name:focus{
 
 }
 .btn-pointer{
-    background:url(https://assets.codemao.cn/images/painter/pointer-off.png);
+    background:url(https://dn-codemao.qbox.me/images/painter/pointer-off.png);
     margin-top:10px;
 }
 .btn-pointer.active{
-    background:url(https://assets.codemao.cn/images/painter/pointer-on.png);
+    background:url(https://dn-codemao.qbox.me/images/painter/pointer-on.png);
     margin-top:10px;
 }
 .painter-btn-remove{
-    background:url(https://assets.codemao.cn/images/painter/remove.png);
+    background:url(https://dn-codemao.qbox.me/images/painter/remove.png);
     width:66px;
     height:66px;
     margin-top:30px;
