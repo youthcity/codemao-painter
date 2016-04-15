@@ -279,12 +279,19 @@
                 }
             }
 
+            function cancelSelected() {
+                    canvas.deactivateAll();
+                    canvas.renderAll();
+                    //canvas.discardActiveObject();
+            }
+
             function initEvents() {
                 var $btnPencil = myself.$btnPencil,
                     $btnEraser = $('.btn-eraser'),
                     $btnRotation = $('.btn-rotation');
                 $('.painter-colors:first-child').click();
                 $btnPencil.on('click', function () {
+                    cancelSelected();
                     canvas.setFreeDrawingBrush('pencil', {
                         width: 15,
                         color: cur_color
@@ -295,6 +302,7 @@
                     //canvas.freeDrawingBrush.color=cur_color;
                 });
                 $btnEraser.on('click', function () {
+                    cancelSelected();
                     canvas.setFreeDrawingBrush('eraser', {
                         width: 15,
                         color: cur_color
@@ -302,6 +310,7 @@
                     canvas.setDrawingMode(true);
                 });
                 $btnRotation.on('click', function () {
+                    cancelSelected();
                     canvas.setDrawingMode(true);
                     canvas.setFreeDrawingBrush('rotation', {});
                 });
