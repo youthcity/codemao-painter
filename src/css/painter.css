@@ -220,7 +220,7 @@ input.painter-name:focus{
     background:url(https://dn-codemao.qbox.me/images/painter/remove.png);
     width:66px;
     height:66px;
-    margin-top:30px;
+    margin: 30px 8px 8px;
 }
 /*@media screen and (max-width: 500px){*/
     /*.painter-header,.painter-left-buttons,.painter-right-buttons{*/
