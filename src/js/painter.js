@@ -12,9 +12,10 @@
             this.$btnPencil = $('.btn-pencil');
             this.$btnPointer = $('.btn-pointer');
 
+            //todo: use relative width&height!
             if (!width) {
                 width = $painterContent.width() - $('.painter-left-buttons').width() - $('.painter-right-buttons').width() - 46;
-                height = $painterContent.height() - $('.painter-properties').height() - 46;
+                height = $painterContent.height() - $('.painter-properties').height() - 26;
             }
             this.width = width;
             this.height = height;
@@ -428,25 +429,25 @@
          */
         openIn: function (img, name, options) {
             var width = 0, height = 0,
-                x = Painter.canvas.width/2,
-                y= Painter.canvas.height/2;
+                x = this.canvas.width/2,
+                y= this.canvas.height/2;
             if(options) {
                 width = options.width;
                 height = options.height;
-                Painter.canvas.rotationPoint = {
-                    x: (width > Painter.canvas.width)?x:options.rotationCenter.x + (Painter.canvas.width - width)/ 2,
-                    y: (height > Painter.canvas.height)?y:options.rotationCenter.y + (Painter.canvas.height - height)/ 2
+                this.canvas.rotationPoint = {
+                    x: (width > this.canvas.width)?x:options.rotationCenter.x + (this.canvas.width - width)/ 2,
+                    y: (height > this.canvas.height)?y:options.rotationCenter.y + (this.canvas.height - height)/ 2
                 };
-                Painter.canvas.callback = options.callback;
+                this.canvas.callback = options.callback;
             }
-            Painter.canvas.clear();
+            this.canvas.clear();
 
             $('.painter-name').val(name);
 
-            Painter.canvas.setHeight(this.height);
-            Painter.canvas.setWidth(this.width);
-            Painter.canvas.renderAll();
-            Painter.addImage(img, (Painter.canvas.width - width)/ 2, (Painter.canvas.height - height)/ 2);
+            this.canvas.setHeight(this.height);
+            this.canvas.setWidth(this.width);
+            this.canvas.renderAll();
+            this.addImage(img, (this.canvas.width - width)/ 2, (this.canvas.height - height)/ 2);
 
             this.$btnPencil.click();
             $('#painter-container').show();

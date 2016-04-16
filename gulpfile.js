@@ -10,23 +10,14 @@ var autoprefixer = require('autoprefixer');
 
 gulp.task('js', function () {
     'use strict';
-    let jsDst = './build ';
-
-
-    gulp.src([
-        './src/js/override/*.js'
-    ])
-        .pipe(concat('codemao-fabric-override.js'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-        .pipe(gulp.dest(jsDst));
+    let jsDst = './dist/js';
 
     gulp.src([
+        './src/js/override/*.js',
         './src/js/*.js'
     ])
         .pipe(concat('codemao-fabric.js'))
         .pipe(rename({suffix: '.min'}))
-        .pipe(obfuscate({exclude: ['fabric']}))
         .pipe(uglify())
         .pipe(gulp.dest(jsDst));
 });
