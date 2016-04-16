@@ -84,6 +84,11 @@
             }
         }
 
+        bound.top = Math.max(bound.top - 10, 0);
+        bound.bottom = Math.min(bound.bottom + 10, c.height);
+        bound.left = Math.max(bound.left - 10, 0);
+        bound.right = Math.min(bound.right + 10, c.width);
+
         return bound;
     }
 
@@ -91,9 +96,10 @@
         "use strict";
         var copy = document.createElement('canvas').getContext('2d');
         var bound = detectBounds(c, rc);
-        var trimHeight = bound.bottom - bound.top + 3,
-            trimWidth = bound.right - bound.left + 3;
+        var trimHeight = bound.bottom - bound.top,
+            trimWidth = bound.right - bound.left;
 
+        copy.imageSmoothingEnabled = false;
         copy.canvas.width = trimWidth;
         copy.canvas.height = trimHeight;
         copy.drawImage(c, bound.left, bound.top, trimWidth, trimHeight,

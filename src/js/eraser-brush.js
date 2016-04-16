@@ -24,6 +24,7 @@
             this.backupContext = this.backupCanvasEl.getContext('2d');
             this.canvas._copyCanvasStyle(this.canvas.upperCanvasEl, this.backupCanvasEl);
             this.canvas._applyCanvasStyle(this.backupCanvasEl);
+            this.backupContext.imageSmoothingEnabled = false;
             this.canvas.freeDrawingCursor = 'none';
             this._points = [ ];
             this.strokeStyle = 'rgb(255,255,255)';
@@ -92,7 +93,7 @@
             this._addPoint(p);
 
             this.canvas.clearContext(this.backupCanvasEl.getContext('2d'));
-            this.backupContext.drawImage(this.canvas.lowerCanvasEl,0,0);
+            this.backupContext.drawImage(this.canvas.lowerCanvasEl,0,0,this.backupCanvasEl.width,this.backupCanvasEl.height);
             this.canvas.clearContext(this.canvas.contextContainer);
             this.canvas.contextTop.moveTo(p.x, p.y);
 
@@ -265,10 +266,15 @@
                 })
                     .scale(1)
                     .setCoords();
+                Painter.canvas.setHeight(Painter.height);
+                Painter.canvas.setWidth(Painter.width);
+                Painter.canvas.renderAll();
                 Painter.canvas.add(image);
+                myself.canvas.contextTop.imageSmoothingEnabled = false;
                 myself.canvas.clearContext(myself.canvas.contextTop);
                 currentLayer.objects.splice(0,currentLayer.objects.length,image);
                 myself.canvas.renderAll();
+                myself.canvas.contextTop.imageSmoothingEnabled = true;
             });
 
 

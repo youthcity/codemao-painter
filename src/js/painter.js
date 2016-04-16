@@ -22,6 +22,7 @@
             $painterCanvas.attr('width', width);
             var canvas = new fabric.Canvas('painter-canvas');
             Painter.canvas = canvas;
+            canvas.enableRetinaScaling = false;
 
             $painterContainer.css('visibility', 'visible');
             $painterContainer.hide();
@@ -426,13 +427,15 @@
          * @param options
          */
         openIn: function (img, name, options) {
-            var width = 0, height = 0;
+            var width = 0, height = 0,
+                x = Painter.canvas.width/2,
+                y= Painter.canvas.height/2;
             if(options) {
                 width = options.width;
                 height = options.height;
                 Painter.canvas.rotationPoint = {
-                    x: options.rotationCenter.x + (Painter.canvas.width - width)/ 2,
-                    y: options.rotationCenter.y + (Painter.canvas.height - height)/ 2
+                    x: (width > Painter.canvas.width)?x:options.rotationCenter.x + (Painter.canvas.width - width)/ 2,
+                    y: (height > Painter.canvas.height)?y:options.rotationCenter.y + (Painter.canvas.height - height)/ 2
                 };
                 Painter.canvas.callback = options.callback;
             }

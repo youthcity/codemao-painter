@@ -26,7 +26,9 @@
         this._createUpperCanvas();
         this._initEventListeners();
 
-        this._initRetinaScaling();
+        //todo: fix it for iPad
+        //this._initRetinaScaling();
+
         this._createCursorCanvas();
 
         this.freeDrawingBrush = fabric.PencilBrush && new fabric.PencilBrush(this);
