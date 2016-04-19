@@ -372,7 +372,13 @@
                     //options.anchorOffsetX = result.rc.x;
                     //options.anchorOffsetY = result.rc.y;
 
-                    param.img = canvas.lowerCanvasEl;
+
+                    data = document.createElement('canvas');
+                    data.width = canvas.lowerCanvasEl.width;
+                    data.height = canvas.lowerCanvasEl.height;
+                    data.getContext('2d').drawImage(canvas.lowerCanvasEl, 0, 0);
+                    param.img = data;
+                    param.src = data.toDataURL();
                     param.rc = canvas.rotationPoint;
                     param.name = $('.painter-name').val();
 
