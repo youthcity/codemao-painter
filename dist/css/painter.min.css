@@ -4,7 +4,7 @@
     left:0;
     z-index:101;visibility:hidden;width:100%;height:100%;margin-left:auto;margin-right:auto;}
 #painter-container{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/bg.jpg);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/bg.jpg);
     background-size:100%;
 }
 
@@ -19,7 +19,7 @@
     background-color: white;
     box-sizing:border-box;
 }
-.painter{border:0px solid rgba(0,0,0,0.3);box-shadow:0px 0px 2px rgba(0,0,0,0.3);box-shadow:0px 0px 2px solid rgba(0,0,0,0.3) inset;border-radius:2px;background-image:url(https://dn-codemao.qbox.me/images/painter/grid.png);}
+.painter{border:0px solid rgba(0,0,0,0.3);box-shadow:0px 0px 2px rgba(0,0,0,0.3);box-shadow:0px 0px 2px solid rgba(0,0,0,0.3) inset;border-radius:2px;background-image:url(https://o44j7l4g3.qnssl.com/program/painter/grid.png);}
 
 #painter-container .painter-wrapper {
     padding: 20px 20px 0 20px;
@@ -66,61 +66,61 @@
     margin:8px;
 }
 .btn-pencil{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/pencil-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/pencil-off.png);
 }
 .btn-pencil.active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/pencil-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/pencil-on.png);
 }
 .btn-eraser{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/eraser-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/eraser-off.png);
 }
 .btn-eraser.active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/eraser-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/eraser-on.png);
 }
 .btn-text{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/text-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/text-off.png);
 }
 .btn-text:active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/text-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/text-on.png);
 }
 .btn-rotation{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/rotation-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/rotation-off.png);
 }
 .btn-rotation.active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/rotation-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/rotation-on.png);
 }
 .btn-line{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/line-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/line-off.png);
 }
 .btn-line:active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/line-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/line-on.png);
 }
 .btn-circle{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/circle-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/circle-off.png);
 }
 .btn-circle:active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/circle-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/circle-on.png);
 }
 .btn-rect{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/rect-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/rect-off.png);
 }
 .btn-rect:active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/rect-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/rect-on.png);
 }
 .btn-triangle{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/triangle-off.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/triangle-off.png);
 }
 .btn-triangle:active{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/triangle-on.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/triangle-on.png);
 }
 .painter-btn-close{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/close.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/close.png);
     width:54px;
     background-size:100%;
     height:55px;
 }
 .painter-btn-check{
-    background-image:url(https://dn-codemao.qbox.me/images/painter/check.png);
+    background-image:url(https://o44j7l4g3.qnssl.com/program/painter/check.png);
     width:54px;
     height:55px;
     background-size:100%;
@@ -168,7 +168,7 @@ input.painter-name:focus{
     width: 73px;
     height: 36px;
 
-    background-image: url(https://dn-codemao.qbox.me/images/painter/color-text.png);
+    background-image: url(https://o44j7l4g3.qnssl.com/program/painter/color-text.png);
 }
 
 .painter-color > input {
@@ -198,15 +198,15 @@ input.painter-name:focus{
 
 }
 .btn-pointer{
-    background:url(https://dn-codemao.qbox.me/images/painter/pointer-off.png);
+    background:url(https://o44j7l4g3.qnssl.com/program/painter/pointer-off.png);
     margin-top:10px;
 }
 .btn-pointer.active{
-    background:url(https://dn-codemao.qbox.me/images/painter/pointer-on.png);
+    background:url(https://o44j7l4g3.qnssl.com/program/painter/pointer-on.png);
     margin-top:10px;
 }
 .painter-btn-remove{
-    background:url(https://dn-codemao.qbox.me/images/painter/remove.png);
+    background:url(https://o44j7l4g3.qnssl.com/program/painter/remove.png);
     width:66px;
     height:66px;
     margin: 30px 8px 8px;
