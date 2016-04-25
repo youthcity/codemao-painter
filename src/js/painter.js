@@ -16,8 +16,8 @@
 
       //  todo: use relative width&height!
       if (!width) {
-        width = $painterContent.width() - $('.painter-left-buttons').width() -
-          $('.painter-right-buttons').width() - 46;
+        width = $painterContent.width() - $('.painter-left-buttons').width()
+          - $('.painter-right-buttons').width() - 46;
         height = $painterContent.height() - $('.painter-properties').height() - 26;
       }
       this.width = width;
@@ -215,26 +215,23 @@
       }
 
       function addImage(path, x, y) {
-        fabric.Image.fromURL(path, function (image) {
+        fabric.Image.fromURL(path, (image) => {
           image.set({
-              left: x || 0,
-              top: y || 0,
-              angle: 0
-            })
-            .scale(1)
-            .setCoords();
-          Painter.canvas.add(image);
-          Painter.canvas.renderAll();
+            left: x || 0,
+            top: y || 0,
+            angle: 0,
+          }).scale(1).setCoords();
+          this.canvas.add(image);
+          this.canvas.renderAll();
         });
       }
 
-      Painter.addImage = addImage;
+      this.addImage = addImage;
 
       function addText(x, y) {
-        "use strict";
-        let text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
+        const text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
 
-        let textSample = new fabric.Text(text, {
+        const textSample = new fabric.Text(text, {
           left: x || canvas.getWidth() / 2,
           top: y || canvas.getHeight() / 2,
           fontFamily: 'Microsoft YaHei',
@@ -245,24 +242,23 @@
           fontWeight: '',
           originX: 'left',
           hasRotatingPoint: true,
-          centerTransform: true
+          centerTransform: true,
         });
 
-        Painter.canvas.add(textSample);
+        this.canvas.add(textSample);
       }
 
       function removeSelected() {
-        let activeObject = canvas.getActiveObject(),
-          activeGroup = canvas.getActiveGroup();
+        const activeObject = canvas.getActiveObject();
+        const activeGroup = canvas.getActiveGroup();
 
         if (activeGroup) {
-          let objectsInGroup = activeGroup.getObjects();
+          const objectsInGroup = activeGroup.getObjects();
           canvas.discardActiveGroup();
-          objectsInGroup.forEach(function (object) {
+          objectsInGroup.forEach((object) => {
             canvas.remove(object);
           });
-        }
-        else if (activeObject) {
+        } else if (activeObject) {
           canvas.remove(activeObject);
         }
       }
@@ -270,84 +266,83 @@
       function cancelSelected() {
         canvas.deactivateAll();
         canvas.renderAll();
-        //canvas.discardActiveObject();
+        // canvas.discardActiveObject();
       }
 
       function initEvents() {
-        let $btnPencil = myself.$btnPencil,
-          $btnEraser = $('.btn-eraser'),
-          $btnRotation = $('.btn-rotation');
+        const $btnPencil = myself.$btnPencil;
+        const $btnEraser = $('.btn-eraser');
+        const $btnRotation = $('.btn-rotation');
         $('.painter-colors:first-child').click();
-        $btnPencil.on('click', function () {
+        $btnPencil.on('click', () => {
           cancelSelected();
           canvas.setFreeDrawingBrush('pencil', {
             width: 15,
-            color: curColor
+            color: curColor,
           });
           canvas.setDrawingMode(true);
           myself.vm.width = 15;
-          //canvas.freeDrawingBrush.width=10;
-          //canvas.freeDrawingBrush.color=curColor;
+          // canvas.freeDrawingBrush.width=10;
+          // canvas.freeDrawingBrush.color=curColor;
         });
-        $btnEraser.on('click', function () {
+        $btnEraser.on('click', () => {
           cancelSelected();
           canvas.setFreeDrawingBrush('eraser', {
             width: 15,
-            color: curColor
+            color: curColor,
           });
           canvas.setDrawingMode(true);
           myself.vm.width = 15;
         });
-        $btnRotation.on('click', function () {
+        $btnRotation.on('click', () => {
           cancelSelected();
           canvas.setDrawingMode(true);
           canvas.setFreeDrawingBrush('rotation', {});
         });
-        $('.btn-circle').on('click', function () {
+        $('.btn-circle').on('click', () => {
           myself.$btnPointer.click();
           addCircle(100, 100, 100);
-
         });
-        $('.btn-rect').on('click', function () {
+        $('.btn-rect').on('click', () => {
           myself.$btnPointer.click();
           addRect(100, 100, 100, 100);
         });
-        $('.btn-line').on('click', function () {
+        $('.btn-line').on('click', () => {
           myself.$btnPointer.click();
           addLine();
         });
-        $('.btn-triangle').on('click', function () {
+        $('.btn-triangle').on('click', () => {
           myself.$btnPointer.click();
           addTriangle(100, 100, 100, 100);
         });
-        $('.btn-text').on('click', function () {
+        $('.btn-text').on('click', () => {
           myself.$btnPointer.click();
           addText(0, 0);
         });
 
         $btnPencil.click();
         $('.painter-btn-remove').on('click', removeSelected);
-        myself.$btnPointer.on('click', function () {
+        myself.$btnPointer.on('click', () => {
           canvas.setDrawingMode(false);
         });
-        $('.painter-btn-close').on('click', function () {
+        $('.painter-btn-close').on('click', () => {
           canvas.setDrawingMode(false);
           $('#painter-container').hide();
         });
-        $('.painter-btn-check').on('click', function () {
-          let result, data, param = {};
-          //todo: Deal with the End
-          //canvas.contextContainer.imageSmoothingEnabled = false;
+        $('.painter-btn-check').on('click', () => {
+          const param = {};
+          //  todo: Deal with the End
+          //  canvas.contextContainer.imageSmoothingEnabled = false;
           canvas.setDrawingMode(false);
-          //result = toBase64();
+          //  result = toBase64();
           canvas.layerManager.combineAllLayers();
-          let activeObj = Painter.canvas.getActiveObject();
-          let activeGroup = canvas.getActiveGroup();
+          const activeObj = this.canvas.getActiveObject();
+          const activeGroup = canvas.getActiveGroup();
           if (activeGroup) {
-            let objectsInGroup = activeGroup.getObjects();
+            const objectsInGroup = activeGroup.getObjects();
             canvas.discardActiveGroup();
-            objectsInGroup.forEach(function (object) {
-              object.active = false;
+            objectsInGroup.forEach((obj) => {
+              Object.assign(obj, { active: false });
             });
           }
           if (activeObj) {
@@ -355,11 +350,10 @@
           }
           canvas.renderAll();
           canvas.setZoom(1);
-          //options.anchorOffsetX = result.rc.x;
-          //options.anchorOffsetY = result.rc.y;
+          //  options.anchorOffsetX = result.rc.x;
+          //  options.anchorOffsetY = result.rc.y;
 
-
-          data = document.createElement('canvas');
+          const data = document.createElement('canvas');
           data.width = canvas.lowerCanvasEl.width;
           data.height = canvas.lowerCanvasEl.height;
           data.getContext('2d').drawImage(canvas.lowerCanvasEl, 0, 0);
@@ -378,39 +372,39 @@
 
       initEvents();
 
-      function toBase64() {
-        let result;
-
-        canvas.layerManager.combineAllLayers();
-        let activeObj = Painter.canvas.getActiveObject();
-        let activeGroup = canvas.getActiveGroup();
-        if (activeGroup) {
-          let objectsInGroup = activeGroup.getObjects();
-          canvas.discardActiveGroup();
-          objectsInGroup.forEach(function (object) {
-            object.active = false;
-          });
-        }
-        if (activeObj) {
-          activeObj.active = false;
-        }
-        Painter.canvas.renderAll();
-        Painter.canvas.setZoom(1);
-        let data = canvas.toDataURL('png');
-        let img = document.createElement('img');
-        img.setAttribute('width', width);
-        img.setAttribute('height', height);
-        img.setAttribute('src', data);
-        let c = document.createElement('canvas');
-        c.setAttribute('width', width);
-        c.setAttribute('height', height);
-        let ctx = c.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        canvas.setZoom(1);
-
-        result = trimCanvasWithPosition(c, canvas.rotationPoint);
-        return result;
-      }
+      // function toBase64() {
+      //   let result;
+      //
+      //   canvas.layerManager.combineAllLayers();
+      //   let activeObj = Painter.canvas.getActiveObject();
+      //   let activeGroup = canvas.getActiveGroup();
+      //   if (activeGroup) {
+      //     let objectsInGroup = activeGroup.getObjects();
+      //     canvas.discardActiveGroup();
+      //     objectsInGroup.forEach(function (object) {
+      //       object.active = false;
+      //     });
+      //   }
+      //   if (activeObj) {
+      //     activeObj.active = false;
+      //   }
+      //   Painter.canvas.renderAll();
+      //   Painter.canvas.setZoom(1);
+      //   let data = canvas.toDataURL('png');
+      //   let img = document.createElement('img');
+      //   img.setAttribute('width', width);
+      //   img.setAttribute('height', height);
+      //   img.setAttribute('src', data);
+      //   let c = document.createElement('canvas');
+      //   c.setAttribute('width', width);
+      //   c.setAttribute('height', height);
+      //   let ctx = c.getContext('2d');
+      //   ctx.drawImage(img, 0, 0, width, height);
+      //   canvas.setZoom(1);
+      //
+      //   result = trimCanvasWithPosition(c, canvas.rotationPoint);
+      //   return result;
+      // }
     },
 
     /**
@@ -419,16 +413,19 @@
      * @param name
      * @param options
      */
-    openIn: function (img, name, options) {
-      let width = 0, height = 0,
-        x = this.canvas.width / 2,
-        y = this.canvas.height / 2;
+    openIn(img, name, options) {
+      const x = this.canvas.width / 2;
+      const y = this.canvas.height / 2;
+      let width = 0;
+      let height = 0;
       if (options) {
         width = options.width;
         height = options.height;
         this.canvas.rotationPoint = {
-          x: (width > this.canvas.width) ? x : options.rotationCenter.x + (this.canvas.width - width) / 2,
-          y: (height > this.canvas.height) ? y : options.rotationCenter.y + (this.canvas.height - height) / 2
+          x: (width > this.canvas.width) ? x : options.rotationCenter.x
+            + (this.canvas.width - width) / 2,
+          y: (height > this.canvas.height) ? y : options.rotationCenter.y
+            + (this.canvas.height - height) / 2,
         };
         this.canvas.callback = options.callback;
       }
@@ -445,8 +442,8 @@
       $('#painter-container').show();
     },
 
-    destroy: function () {
+    destroy() {
       $('#painter-container').hide();
-    }
+    },
   };
 })();
