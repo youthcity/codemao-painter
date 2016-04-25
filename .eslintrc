@@ -1,16 +1,21 @@
 {
   "parser-options": {
-    "ecmaVersion": 6
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "browser": true,
     "es6": true,
-    "jquery": true
+    "jquery": true,
+    "commonjs": true
   },
   "globals": {
     "fabric": true,
     "Vue": true,
-    "template": true
+    "template": true,
+    "webpack": true
   },
   "extends": "airbnb/base"
 }
