@@ -13,8 +13,8 @@ gulp.task('js', function () {
     let jsDst = './dist/js';
 
     gulp.src([
-        './src/js/override/*.js',
-        './src/js/*.js'
+        './src/js-es5/override/*.js',
+        './src/js-es5/*.js'
     ])
         .pipe(concat('codemao-fabric.js'))
         .pipe(rename({suffix: '.min'}))
@@ -27,14 +27,14 @@ gulp.task('js-debug', function () {
     let jsDst = './dist/js';
 
     gulp.src([
-        './src/js/override/*.js'
+        './src/js-es5/override/*.js'
     ])
         .pipe(concat('codemao-fabric-override.js'))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(jsDst));
 
     gulp.src([
-        './src/js/*.js'
+        './src/js-es5/*.js'
     ])
         .pipe(concat('codemao-fabric.js'))
         .pipe(rename({suffix: '.min'}))
@@ -73,7 +73,7 @@ gulp.task('default', function () {
     gulp.run('js');
     gulp.run('css');
 
-    gulp.watch('./src/js/*.js', function () {
+    gulp.watch('./src/js-es5/*.js', function () {
         gulp.run('js');
     });
     gulp.watch('./src/css/*.css', function () {
@@ -85,7 +85,7 @@ gulp.task('debug', function () {
     gulp.run('js-debug');
     gulp.run('css-debug');
 
-    gulp.watch('./src/js/*', function () {
+    gulp.watch('./src/js-es5/*', function () {
         gulp.run('js-debug');
     });
     gulp.watch('./src/css/*.css', function () {

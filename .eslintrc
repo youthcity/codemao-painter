@@ -1,0 +1,13 @@
+{
+  "parser-options": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "fabric": true
+  },
+  "extends": "airbnb/base"
+}
