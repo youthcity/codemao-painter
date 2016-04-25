@@ -1,23 +1,23 @@
-(() => {
-  window.Painter = {
+'use strict';
 
-    init(w, h) {
-      const $painterContent = $('.painter-content');
-      const $painterCanvas = $('#painter-canvas');
-      const $painterContainer = $('#painter-container');
-      const canvas = new fabric.Canvas('painter-canvas');
-      const myself = this;
-      let width = w;
-      let height = h;
-      let curColor = '';
+(function () {
+  window.Painter = {
+    init: function init(w, h) {
+      var $painterContent = $('.painter-content');
+      var $painterCanvas = $('#painter-canvas');
+      var $painterContainer = $('#painter-container');
+      var canvas = new fabric.Canvas('painter-canvas');
+      var myself = this;
+      var width = w;
+      var height = h;
+      var curColor = '';
 
       this.$btnPencil = $('.btn-pencil');
       this.$btnPointer = $('.btn-pointer');
 
       //  todo: use relative width&height!
       if (!width) {
-        width = $painterContent.width() - $('.painter-left-buttons').width() -
-          $('.painter-right-buttons').width() - 46;
+        width = $painterContent.width() - $('.painter-left-buttons').width() - $('.painter-right-buttons').width() - 46;
         height = $painterContent.height() - $('.painter-properties').height() - 26;
       }
       this.width = width;
@@ -38,20 +38,20 @@
           width: 10,
           content: '添加文字后在这里修改',
           type: 'object',
-          color: '',
+          color: ''
         },
         watch: {
-          'content'(value) {
-            const object = canvas.getActiveObject();
+          'content': function content(value) {
+            var object = canvas.getActiveObject();
             if (!object) return;
 
             object.set('text', value).setCoords();
             canvas.renderAll();
           },
-          'width'(v) {
-            const object = canvas.getActiveObject();
-            let styleName = 'strokeWidth';
-            let value = v;
+          'width': function width(v) {
+            var object = canvas.getActiveObject();
+            var styleName = 'strokeWidth';
+            var value = v;
             value = parseInt(value, 10);
             if (canvas.freeDrawingBrush) {
               canvas.freeDrawingBrush.width = value || 15;
@@ -62,7 +62,7 @@
               styleName = 'fontSize';
             }
             if (object.setSelectionStyles && object.isEditing) {
-              const style = {};
+              var style = {};
               style[styleName] = value;
               object.setSelectionStyles(style);
               object.setCoords();
@@ -73,18 +73,18 @@
             object.setCoords();
             canvas.renderAll();
           },
-          'color'() {
+          'color': function color() {
             curColor = this.color;
 
             canvas.freeDrawingBrush.color = curColor;
 
-            const activeObject = canvas.getActiveObject();
-            const activeGroup = canvas.getActiveGroup();
+            var activeObject = canvas.getActiveObject();
+            var activeGroup = canvas.getActiveGroup();
 
             if (activeGroup) {
-              const objectsInGroup = activeGroup.getObjects();
+              var objectsInGroup = activeGroup.getObjects();
               canvas.discardActiveGroup();
-              objectsInGroup.forEach((object) => {
+              objectsInGroup.forEach(function (object) {
                 if (object.stroke) {
                   object.setStroke(curColor);
                 } else {
@@ -99,12 +99,12 @@
               }
             }
             canvas.renderAll();
-          },
-        },
+          }
+        }
       });
 
       function updateScope() {
-        const object = canvas.getActiveObject();
+        var object = canvas.getActiveObject();
         if (!object) return;
 
         myself.vm.content = object.text || '';
@@ -124,8 +124,7 @@
       //  init colors
       function initColors() {
         //  let total = 255 * 255 * 255;
-        const colors = ['e3135c', 'cd0024', 'f1521e', 'fce932', 'f5a72e', '8b5430', 'bd0add',
-          '9016e8', '4b90e0', '437715', '85d036', 'bae98a', '000000', 'ffffff'];
+        var colors = ['e3135c', 'cd0024', 'f1521e', 'fce932', 'f5a72e', '8b5430', 'bd0add', '9016e8', '4b90e0', '437715', '85d036', 'bae98a', '000000', 'ffffff'];
         //  for (let i = 0; i < total - 100; i += total / 40) {
         //    i = parseInt(i);
         //    let color = i.toString(16);
@@ -134,43 +133,47 @@
         //    }
         //    $('.painter-colors-wrap').append(template('template-colors', {color: '#' + color}));
         //  }
-        for (let i = 0; i < colors.length; ++i) {
-          $('.painter-colors-wrap').append(template('template-colors', { color: `#${colors[i]}` }));
+        for (var i = 0; i < colors.length; ++i) {
+          $('.painter-colors-wrap').append(template('template-colors', { color: '#' + colors[i] }));
         }
       }
 
       initColors();
 
       $('.painter-btn').on('click', function () {
+        var _this = this;
+
         if (!$(this).hasClass('active')) {
           $(this).parent().find('.painter-btn').removeClass('active');
           $(this).addClass('active');
           if ($(this).hasClass('painter-colors')) {
-            canvas.freeDrawingBrush.color = $(this).attr('data-value');
-            curColor = $(this).attr('data-value');
-            myself.vm.color = curColor;
+            (function () {
+              canvas.freeDrawingBrush.color = $(_this).attr('data-value');
+              curColor = $(_this).attr('data-value');
+              myself.vm.color = curColor;
 
-            const activeObject = canvas.getActiveObject();
-            const activeGroup = canvas.getActiveGroup();
+              var activeObject = canvas.getActiveObject();
+              var activeGroup = canvas.getActiveGroup();
 
-            if (activeGroup) {
-              const objectsInGroup = activeGroup.getObjects();
-              canvas.discardActiveGroup();
-              objectsInGroup.forEach((object) => {
-                if (object.stroke) {
-                  object.setStroke(curColor);
+              if (activeGroup) {
+                var objectsInGroup = activeGroup.getObjects();
+                canvas.discardActiveGroup();
+                objectsInGroup.forEach(function (object) {
+                  if (object.stroke) {
+                    object.setStroke(curColor);
+                  } else {
+                    activeObject.setColor(curColor);
+                  }
+                });
+              } else if (activeObject) {
+                if (activeObject.stroke) {
+                  activeObject.setStroke(curColor);
                 } else {
                   activeObject.setColor(curColor);
                 }
-              });
-            } else if (activeObject) {
-              if (activeObject.stroke) {
-                activeObject.setStroke(curColor);
-              } else {
-                activeObject.setColor(curColor);
               }
-            }
-            canvas.renderAll();
+              canvas.renderAll();
+            })();
           }
         }
       });
@@ -179,17 +182,17 @@
           left: Math.random() * myself.width,
           top: Math.random() * myself.height,
           stroke: curColor,
-          strokeWidth: myself.vm.width,
+          strokeWidth: myself.vm.width
         }));
       }
 
       function addRect(rectWidth, rectHeight, x, y) {
-        const rect = new fabric.Rect({
+        var rect = new fabric.Rect({
           top: y,
           left: x,
           width: rectWidth,
           height: rectHeight,
-          fill: canvas.freeDrawingBrush.color,
+          fill: canvas.freeDrawingBrush.color
         });
         canvas.add(rect);
       }
@@ -199,30 +202,28 @@
           left: x,
           top: y,
           fill: canvas.freeDrawingBrush.color,
-          radius: 50,
-          //  opacity: 0.8
+          radius: 50
         }));
       }
 
+      //  opacity: 0.8
       function addTriangle(triWidth, triHeight, x, y) {
         canvas.add(new fabric.Triangle({
           left: x,
           top: y,
           fill: canvas.freeDrawingBrush.color,
           width: triWidth,
-          height: triHeight,
+          height: triHeight
         }));
       }
 
       function addImage(path, x, y) {
         fabric.Image.fromURL(path, function (image) {
           image.set({
-              left: x || 0,
-              top: y || 0,
-              angle: 0
-            })
-            .scale(1)
-            .setCoords();
+            left: x || 0,
+            top: y || 0,
+            angle: 0
+          }).scale(1).setCoords();
           Painter.canvas.add(image);
           Painter.canvas.renderAll();
         });
@@ -232,9 +233,10 @@
 
       function addText(x, y) {
         "use strict";
-        let text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
 
-        let textSample = new fabric.Text(text, {
+        var text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
+
+        var textSample = new fabric.Text(text, {
           left: x || canvas.getWidth() / 2,
           top: y || canvas.getHeight() / 2,
           fontFamily: 'Microsoft YaHei',
@@ -252,17 +254,16 @@
       }
 
       function removeSelected() {
-        let activeObject = canvas.getActiveObject(),
-          activeGroup = canvas.getActiveGroup();
+        var activeObject = canvas.getActiveObject(),
+            activeGroup = canvas.getActiveGroup();
 
         if (activeGroup) {
-          let objectsInGroup = activeGroup.getObjects();
+          var objectsInGroup = activeGroup.getObjects();
           canvas.discardActiveGroup();
           objectsInGroup.forEach(function (object) {
             canvas.remove(object);
           });
-        }
-        else if (activeObject) {
+        } else if (activeObject) {
           canvas.remove(activeObject);
         }
       }
@@ -274,9 +275,9 @@
       }
 
       function initEvents() {
-        let $btnPencil = myself.$btnPencil,
-          $btnEraser = $('.btn-eraser'),
-          $btnRotation = $('.btn-rotation');
+        var $btnPencil = myself.$btnPencil,
+            $btnEraser = $('.btn-eraser'),
+            $btnRotation = $('.btn-rotation');
         $('.painter-colors:first-child').click();
         $btnPencil.on('click', function () {
           cancelSelected();
@@ -306,7 +307,6 @@
         $('.btn-circle').on('click', function () {
           myself.$btnPointer.click();
           addCircle(100, 100, 100);
-
         });
         $('.btn-rect').on('click', function () {
           myself.$btnPointer.click();
@@ -335,16 +335,18 @@
           $('#painter-container').hide();
         });
         $('.painter-btn-check').on('click', function () {
-          let result, data, param = {};
+          var result = undefined,
+              data = undefined,
+              param = {};
           //todo: Deal with the End
           //canvas.contextContainer.imageSmoothingEnabled = false;
           canvas.setDrawingMode(false);
           //result = toBase64();
           canvas.layerManager.combineAllLayers();
-          let activeObj = Painter.canvas.getActiveObject();
-          let activeGroup = canvas.getActiveGroup();
+          var activeObj = Painter.canvas.getActiveObject();
+          var activeGroup = canvas.getActiveGroup();
           if (activeGroup) {
-            let objectsInGroup = activeGroup.getObjects();
+            var objectsInGroup = activeGroup.getObjects();
             canvas.discardActiveGroup();
             objectsInGroup.forEach(function (object) {
               object.active = false;
@@ -357,7 +359,6 @@
           canvas.setZoom(1);
           //options.anchorOffsetX = result.rc.x;
           //options.anchorOffsetY = result.rc.y;
-
 
           data = document.createElement('canvas');
           data.width = canvas.lowerCanvasEl.width;
@@ -379,13 +380,13 @@
       initEvents();
 
       function toBase64() {
-        let result;
+        var result = undefined;
 
         canvas.layerManager.combineAllLayers();
-        let activeObj = Painter.canvas.getActiveObject();
-        let activeGroup = canvas.getActiveGroup();
+        var activeObj = Painter.canvas.getActiveObject();
+        var activeGroup = canvas.getActiveGroup();
         if (activeGroup) {
-          let objectsInGroup = activeGroup.getObjects();
+          var objectsInGroup = activeGroup.getObjects();
           canvas.discardActiveGroup();
           objectsInGroup.forEach(function (object) {
             object.active = false;
@@ -396,15 +397,15 @@
         }
         Painter.canvas.renderAll();
         Painter.canvas.setZoom(1);
-        let data = canvas.toDataURL('png');
-        let img = document.createElement('img');
+        var data = canvas.toDataURL('png');
+        var img = document.createElement('img');
         img.setAttribute('width', width);
         img.setAttribute('height', height);
         img.setAttribute('src', data);
-        let c = document.createElement('canvas');
+        var c = document.createElement('canvas');
         c.setAttribute('width', width);
         c.setAttribute('height', height);
-        let ctx = c.getContext('2d');
+        var ctx = c.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
         canvas.setZoom(1);
 
@@ -419,16 +420,17 @@
      * @param name
      * @param options
      */
-    openIn: function (img, name, options) {
-      let width = 0, height = 0,
-        x = this.canvas.width / 2,
-        y = this.canvas.height / 2;
+    openIn: function openIn(img, name, options) {
+      var width = 0,
+          height = 0,
+          x = this.canvas.width / 2,
+          y = this.canvas.height / 2;
       if (options) {
         width = options.width;
         height = options.height;
         this.canvas.rotationPoint = {
-          x: (width > this.canvas.width) ? x : options.rotationCenter.x + (this.canvas.width - width) / 2,
-          y: (height > this.canvas.height) ? y : options.rotationCenter.y + (this.canvas.height - height) / 2
+          x: width > this.canvas.width ? x : options.rotationCenter.x + (this.canvas.width - width) / 2,
+          y: height > this.canvas.height ? y : options.rotationCenter.y + (this.canvas.height - height) / 2
         };
         this.canvas.callback = options.callback;
       }
@@ -445,8 +447,10 @@
       $('#painter-container').show();
     },
 
-    destroy: function () {
+    destroy: function destroy() {
       $('#painter-container').hide();
     }
   };
 })();
+
+//# sourceMappingURL=painter.js.map
