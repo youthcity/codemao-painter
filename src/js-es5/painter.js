@@ -218,22 +218,22 @@
       }
 
       function addImage(path, x, y) {
+        var _this2 = this;
+
         fabric.Image.fromURL(path, function (image) {
           image.set({
             left: x || 0,
             top: y || 0,
             angle: 0
           }).scale(1).setCoords();
-          Painter.canvas.add(image);
-          Painter.canvas.renderAll();
+          _this2.canvas.add(image);
+          _this2.canvas.renderAll();
         });
       }
 
-      Painter.addImage = addImage;
+      this.addImage = addImage;
 
       function addText(x, y) {
-        "use strict";
-
         var text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
 
         var textSample = new fabric.Text(text, {
@@ -250,12 +250,12 @@
           centerTransform: true
         });
 
-        Painter.canvas.add(textSample);
+        this.canvas.add(textSample);
       }
 
       function removeSelected() {
-        var activeObject = canvas.getActiveObject(),
-            activeGroup = canvas.getActiveGroup();
+        var activeObject = canvas.getActiveObject();
+        var activeGroup = canvas.getActiveGroup();
 
         if (activeGroup) {
           var objectsInGroup = activeGroup.getObjects();
@@ -271,13 +271,15 @@
       function cancelSelected() {
         canvas.deactivateAll();
         canvas.renderAll();
-        //canvas.discardActiveObject();
+        // canvas.discardActiveObject();
       }
 
       function initEvents() {
-        var $btnPencil = myself.$btnPencil,
-            $btnEraser = $('.btn-eraser'),
-            $btnRotation = $('.btn-rotation');
+        var _this3 = this;
+
+        var $btnPencil = myself.$btnPencil;
+        var $btnEraser = $('.btn-eraser');
+        var $btnRotation = $('.btn-rotation');
         $('.painter-colors:first-child').click();
         $btnPencil.on('click', function () {
           cancelSelected();
@@ -287,8 +289,8 @@
           });
           canvas.setDrawingMode(true);
           myself.vm.width = 15;
-          //canvas.freeDrawingBrush.width=10;
-          //canvas.freeDrawingBrush.color=curColor;
+          // canvas.freeDrawingBrush.width=10;
+          // canvas.freeDrawingBrush.color=curColor;
         });
         $btnEraser.on('click', function () {
           cancelSelected();
@@ -335,21 +337,19 @@
           $('#painter-container').hide();
         });
         $('.painter-btn-check').on('click', function () {
-          var result = undefined,
-              data = undefined,
-              param = {};
-          //todo: Deal with the End
-          //canvas.contextContainer.imageSmoothingEnabled = false;
+          var param = {};
+          //  todo: Deal with the End
+          //  canvas.contextContainer.imageSmoothingEnabled = false;
           canvas.setDrawingMode(false);
-          //result = toBase64();
+          //  result = toBase64();
           canvas.layerManager.combineAllLayers();
-          var activeObj = Painter.canvas.getActiveObject();
+          var activeObj = _this3.canvas.getActiveObject();
           var activeGroup = canvas.getActiveGroup();
           if (activeGroup) {
             var objectsInGroup = activeGroup.getObjects();
             canvas.discardActiveGroup();
-            objectsInGroup.forEach(function (object) {
-              object.active = false;
+            objectsInGroup.forEach(function (obj) {
+              Object.assign(obj, { active: false });
             });
           }
           if (activeObj) {
@@ -357,10 +357,10 @@
           }
           canvas.renderAll();
           canvas.setZoom(1);
-          //options.anchorOffsetX = result.rc.x;
-          //options.anchorOffsetY = result.rc.y;
+          //  options.anchorOffsetX = result.rc.x;
+          //  options.anchorOffsetY = result.rc.y;
 
-          data = document.createElement('canvas');
+          var data = document.createElement('canvas');
           data.width = canvas.lowerCanvasEl.width;
           data.height = canvas.lowerCanvasEl.height;
           data.getContext('2d').drawImage(canvas.lowerCanvasEl, 0, 0);
@@ -379,39 +379,39 @@
 
       initEvents();
 
-      function toBase64() {
-        var result = undefined;
-
-        canvas.layerManager.combineAllLayers();
-        var activeObj = Painter.canvas.getActiveObject();
-        var activeGroup = canvas.getActiveGroup();
-        if (activeGroup) {
-          var objectsInGroup = activeGroup.getObjects();
-          canvas.discardActiveGroup();
-          objectsInGroup.forEach(function (object) {
-            object.active = false;
-          });
-        }
-        if (activeObj) {
-          activeObj.active = false;
-        }
-        Painter.canvas.renderAll();
-        Painter.canvas.setZoom(1);
-        var data = canvas.toDataURL('png');
-        var img = document.createElement('img');
-        img.setAttribute('width', width);
-        img.setAttribute('height', height);
-        img.setAttribute('src', data);
-        var c = document.createElement('canvas');
-        c.setAttribute('width', width);
-        c.setAttribute('height', height);
-        var ctx = c.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        canvas.setZoom(1);
-
-        result = trimCanvasWithPosition(c, canvas.rotationPoint);
-        return result;
-      }
+      // function toBase64() {
+      //   let result;
+      //
+      //   canvas.layerManager.combineAllLayers();
+      //   let activeObj = Painter.canvas.getActiveObject();
+      //   let activeGroup = canvas.getActiveGroup();
+      //   if (activeGroup) {
+      //     let objectsInGroup = activeGroup.getObjects();
+      //     canvas.discardActiveGroup();
+      //     objectsInGroup.forEach(function (object) {
+      //       object.active = false;
+      //     });
+      //   }
+      //   if (activeObj) {
+      //     activeObj.active = false;
+      //   }
+      //   Painter.canvas.renderAll();
+      //   Painter.canvas.setZoom(1);
+      //   let data = canvas.toDataURL('png');
+      //   let img = document.createElement('img');
+      //   img.setAttribute('width', width);
+      //   img.setAttribute('height', height);
+      //   img.setAttribute('src', data);
+      //   let c = document.createElement('canvas');
+      //   c.setAttribute('width', width);
+      //   c.setAttribute('height', height);
+      //   let ctx = c.getContext('2d');
+      //   ctx.drawImage(img, 0, 0, width, height);
+      //   canvas.setZoom(1);
+      //
+      //   result = trimCanvasWithPosition(c, canvas.rotationPoint);
+      //   return result;
+      // }
     },
 
     /**
@@ -421,10 +421,10 @@
      * @param options
      */
     openIn: function openIn(img, name, options) {
-      var width = 0,
-          height = 0,
-          x = this.canvas.width / 2,
-          y = this.canvas.height / 2;
+      var x = this.canvas.width / 2;
+      var y = this.canvas.height / 2;
+      var width = 0;
+      var height = 0;
       if (options) {
         width = options.width;
         height = options.height;
@@ -446,7 +446,6 @@
       this.$btnPencil.click();
       $('#painter-container').show();
     },
-
     destroy: function destroy() {
       $('#painter-container').hide();
     }
