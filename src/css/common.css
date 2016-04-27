@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .h-flex{
     display:-webkit-box;
     -webkit-box-orient:horizontal;
