@@ -4,43 +4,43 @@
             <!--<span>笔触</span>-->
             <div title="画笔" class="tools-button tools-pencil" v-on:click="selectBrush('pencil')"
                  v-bind:class="{'active': isCurrentTool('pencil')}">
-                <img class="button-img" src="/assets/pencil.png" alt="笔">
-                <img class="button-img-on" src="/assets/pencil-on.png" alt="笔">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/pencil.png" alt="笔">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/pencil-on.png" alt="笔">
             </div>
             <div title="直线" class="tools-button tools-line" v-on:click="selectBrush('line')"
                  v-bind:class="{'active': isCurrentTool('line')}">
-                <img class="button-img" src="/assets/line.png" alt="线">
-                <img class="button-img-on" src="/assets/line-on.png" alt="线">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/line.png" alt="线">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/line-on.png" alt="线">
             </div>
             <div title="矩形" class="tools-button tools-rect" v-on:click="selectBrush('rect')"
                  v-bind:class="{'active': isCurrentTool('rect')}">
-                <img class="button-img" src="/assets/rect.png" alt="方">
-                <img class="button-img-on" src="/assets/rect-on.png" alt="方">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/rect.png" alt="方">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/rect-on.png" alt="方">
             </div>
             <div title="圆形" class="tools-button tools-round" v-on:click="selectBrush('round')"
                  v-bind:class="{'active': isCurrentTool('round')}">
-                <img class="button-img" src="/assets/round.png" alt="圆">
-                <img class="button-img-on" src="/assets/round-on.png" alt="圆">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/round.png" alt="圆">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/round-on.png" alt="圆">
             </div>
         </div>
         <div class="tools-buttons-container">
             <div title="橡皮" class="tools-button tools-eraser" v-on:click="selectBrush('eraser')"
                  v-bind:class="{'active': isCurrentTool('eraser')}">
-                <img class="button-img" src="/assets/eraser.png" alt="橡">
-                <img class="button-img-on" src="/assets/eraser-on.png" alt="橡">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/eraser.png" alt="橡">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/eraser-on.png" alt="橡">
             </div>
             <div title="选择" class="tools-button tools-select" v-on:click="selectBrush()"
                  v-bind:class="{'active': isCurrentTool()}">
-                <img class="button-img" src="/assets/select.png" alt="选">
-                <img class="button-img-on" src="/assets/select-on.png" alt="选">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/select.png" alt="选">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/select-on.png" alt="选">
             </div>
             <div title="文字" class="tools-button tools-text" v-on:click="addShape('text')">
-                <img class="button-img" src="/assets/text.png" alt="字">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/text.png" alt="字">
             </div>
             <div title="旋转中心" class="tools-button tools-select" v-on:click="selectBrush('rotation')"
                  v-bind:class="{'active': isCurrentTool('rotation')}">
-                <img class="button-img" src="/assets/rotation.png" alt="中">
-                <img class="button-img-on" src="/assets/rotation-on.png" alt="中">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/rotation.png" alt="中">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/rotation-on.png" alt="中">
             </div>
         </div>
         <div class="tools-slider-container">
@@ -153,6 +153,7 @@
     .tools-slider-container input {
         width: 40%;
 
+        margin: 0.1rem;
         flex-grow: 1;
     }
 

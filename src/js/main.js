@@ -1,5 +1,5 @@
 //  todo: 多图层时,上下图层关系在绘制完毕后才应用,upper 处在最高层,透明度没有应用在 upper 层上
-import Vue from 'vue';
+// import Vue from 'vue';
 import '../css/common.css';
 
 import '../js/override/static-canvas';
@@ -66,6 +66,9 @@ class Painter {
       refreshThumbnails() {
         this.state.needRefreshThumbnails = true;
       },
+      setCostumeName(val) {
+        this.state.costumeTitle = val;
+      },
     };
 
     this.vm = new Vue(
@@ -76,6 +79,12 @@ class Painter {
           canvas: null,
           layerManager: null,
           painter: this,
+          isShowPainter: false,
+        },
+        computed: {
+          painterVisibility() {
+            return this.isShowPainter? '':'hidden';
+          }
         },
         methods: {
           setCanvasSize(width, height) {
@@ -84,6 +93,14 @@ class Painter {
             this.canvas.layerManager.setBackgroundImageURL();
           },
         },
+        events: {
+          'painter-save'() {
+            this.painter.save();
+          },
+          'painter-cancel'() {
+            this.painter.cancel();
+          },
+        }
       }
     );
 
@@ -156,17 +173,94 @@ class Painter {
     this.vm.canvas.on('selection:cleared', this.store.updateObject.bind(this.store));
   }
 
-  openIn() {
+  openIn(img, name, options) {
+    this.vm.isShowPainter = true;
+      const x = this.vm.canvas.width / 2;
+      const y = this.vm.canvas.height / 2;
+      let width = 0;
+      let height = 0;
+      if (options) {
+        width = options.width;
+        height = options.height;
+        this.vm.canvas.rotationPoint = {
+          x: (width > this.vm.canvas.width) ? x : options.rotationCenter.x
+          + (this.vm.canvas.width - width) / 2,
+          y: (height > this.vm.canvas.height) ? y : options.rotationCenter.y
+          + (this.vm.canvas.height - height) / 2,
+        };
+        this.vm.canvas.callback = options.callback;
+      }
+      this.vm.canvas.clear();
 
-  }
+    this.store.state.costumeTitle = name;
+
+      this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
+      this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
+      this.vm.canvas.renderAll();
+      this.addImage(img, (this.vm.canvas.width - width) / 2, (this.vm.canvas.height - height) / 2);
+
+    this.vm.canvas.setFreeDrawingBrush('pencil', {
+      width: 5,
+      color: '#333',
+      opacity: 1,
+    });
+    this.vm.canvas.setDrawingMode(true);
+
+    }
 
   save() {
+    const param = {};
+    this.vm.canvas.setDrawingMode(false);
+    this.vm.canvas.layerManager.combineAllLayers();
+    const activeObj = this.vm.canvas.getActiveObject();
+    const activeGroup = this.vm.canvas.getActiveGroup();
+    if (activeGroup) {
+      const objectsInGroup = activeGroup.getObjects();
+      this.vm.canvas.discardActiveGroup();
+      objectsInGroup.forEach((obj) => {
+        Object.assign(obj, {active: false});
+      });
+    }
+    if (activeObj) {
+      activeObj.active = false;
+    }
+    this.vm.canvas.renderAll();
+    this.vm.canvas.setZoom(1);
 
+    const data = document.createElement('canvas');
+    data.width = this.vm.canvas.lowerCanvasEl.width;
+    data.height = this.vm.canvas.lowerCanvasEl.height;
+    data.getContext('2d').imageSmoothingEnabled = false;
+    data.getContext('2d').drawImage(this.vm.canvas.lowerCanvasEl, 0, 0);
+    param.img = data;
+    param.src = data.toDataURL();
+    param.rc = this.vm.canvas.rotationPoint;
+    param.name = this.store.state.costumeTitle;
+
+    if (this.vm.canvas.callback) {
+      this.vm.canvas.callback(param);
+    }
+
+    this.vm.isShowPainter = false;
   }
 
   cancel() {
-
+    this.vm.isShowPainter = false;
   }
+    
+    addImage(path, x, y) {
+        fabric.Image.fromURL(path, (image) => {
+          image.set({
+            left: x || 0,
+            top: y || 0,
+            angle: 0,
+          }).scale(1).setCoords();
+          this.vm.canvas.add(image);
+          this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
+          this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
+          this.vm.canvas.renderAll();
+        });
+      }
 }
 
 window.painterObject = new Painter('painter-wrapper');

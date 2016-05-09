@@ -1,12 +1,12 @@
 <template>
     <div class="tools-costume">
-        <input title="造型名称" class="costume-title" placeholder="请输入造型名称"/>
+        <input title="造型名称" class="costume-title" placeholder="请输入造型名称" v-model="costumeTitle"/>
         <div class="costume-buttons">
             <div class="save-button">
-                <img src="/assets/save.png" alt="保存" @click="save">
+                <img src="//o44j7l4g3.qnssl.com/program/painter/save.png" alt="保存" @click="save">
             </div>
             <div class="cancel-button">
-                <img src="/assets/cancel.png" alt="取消" @click="cancel">
+                <img src="//o44j7l4g3.qnssl.com/program/painter/cancel.png" alt="取消" @click="cancel">
             </div>
         </div>
     </div>
@@ -54,15 +54,25 @@
     export default{
         data(){
             return {
-
             }
+        },
+        computed: {
+            costumeTitle: {
+                get() {
+                    return this.$root.painter.store.state.costumeTitle;
+                },
+                set(newValue) {
+                    this.$root.painter.store.setCostumeName(newValue);
+                }
+            }
+
         },
         methods: {
             save() {
-
+                this.$dispatch('painter-save');
             },
             cancel() {
-
+                this.$dispatch('painter-cancel');
             },
         }
     }
