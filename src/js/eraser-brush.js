@@ -3,6 +3,8 @@
  * Eraser Brush
  */
 
+import './trim-canvas.js';
+
 (() => {
   /**
    * EraserBrush class
@@ -120,12 +122,12 @@
       },
 
       _setBrushStyles: function () {
-        "use strict";
         let ctx = this.canvas.contextTop;
-        ctx.strokeStyle = this.strokeStyle;
+        ctx.strokeStyle = `rgba(255,255,255,${this.opacity})`;
         ctx.lineWidth = this.width;
         ctx.lineCap = this.strokeLineCap;
         ctx.lineJoin = this.strokeLineJoin;
+        // ctx.globalAlpha = 1;
         if (this.strokeDashArray && fabric.StaticCanvas.supports("setLineDash")) {
           ctx.setLineDash(this.strokeDashArray);
         }
@@ -250,7 +252,7 @@
         trimData = trimCanvasWithPosition(this.canvas.upperCanvasEl);
         data = trimData.canvas.toDataURL('png');
 
-        fabric.Image.fromURL(data, function (image) {
+        fabric.Image.fromURL(data, (image) => {
           image.set({
               left: trimData.left,
               top: trimData.top,
@@ -258,10 +260,10 @@
             })
             .scale(1)
             .setCoords();
-          Painter.canvas.setHeight(Painter.height);
-          Painter.canvas.setWidth(Painter.width);
-          Painter.canvas.renderAll();
-          Painter.canvas.add(image);
+          // this.canvas.setHeight(this.height);
+          // this.canvas.setWidth(this.width);
+          // this.canvas.renderAll();
+          this.canvas.add(image);
           myself.canvas.contextTop.imageSmoothingEnabled = false;
           myself.canvas.clearContext(myself.canvas.contextTop);
           currentLayer.objects.splice(0, currentLayer.objects.length, image);

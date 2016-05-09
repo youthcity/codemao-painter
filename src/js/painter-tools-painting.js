@@ -31,8 +31,9 @@ export default{
       currentStrokeWidth: 7,
       currentOpacity: 1,
       defaultColors: [
-        '#D0021B',
-        'blue',
+        '#D0021B', '#F5A623', '#8B572A', '#7ED321', '#417505',
+        '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986',
+        '#000', '#4A4A4A', '#9B9B9B', '#D3D3D3', '#FFF',
       ],
     };
   },

@@ -1,192 +1,210 @@
-/**
- * Created by GreenDou on 16/4/7.
- * Canvas Class Override
- */
+((fabric) => {
+  if (!fabric) {
+    return;
+  }
+  function isBrushType(brush, type) {
+    return brush.constructor === type.constructor;
+  }
 
-(function (fabric) {
-    "use strict";
-    if (!fabric) {
-        return;
+  fabric.Canvas.prototype.initialize = function (el, options) {
+    options || (options = {});
+
+    this._initStatic(el, options);
+    this._initInteractive();
+    this._createCacheCanvas();
+
+    this.layerManager = new fabric.LayerManager(this);
+  };
+
+  fabric.Canvas.prototype._initInteractive = function () {
+    this._currentTransform = null;
+    this._groupSelector = null;
+    this._initWrapperElement();
+    this._createUpperCanvas();
+    this._initEventListeners();
+
+    //todo: fix it for iPad
+    //this._initRetinaScaling();
+
+    this._createCursorCanvas();
+
+    this.freeDrawingBrush = fabric.PencilBrush && new fabric.PencilBrush(this);
+
+    this.calcOffset();
+  };
+
+  fabric.Canvas.prototype.renderAll = function () {
+    var canvasToDrawOn = this.contextContainer, objsToRender;
+
+    if (this.contextTop && this.selection && !this._groupSelector) {
+      this.clearContext(this.contextTop);
     }
 
-    fabric.Canvas.prototype.initialize = function (el, options) {
-        options || (options = {});
+    this.clearContext(canvasToDrawOn);
 
-        this._initStatic(el, options);
-        this._initInteractive();
-        this._createCacheCanvas();
+    this.fire('before:render');
 
-        this.layerManager = new fabric.LayerManager(this);
-    };
+    if (this.clipTo) {
+      fabric.util.clipContext(this, canvasToDrawOn);
+    }
+    this._renderBackground(canvasToDrawOn);
 
-    fabric.Canvas.prototype._initInteractive = function() {
-        this._currentTransform = null;
-        this._groupSelector = null;
-        this._initWrapperElement();
-        this._createUpperCanvas();
-        this._initEventListeners();
+    canvasToDrawOn.save();
+    objsToRender = this._chooseObjectsToRender();
+    //apply viewport transform once for all rendering process
+    canvasToDrawOn.transform.apply(canvasToDrawOn, this.viewportTransform);
+    this._renderObjects(canvasToDrawOn, objsToRender);
+    this.preserveObjectStacking || this._renderObjects(canvasToDrawOn, [this.getActiveGroup()]);
+    canvasToDrawOn.restore();
 
-        //todo: fix it for iPad
-        //this._initRetinaScaling();
+    if (!this.controlsAboveOverlay && this.interactive) {
+      this.drawControls(canvasToDrawOn);
+    }
+    if (this.clipTo) {
+      canvasToDrawOn.restore();
+    }
+    this._renderOverlay(canvasToDrawOn);
+    if (this.controlsAboveOverlay && this.interactive) {
+      this.drawControls(canvasToDrawOn);
+    }
 
-        this._createCursorCanvas();
+    this.fire('after:render');
+    return this;
+  };
 
-        this.freeDrawingBrush = fabric.PencilBrush && new fabric.PencilBrush(this);
+  fabric.Canvas.prototype.clear = function () {
+    this.layerManager.clearLayers();
+    this._objects.length = 0;
+    if (this.discardActiveGroup) {
+      this.discardActiveGroup();
+    }
+    if (this.discardActiveObject) {
+      this.discardActiveObject();
+    }
+    this.clearContext(this.contextContainer);
+    if (this.contextTop) {
+      this.clearContext(this.contextTop);
+    }
+    this.fire('canvas:cleared');
+    this.renderAll();
+    return this;
+  };
 
-        this.calcOffset();
-    };
+  fabric.Canvas.prototype._createCursorCanvas = function () {
+    this.cursorCanvasEl = this._createCanvasElement();
+    //this.cursorCanvasEl.setAttribute('width', this.width);
+    //this.cursorCanvasEl.setAttribute('height', this.height);
 
-    fabric.Canvas.prototype.renderAll = function () {
-        var canvasToDrawOn = this.contextContainer, objsToRender;
+    this.wrapperEl.appendChild(this.cursorCanvasEl);
 
-        if (this.contextTop && this.selection && !this._groupSelector) {
-            this.clearContext(this.contextTop);
-        }
+    this._copyCanvasStyle(this.lowerCanvasEl, this.cursorCanvasEl);
+    this._applyCanvasStyle(this.cursorCanvasEl);
+    this.cursorCanvasEl.style.pointerEvents = "none";
 
-        this.clearContext(canvasToDrawOn);
+    this.contextCursor = this.cursorCanvasEl.getContext('2d');
+  };
 
-        this.fire('before:render');
+  fabric.Canvas.prototype._onMouseMoveInDrawingMode = function (e) {
+    var ivt = fabric.util.invertTransform(this.viewportTransform),
+      pointer = fabric.util.transformPoint(this.getPointer(e, true), ivt);
+    if (this._isCurrentlyDrawing) {
+      this.freeDrawingBrush.onMouseMove(pointer);
+    }
+    if (this.freeDrawingBrush.cursorRenderer) {
+      this.freeDrawingBrush.cursorRender(pointer);
+    }
 
-        if (this.clipTo) {
-            fabric.util.clipContext(this, canvasToDrawOn);
-        }
-        this._renderBackground(canvasToDrawOn);
+    this.setCursor(this.freeDrawingCursor);
+    this.fire('mouse:move', { e: e });
 
-        canvasToDrawOn.save();
-        objsToRender = this._chooseObjectsToRender();
-        //apply viewport transform once for all rendering process
-        canvasToDrawOn.transform.apply(canvasToDrawOn, this.viewportTransform);
-        this._renderObjects(canvasToDrawOn, objsToRender);
-        this.preserveObjectStacking || this._renderObjects(canvasToDrawOn, [this.getActiveGroup()]);
-        canvasToDrawOn.restore();
+    var target = this.findTarget(e);
+    if (typeof target !== 'undefined') {
+      target.fire('mousemove', { e: e, target: target });
+    }
+  };
 
-        if (!this.controlsAboveOverlay && this.interactive) {
-            this.drawControls(canvasToDrawOn);
-        }
-        if (this.clipTo) {
-            canvasToDrawOn.restore();
-        }
-        this._renderOverlay(canvasToDrawOn);
-        if (this.controlsAboveOverlay && this.interactive) {
-            this.drawControls(canvasToDrawOn);
-        }
-
-        this.fire('after:render');
-        return this;
-    };
-
-    fabric.Canvas.prototype.clear = function () {
-        this.layerManager.clearLayers();
-        this._objects.length = 0;
-        if (this.discardActiveGroup) {
-            this.discardActiveGroup();
-        }
-        if (this.discardActiveObject) {
-            this.discardActiveObject();
-        }
-        this.clearContext(this.contextContainer);
-        if (this.contextTop) {
-            this.clearContext(this.contextTop);
-        }
-        this.fire('canvas:cleared');
-        this.renderAll();
-        return this;
-    };
-
-    fabric.Canvas.prototype._createCursorCanvas = function () {
-        this.cursorCanvasEl = this._createCanvasElement();
-        //this.cursorCanvasEl.setAttribute('width', this.width);
-        //this.cursorCanvasEl.setAttribute('height', this.height);
-
-        this.wrapperEl.appendChild(this.cursorCanvasEl);
-
-        this._copyCanvasStyle(this.lowerCanvasEl, this.cursorCanvasEl);
-        this._applyCanvasStyle(this.cursorCanvasEl);
-        this.cursorCanvasEl.style.pointerEvents = "none";
-
-        this.contextCursor = this.cursorCanvasEl.getContext('2d');
-    };
-
-    fabric.Canvas.prototype._onMouseMoveInDrawingMode = function (e) {
-        var ivt = fabric.util.invertTransform(this.viewportTransform),
-            pointer = fabric.util.transformPoint(this.getPointer(e, true), ivt);
-        if (this._isCurrentlyDrawing) {
-            this.freeDrawingBrush.onMouseMove(pointer);
-        }
-        if (this.freeDrawingBrush.cursorRenderer) {
-            this.freeDrawingBrush.cursorRender(pointer);
-        }
-
-        this.setCursor(this.freeDrawingCursor);
-        this.fire('mouse:move', {e: e});
-
-        var target = this.findTarget(e);
-        if (typeof target !== 'undefined') {
-            target.fire('mousemove', {e: e, target: target});
-        }
-    };
-
-    fabric.Canvas.prototype.setFreeDrawingBrush = function (brush, options) {
-        var myself = this;
-        this.clearContext(this.contextTop);
-        switch (brush) {
-            case 'eraser':
-                if (this.freeDrawingBrush
-                    && this.freeDrawingBrush instanceof fabric.EraserBrush) {
-                    this.freeDrawingBrush.setOptions(options);
-                } else {
-                    this.freeDrawingBrush = new fabric.EraserBrush(this, options);
-                }
-                break;
-            case 'rotation':
-                if(this.rotationPoint) {
-                    options.point = {
-                        x: this.rotationPoint.x,
-                        y: this.rotationPoint.y
-                    };
-                }
-                if (this.freeDrawingBrush
-                    && this.freeDrawingBrush instanceof fabric.PointBrush) {
-                    this.freeDrawingBrush.setOptions(options);
-                } else {
-                    this.freeDrawingBrush = new fabric.PointBrush(this, function (point) {
-                        myself.rotationPoint = {
-                            x: point.x,
-                            y: point.y
-                        }
-                    }, options);
-                }
-                if(this.rotationPoint) {
-                    this.freeDrawingBrush.renderPoint();
-                }
-                break;
-            case 'pencil':
-            default :
-                if (!(this.freeDrawingBrush
-                    && this.freeDrawingBrush instanceof fabric.PencilBrush)) {
-                    this.freeDrawingBrush = new fabric.PencilBrush(myself);
-                }
-                for (var prop in options) {
-                    if (options.hasOwnProperty(prop)) {
-                        this.freeDrawingBrush[prop] = options[prop];
-                    }
-                }
-        }
-    };
-
-    fabric.Canvas.prototype.setDrawingMode = function (flag) {
-        if (!this.freeDrawingBrush || this.isDrawingMode === flag) {
-            return;
-        }
-
-        this.clearContext(this.contextTop);
-        if (flag) {
-            this.isDrawingMode = true;
-            this.upperCanvasEl.addEventListener('mouseout', this._onMouseOut);
+  fabric.Canvas.prototype.setFreeDrawingBrush = function (brush, options) {
+    var myself = this;
+    this.clearContext(this.contextTop);
+    switch (brush) {
+      case 'round':
+        if (this.freeDrawingBrush && isBrushType(this.freeDrawingBrush, fabric.RoundBrush)) {
+          this.freeDrawingBrush.setOptions(options);
         } else {
-            this.isDrawingMode = false;
-            this.upperCanvasEl.removeEventListener('mouseout', this._onMouseOut);
+          this.freeDrawingBrush = new fabric.RoundBrush(this, options);
+        }
+        break;
+      case 'line':
+        if (this.freeDrawingBrush && isBrushType(this.freeDrawingBrush, fabric.LineBrush)) {
+          this.freeDrawingBrush.setOptions(options);
+        } else {
+          this.freeDrawingBrush = new fabric.LineBrush(this, options);
+        }
+        break;
+      case 'rect':
+        if (this.freeDrawingBrush && isBrushType(this.freeDrawingBrush, fabric.RectBrush)) {
+          this.freeDrawingBrush.setOptions(options);
+        } else {
+          this.freeDrawingBrush = new fabric.RectBrush(this, options);
+        }
+        break;
+      case 'eraser':
+        if (this.freeDrawingBrush
+          && this.freeDrawingBrush instanceof fabric.EraserBrush) {
+          this.freeDrawingBrush.setOptions(options);
+        } else {
+          this.freeDrawingBrush = new fabric.EraserBrush(this, options);
+        }
+        break;
+      case 'rotation':
+        if (this.rotationPoint) {
+          options.point = {
+            x: this.rotationPoint.x,
+            y: this.rotationPoint.y
+          };
+        }
+        if (this.freeDrawingBrush
+          && this.freeDrawingBrush instanceof fabric.PointBrush) {
+          this.freeDrawingBrush.setOptions(options);
+        } else {
+          this.freeDrawingBrush = new fabric.PointBrush(this, function (point) {
+            myself.rotationPoint = {
+              x: point.x,
+              y: point.y
+            }
+          }, options);
+        }
+        if (this.rotationPoint) {
+          this.freeDrawingBrush.renderPoint();
+        }
+        break;
+      case 'pencil':
+      default :
+        if (!(this.freeDrawingBrush
+          && isBrushType(this.freeDrawingBrush, fabric.PencilBrush))) {
+          this.freeDrawingBrush = new fabric.PencilBrush(myself);
+        }
+        for (var prop in options) {
+          if (options.hasOwnProperty(prop)) {
+            this.freeDrawingBrush[prop] = options[prop];
+          }
         }
     }
+  };
+
+  fabric.Canvas.prototype.setDrawingMode = function (flag) {
+    if (!this.freeDrawingBrush || this.isDrawingMode === flag) {
+      return;
+    }
+
+    this.clearContext(this.contextTop);
+    if (flag) {
+      this.isDrawingMode = true;
+      this.upperCanvasEl.addEventListener('mouseout', this._onMouseOut);
+    } else {
+      this.isDrawingMode = false;
+      this.upperCanvasEl.removeEventListener('mouseout', this._onMouseOut);
+    }
+  };
 
 })(fabric);

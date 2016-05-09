@@ -1,29 +1,44 @@
-/**
- * Created by GreenDou on 16/4/7.
- * Layer Class
- */
+((fabric) => {
+  if (!fabric) {
+    return;
+  }
 
-(function (fabric) {
-    "use strict";
-
-    if(!fabric){
-        return;
+  class Layer {
+    constructor(canvasEl, name) {
+      this.canvasEl = canvasEl;
+      this.context = canvasEl.getContext('2d');
+      this.name = name || `新建图层${Layer.count++}`;
+      this.parent = null;
+      this.objects = [];
+      //  Use show&hideLayer to set this value,otherwise it won't work
+      this.visible = true;
+      // this.opacity = 1;
+      this.backgroundColor = null;
+      this.backgroundImageURL = null;
+      // this.thumbnail = null;
     }
 
-    function Layer (canvasEl, name) {
-        this.canvasEl = canvasEl;
-        this.name = name || '新建图层' + Layer.prototype.count++;
-        this.parent = null;
-        this.objects = [];
-        //Use show&hideLayer to set this value,otherwise it won't work
-        this.visible = true;
+    static resetCount() {
+      Layer.count = 1;
     }
 
-    Layer.prototype.count = 1;
+    set opacity(newValue) {
+      this.context.globalAlpha = newValue;
+      this.parent.parentCanvas.contextTop.globalAlpha = newValue;
+      this.parent.parentCanvas.renderAll();
+    }
 
-    Layer.prototype.resetCount = function () {
-        this.prototype.count = 1;
-    };
+    get opacity() {
+      return this.context.globalAlpha;
+    }
 
-    fabric.Layer = Layer;
+    get thumbnail() {
+      return this.canvasEl.toDataURL();
+    }
+  }
+  Layer.count = 1; // Static prop
+  Object.assign(fabric, {
+    Layer,
+  });
+  // fabric.Layer = Layer;
 })(fabric);

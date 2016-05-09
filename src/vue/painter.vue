@@ -10,5 +10,33 @@
         </div>
     </div>
 </template>
-<style src="../css/painter.css"></style>
+<style>
+    .painter {
+        width: 100%;
+        height: 100%;
+        display: flex;
+
+        background-color: #fdb336;
+    }
+
+    .right-panel {
+        width: 80%;
+        height: 100%;
+        background-color: blueviolet;
+    }
+
+    .paint-panel {
+        width: 100%;
+        height: 95%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+
+        background-color: #F8F8F8;
+    }
+
+
+</style>
 <script src="../js/painter.js"></script>
