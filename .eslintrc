@@ -15,7 +15,9 @@
     "fabric": true,
     "Vue": true,
     "template": true,
-    "webpack": true
+    "webpack": true,
+    "jsColorPicker": true,
+    "Colors": true,
   },
   "extends": "airbnb/base"
 }
