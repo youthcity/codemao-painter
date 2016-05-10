@@ -42,6 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/*!************************!*\
+  !*** ./src/js/main.js ***!
+  \************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50,43 +53,43 @@
 	// import Vue from 'vue';
 	
 	
-	__webpack_require__(1);
+	__webpack_require__(/*! ../css/common.css */ 1);
 	
-	__webpack_require__(5);
+	__webpack_require__(/*! ../js/override/static-canvas */ 5);
 	
-	__webpack_require__(6);
+	__webpack_require__(/*! ../js/override/canvas.js */ 6);
 	
-	__webpack_require__(7);
+	__webpack_require__(/*! ../js/override/canvas-events.js */ 7);
 	
-	__webpack_require__(8);
+	__webpack_require__(/*! ../js/override/base-brush.js */ 8);
 	
-	__webpack_require__(9);
+	__webpack_require__(/*! ../js/override/pencil-brush.js */ 9);
 	
-	__webpack_require__(10);
+	__webpack_require__(/*! ../js/layer.js */ 10);
 	
-	__webpack_require__(11);
+	__webpack_require__(/*! ../js/layer-manager.js */ 11);
 	
-	__webpack_require__(12);
+	__webpack_require__(/*! ../js/cursor-render.js */ 12);
 	
-	__webpack_require__(13);
+	__webpack_require__(/*! ../js/eraser-brush.js */ 13);
 	
-	__webpack_require__(15);
+	__webpack_require__(/*! ../js/point-brush.js */ 15);
 	
-	__webpack_require__(16);
+	__webpack_require__(/*! ../js/line-brush.js */ 16);
 	
-	__webpack_require__(17);
+	__webpack_require__(/*! ../js/rect-brush.js */ 17);
 	
-	__webpack_require__(18);
+	__webpack_require__(/*! ../js/round-brush.js */ 18);
 	
-	__webpack_require__(19);
+	__webpack_require__(/*! ./color/colors.js */ 19);
 	
-	__webpack_require__(20);
+	__webpack_require__(/*! ./color/colorPicker.data.js */ 20);
 	
-	__webpack_require__(21);
+	__webpack_require__(/*! ./color/colorPicker.js */ 21);
 	
-	__webpack_require__(22);
+	__webpack_require__(/*! ./color/jsColor.js */ 22);
 	
-	var _painter = __webpack_require__(23);
+	var _painter = __webpack_require__(/*! ../vue/painter.vue */ 23);
 	
 	var _painter2 = _interopRequireDefault(_painter);
 	
@@ -375,15 +378,18 @@
 
 /***/ },
 /* 1 */
+/*!****************************!*\
+  !*** ./src/css/common.css ***!
+  \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(2);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/postcss-loader!./common.css */ 2);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 4)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -401,9 +407,12 @@
 
 /***/ },
 /* 2 */
+/*!**************************************************************!*\
+  !*** ./~/css-loader!./~/postcss-loader!./src/css/common.css ***!
+  \**************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -415,6 +424,9 @@
 
 /***/ },
 /* 3 */
+/*!**************************************!*\
+  !*** ./~/css-loader/lib/css-base.js ***!
+  \**************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -470,6 +482,9 @@
 
 /***/ },
 /* 4 */
+/*!*************************************!*\
+  !*** ./~/style-loader/addStyles.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -495,7 +510,7 @@
 		styleElementsInsertedAtTop = [];
 	
 	module.exports = function(list, options) {
-		if(false) {
+		if(true) {
 			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
 		}
 	
@@ -722,6 +737,9 @@
 
 /***/ },
 /* 5 */
+/*!******************************************!*\
+  !*** ./src/js/override/static-canvas.js ***!
+  \******************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -775,6 +793,9 @@
 
 /***/ },
 /* 6 */
+/*!***********************************!*\
+  !*** ./src/js/override/canvas.js ***!
+  \***********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -989,6 +1010,9 @@
 
 /***/ },
 /* 7 */
+/*!******************************************!*\
+  !*** ./src/js/override/canvas-events.js ***!
+  \******************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1028,6 +1052,9 @@
 
 /***/ },
 /* 8 */
+/*!***************************************!*\
+  !*** ./src/js/override/base-brush.js ***!
+  \***************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1062,6 +1089,9 @@
 
 /***/ },
 /* 9 */
+/*!*****************************************!*\
+  !*** ./src/js/override/pencil-brush.js ***!
+  \*****************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1127,6 +1157,9 @@
 
 /***/ },
 /* 10 */
+/*!*************************!*\
+  !*** ./src/js/layer.js ***!
+  \*************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1191,6 +1224,9 @@
 
 /***/ },
 /* 11 */
+/*!*********************************!*\
+  !*** ./src/js/layer-manager.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1488,6 +1524,9 @@
 
 /***/ },
 /* 12 */
+/*!*********************************!*\
+  !*** ./src/js/cursor-render.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1574,11 +1613,14 @@
 
 /***/ },
 /* 13 */
+/*!********************************!*\
+  !*** ./src/js/eraser-brush.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(14);
+	__webpack_require__(/*! ./trim-canvas.js */ 14);
 	
 	(function () {
 	  /**
@@ -1860,6 +1902,9 @@
 
 /***/ },
 /* 14 */
+/*!*******************************!*\
+  !*** ./src/js/trim-canvas.js ***!
+  \*******************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1981,6 +2026,9 @@
 
 /***/ },
 /* 15 */
+/*!*******************************!*\
+  !*** ./src/js/point-brush.js ***!
+  \*******************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2145,6 +2193,9 @@
 
 /***/ },
 /* 16 */
+/*!******************************!*\
+  !*** ./src/js/line-brush.js ***!
+  \******************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2254,6 +2305,9 @@
 
 /***/ },
 /* 17 */
+/*!******************************!*\
+  !*** ./src/js/rect-brush.js ***!
+  \******************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2356,6 +2410,9 @@
 
 /***/ },
 /* 18 */
+/*!*******************************!*\
+  !*** ./src/js/round-brush.js ***!
+  \*******************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2430,6 +2487,9 @@
 
 /***/ },
 /* 19 */
+/*!********************************!*\
+  !*** ./src/js/color/colors.js ***!
+  \********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3159,6 +3219,9 @@
 
 /***/ },
 /* 20 */
+/*!******************************************!*\
+  !*** ./src/js/color/colorPicker.data.js ***!
+  \******************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3191,6 +3254,9 @@
 
 /***/ },
 /* 21 */
+/*!*************************************!*\
+  !*** ./src/js/color/colorPicker.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4613,6 +4679,9 @@
 
 /***/ },
 /* 22 */
+/*!*********************************!*\
+  !*** ./src/js/color/jsColor.js ***!
+  \*********************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -4847,16 +4916,19 @@
 
 /***/ },
 /* 23 */
+/*!*****************************!*\
+  !*** ./src/vue/painter.vue ***!
+  \*****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(24)
-	__vue_script__ = __webpack_require__(27)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter.vue */ 24)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!../js/painter.js */ 27)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(72)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter.vue */ 72)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -4876,15 +4948,18 @@
 
 /***/ },
 /* 24 */
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter.vue ***!
+  \******************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(25);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter.vue */ 25);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4902,9 +4977,12 @@
 
 /***/ },
 /* 25 */
+/*!*********************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter.vue ***!
+  \*********************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -4916,6 +4994,9 @@
 
 /***/ },
 /* 26 */
+/*!*****************************************!*\
+  !*** ./~/vue-style-loader/addStyles.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -4941,7 +5022,7 @@
 		styleElementsInsertedAtTop = [];
 	
 	module.exports = function(list, options) {
-		if(false) {
+		if(true) {
 			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
 		}
 	
@@ -5138,6 +5219,9 @@
 
 /***/ },
 /* 27 */
+/*!********************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./src/js/painter.js ***!
+  \********************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5146,19 +5230,19 @@
 	  value: true
 	});
 	
-	var _painterTools = __webpack_require__(28);
+	var _painterTools = __webpack_require__(/*! ../vue/painter-tools.vue */ 28);
 	
 	var _painterTools2 = _interopRequireDefault(_painterTools);
 	
-	var _painterControlPanel = __webpack_require__(57);
+	var _painterControlPanel = __webpack_require__(/*! ../vue/painter-control-panel.vue */ 57);
 	
 	var _painterControlPanel2 = _interopRequireDefault(_painterControlPanel);
 	
-	var _painterCanvasWrapper = __webpack_require__(62);
+	var _painterCanvasWrapper = __webpack_require__(/*! ../vue/painter-canvas-wrapper.vue */ 62);
 	
 	var _painterCanvasWrapper2 = _interopRequireDefault(_painterCanvasWrapper);
 	
-	var _painterObjectPanel = __webpack_require__(67);
+	var _painterObjectPanel = __webpack_require__(/*! ../vue/painter-object-panel.vue */ 67);
 	
 	var _painterObjectPanel2 = _interopRequireDefault(_painterObjectPanel);
 	
@@ -5175,16 +5259,19 @@
 
 /***/ },
 /* 28 */
+/*!***********************************!*\
+  !*** ./src/vue/painter-tools.vue ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(29)
-	__vue_script__ = __webpack_require__(31)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-f535087c&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools.vue */ 29)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-tools.vue */ 31)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-tools.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(56)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/template-rewriter.js?id=_v-f535087c!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-tools.vue */ 56)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -5204,15 +5291,18 @@
 
 /***/ },
 /* 29 */
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-f535087c&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools.vue ***!
+  \***************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(30);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-f535087c&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools.vue */ 30);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -5230,9 +5320,12 @@
 
 /***/ },
 /* 30 */
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-f535087c&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools.vue ***!
+  \******************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -5244,6 +5337,9 @@
 
 /***/ },
 /* 31 */
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-tools.vue ***!
+  \*******************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5252,19 +5348,19 @@
 	    value: true
 	});
 	
-	var _painterToolsPainting = __webpack_require__(32);
+	var _painterToolsPainting = __webpack_require__(/*! ./painter-tools-painting.vue */ 32);
 	
 	var _painterToolsPainting2 = _interopRequireDefault(_painterToolsPainting);
 	
-	var _painterToolsLayers = __webpack_require__(37);
+	var _painterToolsLayers = __webpack_require__(/*! ./painter-tools-layers.vue */ 37);
 	
 	var _painterToolsLayers2 = _interopRequireDefault(_painterToolsLayers);
 	
-	var _painterToolsBackground = __webpack_require__(46);
+	var _painterToolsBackground = __webpack_require__(/*! ./painter-tools-background.vue */ 46);
 	
 	var _painterToolsBackground2 = _interopRequireDefault(_painterToolsBackground);
 	
-	var _painterToolsCostume = __webpack_require__(51);
+	var _painterToolsCostume = __webpack_require__(/*! ./painter-tools-costume.vue */ 51);
 	
 	var _painterToolsCostume2 = _interopRequireDefault(_painterToolsCostume);
 	
@@ -5309,16 +5405,19 @@
 
 /***/ },
 /* 32 */
+/*!********************************************!*\
+  !*** ./src/vue/painter-tools-painting.vue ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(33)
-	__vue_script__ = __webpack_require__(35)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-painting.vue */ 33)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!../js/painter-tools-painting.js */ 35)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-tools-painting.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(36)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-tools-painting.vue */ 36)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -5338,15 +5437,18 @@
 
 /***/ },
 /* 33 */
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-painting.vue ***!
+  \*********************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(34);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-painting.vue */ 34);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -5364,9 +5466,12 @@
 
 /***/ },
 /* 34 */
+/*!************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-painting.vue ***!
+  \************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -5378,6 +5483,9 @@
 
 /***/ },
 /* 35 */
+/*!***********************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./src/js/painter-tools-painting.js ***!
+  \***********************************************************************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5575,22 +5683,28 @@
 
 /***/ },
 /* 36 */
+/*!*********************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-tools-painting.vue ***!
+  \*********************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"tools-painting\">\n    <div class=\"tools-buttons-container\">\n        <!--<span>笔触</span>-->\n        <div title=\"画笔\" class=\"tools-button tools-pencil\" v-on:click=\"selectBrush('pencil')\"\n             v-bind:class=\"{'active': isCurrentTool('pencil')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/pencil.png\" alt=\"笔\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/pencil-on.png\" alt=\"笔\">\n        </div>\n        <div title=\"直线\" class=\"tools-button tools-line\" v-on:click=\"selectBrush('line')\"\n             v-bind:class=\"{'active': isCurrentTool('line')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/line.png\" alt=\"线\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/line-on.png\" alt=\"线\">\n        </div>\n        <div title=\"矩形\" class=\"tools-button tools-rect\" v-on:click=\"selectBrush('rect')\"\n             v-bind:class=\"{'active': isCurrentTool('rect')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/rect.png\" alt=\"方\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/rect-on.png\" alt=\"方\">\n        </div>\n        <div title=\"圆形\" class=\"tools-button tools-round\" v-on:click=\"selectBrush('round')\"\n             v-bind:class=\"{'active': isCurrentTool('round')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/round.png\" alt=\"圆\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/round-on.png\" alt=\"圆\">\n        </div>\n    </div>\n    <div class=\"tools-buttons-container\">\n        <div title=\"橡皮\" class=\"tools-button tools-eraser\" v-on:click=\"selectBrush('eraser')\"\n             v-bind:class=\"{'active': isCurrentTool('eraser')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/eraser.png\" alt=\"橡\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/eraser-on.png\" alt=\"橡\">\n        </div>\n        <div title=\"选择\" class=\"tools-button tools-select\" v-on:click=\"selectBrush()\"\n             v-bind:class=\"{'active': isCurrentTool()}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/select.png\" alt=\"选\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/select-on.png\" alt=\"选\">\n        </div>\n        <div title=\"文字\" class=\"tools-button tools-text\" v-on:click=\"addShape('text')\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/text.png\" alt=\"字\">\n        </div>\n        <div title=\"旋转中心\" class=\"tools-button tools-select\" v-on:click=\"selectBrush('rotation')\"\n             v-bind:class=\"{'active': isCurrentTool('rotation')}\">\n            <img class=\"button-img\" src=\"//o44j7l4g3.qnssl.com/program/painter/rotation.png\" alt=\"中\">\n            <img class=\"button-img-on\" src=\"//o44j7l4g3.qnssl.com/program/painter/rotation-on.png\" alt=\"中\">\n        </div>\n    </div>\n    <div class=\"tools-slider-container\">\n        <span class=\"tools-container-title\">粗细</span>\n        <span class=\"input-minus\">-</span>\n        <input title=\"粗细\" type=\"range\" value=\"7\" min=\"1\" max=\"100\" step=\"1\" v-model=\"curStrokeWidth\"/>\n        <span class=\"input-plus\">+</span>\n        <span class=\"number-input\" v-text=\"curStrokeWidth\"></span>\n    </div>\n    <div class=\"tools-slider-container\">\n        <span class=\"tools-container-title\">透明</span>\n        <span class=\"input-minus\">-</span>\n        <input title=\"透明度\" type=\"range\" value=\"1\" min=\"0\" max=\"1\" step=\"0.01\" v-model=\"curObjectOpacity\"/>\n        <span class=\"input-plus\">+</span>\n        <span class=\"number-input\" v-text=\"curObjectOpacity\"></span>\n    </div>\n    <div class=\"tools-item\">\n        <span class=\"item-title\">颜色</span>\n        <input title=\"颜色\" type=\"color\" class=\"color\" v-model=\"curColor\"\n               v-bind:style=\"{backgroundColor: curColor, color: pickerTextColor}\"/>\n    </div>\n    <div class=\"tools-area\">\n        <div class=\"tools-default-color\" v-for=\"color in defaultColors\"\n             v-bind:style=\"{backgroundColor: color}\" v-on:click=\"selectColor(color)\">\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 /* 37 */
+/*!******************************************!*\
+  !*** ./src/vue/painter-tools-layers.vue ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(38)
-	__vue_script__ = __webpack_require__(40)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-ef1a1346&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-layers.vue */ 38)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-tools-layers.vue */ 40)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-tools-layers.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(45)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/template-rewriter.js?id=_v-ef1a1346!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-tools-layers.vue */ 45)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -5610,15 +5724,18 @@
 
 /***/ },
 /* 38 */
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-ef1a1346&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-layers.vue ***!
+  \**********************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(39);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-ef1a1346&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-layers.vue */ 39);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -5636,20 +5753,26 @@
 
 /***/ },
 /* 39 */
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-ef1a1346&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-layers.vue ***!
+  \*************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, "\n.tools-layers[_v-ef1a1346] {\n    width: 90%;\n    height: 100%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: column;\n        -ms-flex-direction: column;\n            flex-direction: column;\n\n    padding: 0 5%;\n\n    background: #ECE7DD;\n}\n\n.panel-slider-item label[_v-ef1a1346] {\n    height: 2rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n.panel-slider-item input[_v-ef1a1346] {\n    width: 6rem;\n}\n\n.panel-slider-item span[_v-ef1a1346] {\n    margin: 0 0.1rem;\n\n    font-family: STHeitiTC-Medium, serif;\n    font-size: 18px;\n    color: #645542;\n}\n\n.panel-slider-item span.slider-title[_v-ef1a1346] {\n    margin-right: 0.5rem;\n    font-size: 18px;\n}\n\n.panel-slider-item span.slider-value[_v-ef1a1346] {\n    font-size: 14px;\n\n    margin-left: 0.5rem;\n}\n\n.layers-container[_v-ef1a1346] {\n    -webkit-box-flex: 1;\n    -webkit-flex-grow: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: reverse;\n    -webkit-flex-direction: column-reverse;\n        -ms-flex-direction: column-reverse;\n            flex-direction: column-reverse;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: end;\n    -webkit-justify-content: flex-end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n\n    padding: 0 1rem;\n}\n\n.layers-item[_v-ef1a1346] {\n    width: 100%;\n    height: 3.5rem;\n\n    position: relative;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n\n    margin: 0.2rem 0;\n    padding: 0 0.1rem;\n\n    /*background: #FFFFFF;*/\n}\n\n.layers-item.active[_v-ef1a1346] {\n    background: #FFF;\n}\n\n.layers-item-right[_v-ef1a1346] {\n    -webkit-box-flex: 1;\n    -webkit-flex-grow: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    height: 90%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: column;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n\n}\n\n.layers-thumbnail[_v-ef1a1346] {\n    width: 3.5rem;\n    height: 3rem;\n\n    margin: 0 0.2rem;\n\n    background: #FFFFFF;\n    border: 1px solid #CCCCCC;\n}\n\n.layers-thumbnail img[_v-ef1a1346] {\n    max-width: 100%;\n    max-height: 100%;\n}\n\n.layers-name[_v-ef1a1346] {\n    font-family: STHeitiTC-Medium, serif;\n    font-size: 14px;\n    color: #645542;\n}\n\n.layers-tools-container[_v-ef1a1346] {\n    height: 2.5rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n\n.layers-tool[_v-ef1a1346] {\n    height: 1.5rem;\n    width: 2.5rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n\n    margin: 0.2rem;\n    background-color: #fff;\n    color: #CFBE90;\n\n    cursor: pointer;\n}\n\n.layers-delete[_v-ef1a1346] {\n    display: none;\n    position: absolute;\n    top: 0;\n    right: 0;\n\n    cursor: pointer;\n}\n\n.layers-item.active .layers-delete[_v-ef1a1346] {\n    display: block;\n}\n\n.layers-visible[_v-ef1a1346] {\n    width:1.2rem;\n    height:1.2rem;\n\n    text-align: center;\n    line-height:1.2rem;\n\n    background: #D8D8D8;\n    border: 1px solid #979797;\n\n    font-family: STHeitiTC-Medium,serif;\n    font-size: 12px;\n    color: #645542;\n\n    cursor: pointer;\n}\n", "", {"version":3,"sources":["/./src/vue/painter-tools-layers.vue?44218b41"],"names":[],"mappings":";AA4CA;IACA,WAAA;IACA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,8BAAA;IAAA,+BAAA;QAAA,2BAAA;YAAA,uBAAA;;IAEA,cAAA;;IAEA,oBAAA;CACA;;AAEA;IACA,aAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;CACA;;AAEA;IACA,YAAA;CACA;;AAEA;IACA,iBAAA;;IAEA,qCAAA;IACA,gBAAA;IACA,eAAA;CACA;;AAEA;IACA,qBAAA;IACA,gBAAA;CACA;;AAEA;IACA,gBAAA;;IAEA,oBAAA;CACA;;AAEA;IACA,oBAAA;IAAA,qBAAA;QAAA,qBAAA;YAAA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,+BAAA;IAAA,uCAAA;QAAA,mCAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,sBAAA;IAAA,kCAAA;QAAA,mBAAA;YAAA,0BAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,YAAA;IACA,eAAA;;IAEA,mBAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;;IAEA,iBAAA;IACA,kBAAA;;IAEA,wBAAA;CACA;;AAEA;IACA,iBAAA;CACA;;AAEA;IACA,oBAAA;IAAA,qBAAA;QAAA,qBAAA;YAAA,aAAA;IACA,YAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,8BAAA;IAAA,+BAAA;QAAA,2BAAA;YAAA,uBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;;CAEA;;AAEA;IACA,cAAA;IACA,aAAA;;IAEA,iBAAA;;IAEA,oBAAA;IACA,0BAAA;CACA;;AAEA;IACA,gBAAA;IACA,iBAAA;CACA;;AAEA;IACA,qCAAA;IACA,gBAAA;IACA,eAAA;CACA;;AAEA;IACA,eAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,wBAAA;IAAA,oCAAA;QAAA,qBAAA;YAAA,4BAAA;CACA;;AAEA;IACA,eAAA;IACA,cAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;;IAEA,eAAA;IACA,uBAAA;IACA,eAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,cAAA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,eAAA;CACA;;AAEA;IACA,aAAA;IACA,cAAA;;IAEA,mBAAA;IACA,mBAAA;;IAEA,oBAAA;IACA,0BAAA;;IAEA,oCAAA;IACA,gBAAA;IACA,eAAA;;IAEA,gBAAA;CACA","file":"painter-tools-layers.vue","sourcesContent":["<template>\n    <div class=\"tools-layers\">\n        <div class=\"panel-slider-item\">\n            <label>\n                <span class=\"slider-title\">透明</span>\n                <span>-</span>\n                <input type=\"range\" value=\"1\" min=\"0\" max=\"1\" step=\"0.01\" v-model=\"curLayerOpacity\"/>\n                <span>+</span>\n                <span class=\"slider-value\" v-text=\"curLayerOpacity\"></span>\n            </label>\n        </div>\n        <div class=\"layers-container\">\n            <div class=\"layers-item\" v-for=\"layer in layerList\" v-on:click=\"selectLayer($index)\"\n                 v-bind:id=\"'layer'+$index\" v-bind:class=\"{'active': isCurrentLayer($index)}\">\n                <div class=\"layers-thumbnail\">\n                    <img alt=\"缩略图\" v-bind:src=\"getThumbnail(layer)\">\n                </div>\n                <div class=\"layers-item-right\">\n                    <span class=\"layers-name\" v-text=\"layer.name\"></span>\n                    <div class=\"layers-buttons\">\n                        <div class=\"layers-visible\" v-text=\"getVisibleButton(layer.visible)\"\n                             v-on:click.stop=\"toggleLayerVisible($index)\"></div>\n                    </div>\n                    <div class=\"layers-delete\"\n                         v-on:click.stop=\"removeLayer($index)\">\n                        <svg width=\"18px\" height=\"18px\" viewBox=\"194 99 18 18\" version=\"1.1\"\n                             xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                            <defs></defs>\n                            <path d=\"M201.530628,106.530628 L198.194021,106.530628 C197.459043,106.530628 196.863961,107.127581 196.863961,107.863961 C196.863961,108.605475 197.459449,109.197294 198.194021,109.197294 L201.530628,109.197294 L201.530628,112.533902 C201.530628,113.268879 202.127581,113.863961 202.863961,113.863961 C203.605475,113.863961 204.197294,113.268473 204.197294,112.533902 L204.197294,109.197294 L207.533902,109.197294 C208.268879,109.197294 208.863961,108.600341 208.863961,107.863961 C208.863961,107.122447 208.268473,106.530628 207.533902,106.530628 L204.197294,106.530628 L204.197294,103.194021 C204.197294,102.459043 203.600341,101.863961 202.863961,101.863961 C202.122447,101.863961 201.530628,102.459449 201.530628,103.194021 L201.530628,106.530628 Z\"\n                                  id=\"layer-close-button\" stroke=\"none\" fill=\"#645542\" fill-rule=\"evenodd\"\n                                  transform=\"translate(202.863961, 107.863961) rotate(-315.000000) translate(-202.863961, -107.863961) \"></path>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"layers-tools-container\">\n            <div class=\"layers-tool\" v-on:click=\"upLayer()\">^</div>\n            <div class=\"layers-tool\" v-on:click=\"downLayer()\">v</div>\n            <div class=\"layers-tool\" v-on:click=\"addLayer()\">+</div>\n        </div>\n    </div>\n</template>\n<style scoped>\n    .tools-layers {\n        width: 90%;\n        height: 100%;\n        display: flex;\n        flex-direction: column;\n\n        padding: 0 5%;\n\n        background: #ECE7DD;\n    }\n\n    .panel-slider-item label {\n        height: 2rem;\n\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .panel-slider-item input {\n        width: 6rem;\n    }\n\n    .panel-slider-item span {\n        margin: 0 0.1rem;\n\n        font-family: STHeitiTC-Medium, serif;\n        font-size: 18px;\n        color: #645542;\n    }\n\n    .panel-slider-item span.slider-title {\n        margin-right: 0.5rem;\n        font-size: 18px;\n    }\n\n    .panel-slider-item span.slider-value {\n        font-size: 14px;\n\n        margin-left: 0.5rem;\n    }\n\n    .layers-container {\n        flex-grow: 1;\n        display: flex;\n        flex-direction: column-reverse;\n        align-items: center;\n        justify-content: flex-end;\n\n        padding: 0 1rem;\n    }\n\n    .layers-item {\n        width: 100%;\n        height: 3.5rem;\n\n        position: relative;\n\n        display: flex;\n        align-items: center;\n\n        margin: 0.2rem 0;\n        padding: 0 0.1rem;\n\n        /*background: #FFFFFF;*/\n    }\n\n    .layers-item.active {\n        background: #FFF;\n    }\n\n    .layers-item-right {\n        flex-grow: 1;\n        height: 90%;\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n\n    }\n\n    .layers-thumbnail {\n        width: 3.5rem;\n        height: 3rem;\n\n        margin: 0 0.2rem;\n\n        background: #FFFFFF;\n        border: 1px solid #CCCCCC;\n    }\n\n    .layers-thumbnail img {\n        max-width: 100%;\n        max-height: 100%;\n    }\n\n    .layers-name {\n        font-family: STHeitiTC-Medium, serif;\n        font-size: 14px;\n        color: #645542;\n    }\n\n    .layers-tools-container {\n        height: 2.5rem;\n\n        display: flex;\n        align-items: center;\n        justify-content: flex-start;\n    }\n\n    .layers-tool {\n        height: 1.5rem;\n        width: 2.5rem;\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        margin: 0.2rem;\n        background-color: #fff;\n        color: #CFBE90;\n\n        cursor: pointer;\n    }\n\n    .layers-delete {\n        display: none;\n        position: absolute;\n        top: 0;\n        right: 0;\n\n        cursor: pointer;\n    }\n\n    .layers-item.active .layers-delete {\n        display: block;\n    }\n\n    .layers-visible {\n        width:1.2rem;\n        height:1.2rem;\n\n        text-align: center;\n        line-height:1.2rem;\n\n        background: #D8D8D8;\n        border: 1px solid #979797;\n\n        font-family: STHeitiTC-Medium,serif;\n        font-size: 12px;\n        color: #645542;\n\n        cursor: pointer;\n    }\n</style>\n<script>\n    export default {\n        data(){\n            return {\n                currentLayerOpacity: 1,\n                needRefresh: this.$root.painter.store.state.needRefreshThumbnails,\n            };\n        },\n        computed: {\n            canvas() {\n                return this.$root.canvas;\n            },\n            layerList() {\n                if (this.layerManager)\n                    return this.layerManager.layerList;\n\n            },\n            layerManager() {\n                if (this.canvas) {\n                    return this.canvas.layerManager;\n                }\n            },\n            curLayer() {\n                if (this.layerManager) {\n                    return this.layerManager.currentLayer;\n                }\n            },\n            curLayerOpacity: {\n                get(){\n                    let opacity = this.currentLayerOpacity;\n                    if (this.curLayer) {\n                        opacity = this.curLayer.opacity;\n                    }\n                    return opacity;\n                },\n                set(newValue) {\n                    if (this.curLayer) {\n                        this.curLayer.opacity = newValue;\n                    }\n                    this.currentLayerOpacity = newValue;\n                }\n            },\n            curLayerIndex() {\n                return this.layerManager.getIndex(this.curLayer);\n            },\n            needRefreshThumbnails: {\n                get(){\n                    return this.$root.painter.store.state.needRefreshThumbnails;\n                },\n                set(newValue) {\n                    this.$root.painter.store.state.needRefreshThumbnails = newValue;\n                }\n            },\n        },\n        methods: {\n            toggleLayerVisible(index) {\n                this.layerManager.toggleLayerVisible(index);\n            },\n            removeLayer(index){\n                this.layerManager.removeLayer(index);\n            },\n            addLayer() {\n                this.layerManager.addLayer();\n            },\n            upLayer() {\n                this.layerManager.upLayer(this.curLayerIndex);\n            },\n            downLayer() {\n                this.layerManager.downLayer(this.curLayerIndex);\n            },\n            selectLayer(index) {\n                this.layerManager.selectLayer(index);\n            },\n            isCurrentLayer(index) {\n                return index === this.layerManager.getIndex(this.curLayerIndex);\n            },\n            getThumbnail(layer) {\n                if (this.needRefreshThumbnails)\n                    this.needRefreshThumbnails = false;\n                return layer.thumbnail;\n            },\n            isCurrentLayer(index) {\n                return this.curLayerIndex === index;\n            },\n            getVisibleButton(visible) {\n                return visible ? '显' : '隐';\n            }\n        }\n    }\n</script>"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.tools-layers[_v-ef1a1346] {\n    width: 100%;\n    height: 100%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: column;\n        -ms-flex-direction: column;\n            flex-direction: column;\n\n    padding: 0 5%;\n\n    background: #ECE7DD;\n}\n\n.panel-slider-item label[_v-ef1a1346] {\n    height: 2rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n}\n\n.panel-slider-item input[_v-ef1a1346] {\n    width: 6rem;\n}\n\n.panel-slider-item span[_v-ef1a1346] {\n    margin: 0 0.1rem;\n\n    font-family: STHeitiTC-Medium, serif;\n    font-size: 18px;\n    color: #645542;\n}\n\n.panel-slider-item span.slider-title[_v-ef1a1346] {\n    margin-right: 0.5rem;\n    font-size: 18px;\n}\n\n.panel-slider-item span.slider-value[_v-ef1a1346] {\n    font-size: 14px;\n\n    margin-left: 0.5rem;\n}\n\n.layers-container[_v-ef1a1346] {\n    -webkit-box-flex: 1;\n    -webkit-flex-grow: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: reverse;\n    -webkit-flex-direction: column-reverse;\n        -ms-flex-direction: column-reverse;\n            flex-direction: column-reverse;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: end;\n    -webkit-justify-content: flex-end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n\n    padding: 0 1rem;\n}\n\n.layers-item[_v-ef1a1346] {\n    width: 100%;\n    height: 3.5rem;\n\n    position: relative;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n\n    margin: 0.2rem 0;\n    padding: 0 0.1rem;\n\n    /*background: #FFFFFF;*/\n}\n\n.layers-item.active[_v-ef1a1346] {\n    background: #FFF;\n}\n\n.layers-item-right[_v-ef1a1346] {\n    -webkit-box-flex: 1;\n    -webkit-flex-grow: 1;\n        -ms-flex-positive: 1;\n            flex-grow: 1;\n    height: 90%;\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: column;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n\n}\n\n.layers-thumbnail[_v-ef1a1346] {\n    width: 3.5rem;\n    height: 3rem;\n\n    margin: 0 0.2rem;\n\n    background: #FFFFFF;\n    border: 1px solid #CCCCCC;\n}\n\n.layers-thumbnail img[_v-ef1a1346] {\n    max-width: 100%;\n    max-height: 100%;\n}\n\n.layers-name[_v-ef1a1346] {\n    font-family: STHeitiTC-Medium, serif;\n    font-size: 14px;\n    color: #645542;\n}\n\n.layers-tools-container[_v-ef1a1346] {\n    height: 2.5rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n        -ms-flex-pack: start;\n            justify-content: flex-start;\n}\n\n.layers-tool[_v-ef1a1346] {\n    height: 1.5rem;\n    width: 2.5rem;\n\n    display: -webkit-box;\n\n    display: -webkit-flex;\n\n    display: -ms-flexbox;\n\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n        -ms-flex-align: center;\n            align-items: center;\n\n    margin: 0.2rem;\n    background-color: #fff;\n    color: #CFBE90;\n\n    cursor: pointer;\n}\n\n.layers-delete[_v-ef1a1346] {\n    display: none;\n    position: absolute;\n    top: 0;\n    right: 0;\n\n    cursor: pointer;\n}\n\n.layers-item.active .layers-delete[_v-ef1a1346] {\n    display: block;\n}\n\n.layers-visible[_v-ef1a1346] {\n    width:1.2rem;\n    height:1.2rem;\n\n    text-align: center;\n    line-height:1.2rem;\n\n    background: #D8D8D8;\n    border: 1px solid #979797;\n\n    font-family: STHeitiTC-Medium,serif;\n    font-size: 12px;\n    color: #645542;\n\n    cursor: pointer;\n}\n", "", {"version":3,"sources":["/./src/vue/painter-tools-layers.vue?d1bfdae6"],"names":[],"mappings":";AA4CA;IACA,YAAA;IACA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,8BAAA;IAAA,+BAAA;QAAA,2BAAA;YAAA,uBAAA;;IAEA,cAAA;;IAEA,oBAAA;CACA;;AAEA;IACA,aAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;CACA;;AAEA;IACA,YAAA;CACA;;AAEA;IACA,iBAAA;;IAEA,qCAAA;IACA,gBAAA;IACA,eAAA;CACA;;AAEA;IACA,qBAAA;IACA,gBAAA;CACA;;AAEA;IACA,gBAAA;;IAEA,oBAAA;CACA;;AAEA;IACA,oBAAA;IAAA,qBAAA;QAAA,qBAAA;YAAA,aAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,+BAAA;IAAA,uCAAA;QAAA,mCAAA;YAAA,+BAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,sBAAA;IAAA,kCAAA;QAAA,mBAAA;YAAA,0BAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,YAAA;IACA,eAAA;;IAEA,mBAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;;IAEA,iBAAA;IACA,kBAAA;;IAEA,wBAAA;CACA;;AAEA;IACA,iBAAA;CACA;;AAEA;IACA,oBAAA;IAAA,qBAAA;QAAA,qBAAA;YAAA,aAAA;IACA,YAAA;IACA,qBAAA;IAAA,sBAAA;IAAA,qBAAA;IAAA,cAAA;IACA,6BAAA;IAAA,8BAAA;IAAA,+BAAA;QAAA,2BAAA;YAAA,uBAAA;IACA,0BAAA;IAAA,uCAAA;QAAA,uBAAA;YAAA,+BAAA;;CAEA;;AAEA;IACA,cAAA;IACA,aAAA;;IAEA,iBAAA;;IAEA,oBAAA;IACA,0BAAA;CACA;;AAEA;IACA,gBAAA;IACA,iBAAA;CACA;;AAEA;IACA,qCAAA;IACA,gBAAA;IACA,eAAA;CACA;;AAEA;IACA,eAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;IACA,wBAAA;IAAA,oCAAA;QAAA,qBAAA;YAAA,4BAAA;CACA;;AAEA;IACA,eAAA;IACA,cAAA;;IAEA,qBAAA;;IAAA,sBAAA;;IAAA,qBAAA;;IAAA,cAAA;IACA,yBAAA;IAAA,gCAAA;QAAA,sBAAA;YAAA,wBAAA;IACA,0BAAA;IAAA,4BAAA;QAAA,uBAAA;YAAA,oBAAA;;IAEA,eAAA;IACA,uBAAA;IACA,eAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,cAAA;IACA,mBAAA;IACA,OAAA;IACA,SAAA;;IAEA,gBAAA;CACA;;AAEA;IACA,eAAA;CACA;;AAEA;IACA,aAAA;IACA,cAAA;;IAEA,mBAAA;IACA,mBAAA;;IAEA,oBAAA;IACA,0BAAA;;IAEA,oCAAA;IACA,gBAAA;IACA,eAAA;;IAEA,gBAAA;CACA","file":"painter-tools-layers.vue","sourcesContent":["<template>\n    <div class=\"tools-layers\">\n        <div class=\"panel-slider-item\">\n            <label>\n                <span class=\"slider-title\">透明</span>\n                <span>-</span>\n                <input type=\"range\" value=\"1\" min=\"0\" max=\"1\" step=\"0.01\" v-model=\"curLayerOpacity\"/>\n                <span>+</span>\n                <span class=\"slider-value\" v-text=\"curLayerOpacity\"></span>\n            </label>\n        </div>\n        <div class=\"layers-container\">\n            <div class=\"layers-item\" v-for=\"layer in layerList\" v-on:click=\"selectLayer($index)\"\n                 v-bind:id=\"'layer'+$index\" v-bind:class=\"{'active': isCurrentLayer($index)}\">\n                <div class=\"layers-thumbnail\">\n                    <img alt=\"缩略图\" v-bind:src=\"getThumbnail(layer)\">\n                </div>\n                <div class=\"layers-item-right\">\n                    <span class=\"layers-name\" v-text=\"layer.name\"></span>\n                    <div class=\"layers-buttons\">\n                        <div class=\"layers-visible\" v-text=\"getVisibleButton(layer.visible)\"\n                             v-on:click.stop=\"toggleLayerVisible($index)\"></div>\n                    </div>\n                    <div class=\"layers-delete\"\n                         v-on:click.stop=\"removeLayer($index)\">\n                        <svg width=\"18px\" height=\"18px\" viewBox=\"194 99 18 18\" version=\"1.1\"\n                             xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n                            <defs></defs>\n                            <path d=\"M201.530628,106.530628 L198.194021,106.530628 C197.459043,106.530628 196.863961,107.127581 196.863961,107.863961 C196.863961,108.605475 197.459449,109.197294 198.194021,109.197294 L201.530628,109.197294 L201.530628,112.533902 C201.530628,113.268879 202.127581,113.863961 202.863961,113.863961 C203.605475,113.863961 204.197294,113.268473 204.197294,112.533902 L204.197294,109.197294 L207.533902,109.197294 C208.268879,109.197294 208.863961,108.600341 208.863961,107.863961 C208.863961,107.122447 208.268473,106.530628 207.533902,106.530628 L204.197294,106.530628 L204.197294,103.194021 C204.197294,102.459043 203.600341,101.863961 202.863961,101.863961 C202.122447,101.863961 201.530628,102.459449 201.530628,103.194021 L201.530628,106.530628 Z\"\n                                  id=\"layer-close-button\" stroke=\"none\" fill=\"#645542\" fill-rule=\"evenodd\"\n                                  transform=\"translate(202.863961, 107.863961) rotate(-315.000000) translate(-202.863961, -107.863961) \"></path>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"layers-tools-container\">\n            <div class=\"layers-tool\" v-on:click=\"upLayer()\">^</div>\n            <div class=\"layers-tool\" v-on:click=\"downLayer()\">v</div>\n            <div class=\"layers-tool\" v-on:click=\"addLayer()\">+</div>\n        </div>\n    </div>\n</template>\n<style scoped>\n    .tools-layers {\n        width: 100%;\n        height: 100%;\n        display: flex;\n        flex-direction: column;\n\n        padding: 0 5%;\n\n        background: #ECE7DD;\n    }\n\n    .panel-slider-item label {\n        height: 2rem;\n\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    .panel-slider-item input {\n        width: 6rem;\n    }\n\n    .panel-slider-item span {\n        margin: 0 0.1rem;\n\n        font-family: STHeitiTC-Medium, serif;\n        font-size: 18px;\n        color: #645542;\n    }\n\n    .panel-slider-item span.slider-title {\n        margin-right: 0.5rem;\n        font-size: 18px;\n    }\n\n    .panel-slider-item span.slider-value {\n        font-size: 14px;\n\n        margin-left: 0.5rem;\n    }\n\n    .layers-container {\n        flex-grow: 1;\n        display: flex;\n        flex-direction: column-reverse;\n        align-items: center;\n        justify-content: flex-end;\n\n        padding: 0 1rem;\n    }\n\n    .layers-item {\n        width: 100%;\n        height: 3.5rem;\n\n        position: relative;\n\n        display: flex;\n        align-items: center;\n\n        margin: 0.2rem 0;\n        padding: 0 0.1rem;\n\n        /*background: #FFFFFF;*/\n    }\n\n    .layers-item.active {\n        background: #FFF;\n    }\n\n    .layers-item-right {\n        flex-grow: 1;\n        height: 90%;\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n\n    }\n\n    .layers-thumbnail {\n        width: 3.5rem;\n        height: 3rem;\n\n        margin: 0 0.2rem;\n\n        background: #FFFFFF;\n        border: 1px solid #CCCCCC;\n    }\n\n    .layers-thumbnail img {\n        max-width: 100%;\n        max-height: 100%;\n    }\n\n    .layers-name {\n        font-family: STHeitiTC-Medium, serif;\n        font-size: 14px;\n        color: #645542;\n    }\n\n    .layers-tools-container {\n        height: 2.5rem;\n\n        display: flex;\n        align-items: center;\n        justify-content: flex-start;\n    }\n\n    .layers-tool {\n        height: 1.5rem;\n        width: 2.5rem;\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        margin: 0.2rem;\n        background-color: #fff;\n        color: #CFBE90;\n\n        cursor: pointer;\n    }\n\n    .layers-delete {\n        display: none;\n        position: absolute;\n        top: 0;\n        right: 0;\n\n        cursor: pointer;\n    }\n\n    .layers-item.active .layers-delete {\n        display: block;\n    }\n\n    .layers-visible {\n        width:1.2rem;\n        height:1.2rem;\n\n        text-align: center;\n        line-height:1.2rem;\n\n        background: #D8D8D8;\n        border: 1px solid #979797;\n\n        font-family: STHeitiTC-Medium,serif;\n        font-size: 12px;\n        color: #645542;\n\n        cursor: pointer;\n    }\n</style>\n<script>\n    export default {\n        data(){\n            return {\n                currentLayerOpacity: 1,\n                needRefresh: this.$root.painter.store.state.needRefreshThumbnails,\n            };\n        },\n        computed: {\n            canvas() {\n                return this.$root.canvas;\n            },\n            layerList() {\n                if (this.layerManager)\n                    return this.layerManager.layerList;\n\n            },\n            layerManager() {\n                if (this.canvas) {\n                    return this.canvas.layerManager;\n                }\n            },\n            curLayer() {\n                if (this.layerManager) {\n                    return this.layerManager.currentLayer;\n                }\n            },\n            curLayerOpacity: {\n                get(){\n                    let opacity = this.currentLayerOpacity;\n                    if (this.curLayer) {\n                        opacity = this.curLayer.opacity;\n                    }\n                    return opacity;\n                },\n                set(newValue) {\n                    if (this.curLayer) {\n                        this.curLayer.opacity = newValue;\n                    }\n                    this.currentLayerOpacity = newValue;\n                }\n            },\n            curLayerIndex() {\n                return this.layerManager.getIndex(this.curLayer);\n            },\n            needRefreshThumbnails: {\n                get(){\n                    return this.$root.painter.store.state.needRefreshThumbnails;\n                },\n                set(newValue) {\n                    this.$root.painter.store.state.needRefreshThumbnails = newValue;\n                }\n            },\n        },\n        methods: {\n            toggleLayerVisible(index) {\n                this.layerManager.toggleLayerVisible(index);\n            },\n            removeLayer(index){\n                this.layerManager.removeLayer(index);\n            },\n            addLayer() {\n                this.layerManager.addLayer();\n            },\n            upLayer() {\n                this.layerManager.upLayer(this.curLayerIndex);\n            },\n            downLayer() {\n                this.layerManager.downLayer(this.curLayerIndex);\n            },\n            selectLayer(index) {\n                this.layerManager.selectLayer(index);\n            },\n            isCurrentLayer(index) {\n                return index === this.layerManager.getIndex(this.curLayerIndex);\n            },\n            getThumbnail(layer) {\n                if (this.needRefreshThumbnails)\n                    this.needRefreshThumbnails = false;\n                return layer.thumbnail;\n            },\n            isCurrentLayer(index) {\n                return this.curLayerIndex === index;\n            },\n            getVisibleButton(visible) {\n                return visible ? '显' : '隐';\n            }\n        }\n    }\n</script>"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
 /* 40 */
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-tools-layers.vue ***!
+  \**************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5658,7 +5781,7 @@
 	    value: true
 	});
 	
-	var _defineProperty2 = __webpack_require__(41);
+	var _defineProperty2 = __webpack_require__(/*! babel-runtime/helpers/defineProperty */ 41);
 	
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 	
@@ -5755,13 +5878,16 @@
 
 /***/ },
 /* 41 */
+/*!***************************************************!*\
+  !*** ./~/babel-runtime/helpers/defineProperty.js ***!
+  \***************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	exports.__esModule = true;
 	
-	var _defineProperty = __webpack_require__(42);
+	var _defineProperty = __webpack_require__(/*! ../core-js/object/define-property */ 42);
 	
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
 	
@@ -5786,25 +5912,34 @@
 
 /***/ },
 /* 42 */
+/*!***********************************************************!*\
+  !*** ./~/babel-runtime/core-js/object/define-property.js ***!
+  \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	module.exports = { "default": __webpack_require__(43), __esModule: true };
+	module.exports = { "default": __webpack_require__(/*! core-js/library/fn/object/define-property */ 43), __esModule: true };
 
 /***/ },
 /* 43 */
+/*!********************************************************!*\
+  !*** ./~/core-js/library/fn/object/define-property.js ***!
+  \********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var $ = __webpack_require__(44);
+	var $ = __webpack_require__(/*! ../../modules/$ */ 44);
 	module.exports = function defineProperty(it, key, desc) {
 	  return $.setDesc(it, key, desc);
 	};
 
 /***/ },
 /* 44 */
+/*!****************************************!*\
+  !*** ./~/core-js/library/modules/$.js ***!
+  \****************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5825,22 +5960,28 @@
 
 /***/ },
 /* 45 */
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/template-rewriter.js?id=_v-ef1a1346!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-tools-layers.vue ***!
+  \**************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"tools-layers\" _v-ef1a1346=\"\">\n    <div class=\"panel-slider-item\" _v-ef1a1346=\"\">\n        <label _v-ef1a1346=\"\">\n            <span class=\"slider-title\" _v-ef1a1346=\"\">透明</span>\n            <span _v-ef1a1346=\"\">-</span>\n            <input type=\"range\" value=\"1\" min=\"0\" max=\"1\" step=\"0.01\" v-model=\"curLayerOpacity\" _v-ef1a1346=\"\">\n            <span _v-ef1a1346=\"\">+</span>\n            <span class=\"slider-value\" v-text=\"curLayerOpacity\" _v-ef1a1346=\"\"></span>\n        </label>\n    </div>\n    <div class=\"layers-container\" _v-ef1a1346=\"\">\n        <div class=\"layers-item\" v-for=\"layer in layerList\" v-on:click=\"selectLayer($index)\" v-bind:id=\"'layer'+$index\" v-bind:class=\"{'active': isCurrentLayer($index)}\" _v-ef1a1346=\"\">\n            <div class=\"layers-thumbnail\" _v-ef1a1346=\"\">\n                <img alt=\"缩略图\" v-bind:src=\"getThumbnail(layer)\" _v-ef1a1346=\"\">\n            </div>\n            <div class=\"layers-item-right\" _v-ef1a1346=\"\">\n                <span class=\"layers-name\" v-text=\"layer.name\" _v-ef1a1346=\"\"></span>\n                <div class=\"layers-buttons\" _v-ef1a1346=\"\">\n                    <div class=\"layers-visible\" v-text=\"getVisibleButton(layer.visible)\" v-on:click.stop=\"toggleLayerVisible($index)\" _v-ef1a1346=\"\"></div>\n                </div>\n                <div class=\"layers-delete\" v-on:click.stop=\"removeLayer($index)\" _v-ef1a1346=\"\">\n                    <svg width=\"18px\" height=\"18px\" viewBox=\"194 99 18 18\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" _v-ef1a1346=\"\">\n                        <defs _v-ef1a1346=\"\"></defs>\n                        <path d=\"M201.530628,106.530628 L198.194021,106.530628 C197.459043,106.530628 196.863961,107.127581 196.863961,107.863961 C196.863961,108.605475 197.459449,109.197294 198.194021,109.197294 L201.530628,109.197294 L201.530628,112.533902 C201.530628,113.268879 202.127581,113.863961 202.863961,113.863961 C203.605475,113.863961 204.197294,113.268473 204.197294,112.533902 L204.197294,109.197294 L207.533902,109.197294 C208.268879,109.197294 208.863961,108.600341 208.863961,107.863961 C208.863961,107.122447 208.268473,106.530628 207.533902,106.530628 L204.197294,106.530628 L204.197294,103.194021 C204.197294,102.459043 203.600341,101.863961 202.863961,101.863961 C202.122447,101.863961 201.530628,102.459449 201.530628,103.194021 L201.530628,106.530628 Z\" id=\"layer-close-button\" stroke=\"none\" fill=\"#645542\" fill-rule=\"evenodd\" transform=\"translate(202.863961, 107.863961) rotate(-315.000000) translate(-202.863961, -107.863961) \" _v-ef1a1346=\"\"></path>\n                    </svg>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"layers-tools-container\" _v-ef1a1346=\"\">\n        <div class=\"layers-tool\" v-on:click=\"upLayer()\" _v-ef1a1346=\"\">^</div>\n        <div class=\"layers-tool\" v-on:click=\"downLayer()\" _v-ef1a1346=\"\">v</div>\n        <div class=\"layers-tool\" v-on:click=\"addLayer()\" _v-ef1a1346=\"\">+</div>\n    </div>\n</div>\n";
 
 /***/ },
 /* 46 */
+/*!**********************************************!*\
+  !*** ./src/vue/painter-tools-background.vue ***!
+  \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(47)
-	__vue_script__ = __webpack_require__(49)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-c6f5b26e&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-background.vue */ 47)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-tools-background.vue */ 49)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-tools-background.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(50)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/template-rewriter.js?id=_v-c6f5b26e!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-tools-background.vue */ 50)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -5860,15 +6001,18 @@
 
 /***/ },
 /* 47 */
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-c6f5b26e&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-background.vue ***!
+  \**************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(48);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-c6f5b26e&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-background.vue */ 48);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -5886,9 +6030,12 @@
 
 /***/ },
 /* 48 */
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-c6f5b26e&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-background.vue ***!
+  \*****************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -5900,6 +6047,9 @@
 
 /***/ },
 /* 49 */
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-tools-background.vue ***!
+  \******************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -5949,22 +6099,28 @@
 
 /***/ },
 /* 50 */
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/template-rewriter.js?id=_v-c6f5b26e!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-tools-background.vue ***!
+  \******************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"tools-panel\" _v-c6f5b26e=\"\">\n    <div class=\"background-container\" _v-c6f5b26e=\"\">\n        <div class=\"background-item\" v-for=\"bg in backgroundImageList\" _v-c6f5b26e=\"\">\n            <img v-bind:title=\"bg.title\" v-bind:src=\"bg.url\" v-on:click=\"setBackgroundImage(bg.url)\" _v-c6f5b26e=\"\">\n        </div>\n    </div>\n    <label class=\"custom-color\" _v-c6f5b26e=\"\">自定义\n        <input class=\"color\" v-model=\"bgColor\" v-bind:style=\"{backgroundColor: bgColor}\" _v-c6f5b26e=\"\">\n    </label>\n    <div class=\"clear-button\" v-on:click=\"setBackgroundImage(null)\" _v-c6f5b26e=\"\">清除背景</div>\n</div>\n";
 
 /***/ },
 /* 51 */
+/*!*******************************************!*\
+  !*** ./src/vue/painter-tools-costume.vue ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(52)
-	__vue_script__ = __webpack_require__(54)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-4c4e8d56&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-costume.vue */ 52)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-tools-costume.vue */ 54)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-tools-costume.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(55)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/template-rewriter.js?id=_v-4c4e8d56!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-tools-costume.vue */ 55)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -5984,15 +6140,18 @@
 
 /***/ },
 /* 52 */
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-4c4e8d56&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-costume.vue ***!
+  \***********************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(53);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-4c4e8d56&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-tools-costume.vue */ 53);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -6010,9 +6169,12 @@
 
 /***/ },
 /* 53 */
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-4c4e8d56&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-tools-costume.vue ***!
+  \**************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -6024,6 +6186,9 @@
 
 /***/ },
 /* 54 */
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-tools-costume.vue ***!
+  \***************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6059,28 +6224,37 @@
 
 /***/ },
 /* 55 */
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/template-rewriter.js?id=_v-4c4e8d56!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-tools-costume.vue ***!
+  \***************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"tools-costume\" _v-4c4e8d56=\"\">\n    <input title=\"造型名称\" class=\"costume-title\" placeholder=\"请输入造型名称\" v-model=\"costumeTitle\" _v-4c4e8d56=\"\">\n    <div class=\"costume-buttons\" _v-4c4e8d56=\"\">\n        <div class=\"save-button\" _v-4c4e8d56=\"\">\n            <img src=\"//o44j7l4g3.qnssl.com/program/painter/save.png\" alt=\"保存\" @click=\"save\" _v-4c4e8d56=\"\">\n        </div>\n        <div class=\"cancel-button\" _v-4c4e8d56=\"\">\n            <img src=\"//o44j7l4g3.qnssl.com/program/painter/cancel.png\" alt=\"取消\" @click=\"cancel\" _v-4c4e8d56=\"\">\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 /* 56 */
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/template-rewriter.js?id=_v-f535087c!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-tools.vue ***!
+  \*******************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"painter-tools\" _v-f535087c=\"\">\n    <div class=\"painter-tools-tabs\" _v-f535087c=\"\">\n        <div class=\"tab-button tabs-painting\" v-on:click=\"switchTool(0)\" v-bind:class=\"{'active':isCurrentTool(0)}\" _v-f535087c=\"\">\n            画图\n            <svg width=\"16px\" height=\"7px\" viewBox=\"49 48 16 7\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" _v-f535087c=\"\">\n                <polygon id=\"rect-tab-painting\" stroke=\"none\" fill=\"#F2524C\" fill-rule=\"evenodd\" transform=\"translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) \" points=\"57 48 65 55 49 55\" _v-f535087c=\"\"></polygon>\n            </svg>\n        </div>\n        <div class=\"tab-button tabs-background\" v-on:click=\"switchTool(1)\" v-bind:class=\"{'active':isCurrentTool(1)}\" _v-f535087c=\"\">\n            背景\n            <svg width=\"16px\" height=\"7px\" viewBox=\"49 48 16 7\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" _v-f535087c=\"\">\n                <polygon id=\"rect-tab-background\" stroke=\"none\" fill=\"#EEB000\" fill-rule=\"evenodd\" transform=\"translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) \" points=\"57 48 65 55 49 55\" _v-f535087c=\"\"></polygon>\n            </svg>\n        </div>\n        <div class=\"tab-button tabs-layers\" v-on:click=\"switchTool(2)\" v-bind:class=\"{'active':isCurrentTool(2)}\" _v-f535087c=\"\">\n            图层\n            <svg width=\"16px\" height=\"7px\" viewBox=\"49 48 16 7\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" _v-f535087c=\"\">\n                <polygon id=\"rect-tab-layers\" stroke=\"none\" fill=\"#44BFD2\" fill-rule=\"evenodd\" transform=\"translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) \" points=\"57 48 65 55 49 55\" _v-f535087c=\"\"></polygon>\n            </svg>\n        </div>\n    </div>\n    <div class=\"painter-tools-container\" _v-f535087c=\"\">\n        <!--<components :is=\"currentTool\"></components>-->\n        <painter-tools-painting v-show=\"isShowPanel('painter-tools-painting')\" _v-f535087c=\"\"></painter-tools-painting>\n        <painter-tools-background v-show=\"isShowPanel('painter-tools-background')\" _v-f535087c=\"\"></painter-tools-background>\n        <painter-tools-layers v-show=\"isShowPanel('painter-tools-layers')\" _v-f535087c=\"\"></painter-tools-layers>\n    </div>\n    <div class=\"painter-tools-buttons\" _v-f535087c=\"\">\n        <painter-tools-costume _v-f535087c=\"\"></painter-tools-costume>\n    </div>\n</div>\n";
 
 /***/ },
 /* 57 */
+/*!*******************************************!*\
+  !*** ./src/vue/painter-control-panel.vue ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(58)
-	__vue_script__ = __webpack_require__(60)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-control-panel.vue */ 58)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-control-panel.vue */ 60)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-control-panel.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(61)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-control-panel.vue */ 61)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -6100,15 +6274,18 @@
 
 /***/ },
 /* 58 */
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-control-panel.vue ***!
+  \********************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(59);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-control-panel.vue */ 59);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -6126,9 +6303,12 @@
 
 /***/ },
 /* 59 */
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-control-panel.vue ***!
+  \***********************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -6140,6 +6320,9 @@
 
 /***/ },
 /* 60 */
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-control-panel.vue ***!
+  \***************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6167,22 +6350,28 @@
 
 /***/ },
 /* 61 */
+/*!********************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-control-panel.vue ***!
+  \********************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"control-panel\">\n    <div class=\"control-buttons-container\">\n        <div title=\"清空画布\" class=\"control-button\" v-on:click=\"clear()\">\n            <img src=\"//o44j7l4g3.qnssl.com/program/painter/clear.png\" alt=\"清空画布\">\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
 /* 62 */
+/*!********************************************!*\
+  !*** ./src/vue/painter-canvas-wrapper.vue ***!
+  \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(63)
-	__vue_script__ = __webpack_require__(65)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-e28ce672&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-canvas-wrapper.vue */ 63)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./../../~/vue-loader/lib/selector.js?type=script&index=0!./painter-canvas-wrapper.vue */ 65)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-canvas-wrapper.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(66)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/template-rewriter.js?id=_v-e28ce672!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-canvas-wrapper.vue */ 66)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -6202,15 +6391,18 @@
 
 /***/ },
 /* 63 */
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-e28ce672&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-canvas-wrapper.vue ***!
+  \************************************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(64);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js?id=_v-e28ce672&scoped=true!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-canvas-wrapper.vue */ 64);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -6228,9 +6420,12 @@
 
 /***/ },
 /* 64 */
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js?id=_v-e28ce672&scoped=true!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-canvas-wrapper.vue ***!
+  \***************************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -6242,6 +6437,9 @@
 
 /***/ },
 /* 65 */
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./~/vue-loader/lib/selector.js?type=script&index=0!./src/vue/painter-canvas-wrapper.vue ***!
+  \****************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6253,22 +6451,28 @@
 
 /***/ },
 /* 66 */
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/template-rewriter.js?id=_v-e28ce672!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-canvas-wrapper.vue ***!
+  \****************************************************************************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"painter-canvas-wrapper\" _v-e28ce672=\"\">\n    <canvas class=\"painter-canvas\" _v-e28ce672=\"\"></canvas>\n</div>\n";
 
 /***/ },
 /* 67 */
+/*!******************************************!*\
+  !*** ./src/vue/painter-object-panel.vue ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
-	__webpack_require__(68)
-	__vue_script__ = __webpack_require__(70)
+	__webpack_require__(/*! !vue-style-loader!css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-object-panel.vue */ 68)
+	__vue_script__ = __webpack_require__(/*! !babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!../js/painter-object-panel.js */ 70)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] src/vue/painter-object-panel.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(71)
+	__vue_template__ = __webpack_require__(/*! !vue-html-loader!./../../~/vue-loader/lib/selector.js?type=template&index=0!./painter-object-panel.vue */ 71)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	if (__vue_template__) {
@@ -6288,15 +6492,18 @@
 
 /***/ },
 /* 68 */
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./~/vue-style-loader!./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-object-panel.vue ***!
+  \*******************************************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(69);
+	var content = __webpack_require__(/*! !./../../~/css-loader?sourceMap!./../../~/vue-loader/lib/style-rewriter.js!./../../~/vue-loader/lib/selector.js?type=style&index=0!./painter-object-panel.vue */ 69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(26)(content, {});
+	var update = __webpack_require__(/*! ./../../~/vue-style-loader/addStyles.js */ 26)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -6314,9 +6521,12 @@
 
 /***/ },
 /* 69 */
+/*!**********************************************************************************************************************************************************!*\
+  !*** ./~/css-loader?sourceMap!./~/vue-loader/lib/style-rewriter.js!./~/vue-loader/lib/selector.js?type=style&index=0!./src/vue/painter-object-panel.vue ***!
+  \**********************************************************************************************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(3)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 3)();
 	// imports
 	
 	
@@ -6328,6 +6538,9 @@
 
 /***/ },
 /* 70 */
+/*!*********************************************************************************************************************!*\
+  !*** ./~/babel-loader?presets[]=es2015&plugins[]=transform-runtime&comments=false!./src/js/painter-object-panel.js ***!
+  \*********************************************************************************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6465,12 +6678,18 @@
 
 /***/ },
 /* 71 */
+/*!*******************************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter-object-panel.vue ***!
+  \*******************************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"painter-object-panel\">\n    <input title=\"颜色\" class=\"color object-color\" v-show=\"curObject\"\n           v-bind:style=\"{backgroundColor: curColor}\"\n           v-model=\"curColor\">\n    <label class=\"object-opacity\" v-show=\"curObject\"> 透明度 -\n        <input title=\" 透明度\" type=\"range\" min=\"0\" max=\"1\" step=\"0.01\"\n               v-model=\"curOpacity\">+\n        <span v-text=\"curOpacity\"></span>\n    </label>\n    <input title=\"字号\" type=\"number\" class=\"font-size\" v-show=\"curObject&&showText\"\n           v-model=\"curFontSize\">\n    <textArea class=\"object-text\" title=\"文字内容\" v-model=\"curText\" v-show=\"curObject&&showText\"></textArea>\n    <div title=\"删除对象\" class=\"remove-button\" v-show=\"curObject||curGroup\" v-on:click=\"removeSelected()\">\n        <img src=\"//o44j7l4g3.qnssl.com/program/painter/delete.png\" alt=\"删除对象\">\n    </div>\n</div>\n";
 
 /***/ },
 /* 72 */
+/*!******************************************************************************************************!*\
+  !*** ./~/vue-html-loader!./~/vue-loader/lib/selector.js?type=template&index=0!./src/vue/painter.vue ***!
+  \******************************************************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"painter\">\n    <painter-tools></painter-tools>\n    <div class=\"right-panel\">\n        <div class=\"paint-panel\">\n            <painter-canvas-wrapper></painter-canvas-wrapper>\n            <painter-object-panel></painter-object-panel>\n        </div>\n        <painter-control-panel></painter-control-panel>\n    </div>\n</div>\n";

@@ -43,7 +43,7 @@
 </template>
 <style scoped>
     .tools-layers {
-        width: 90%;
+        width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
