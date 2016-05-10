@@ -99,9 +99,9 @@ class Painter {
             this.painter.save();
           },
           'painter-cancel'() {
-            this.painter.cancel();
+            this.painter.close();
           },
-        }
+        },
       }
     );
 
@@ -112,11 +112,17 @@ class Painter {
     this.painterEl = document.querySelector(`#${el}`);
     this.canvasWrapperEl = this.painterEl.querySelector('.painter-canvas-wrapper');
     this.canvasEl = this.canvasWrapperEl.querySelector('.painter-canvas');
+    this.initColorPicker();
+    this.initFabricCanvas();
+    this.initListener();
+  }
+
+  /**
+   * Init canvas
+   */
+  initFabricCanvas() {
     this.vm.canvas = new fabric.Canvas(this.canvasEl);
     this.vm.setCanvasSize(this.canvasWrapperEl.clientWidth, this.canvasWrapperEl.clientHeight);
-    this.initColorPicker();
-
-    this.initListener();
 
     this.vm.canvas.setFreeDrawingBrush('pencil', {
       width: 5,
@@ -176,38 +182,44 @@ class Painter {
 
   openIn(img, name, options) {
     this.vm.isShowPainter = true;
-      const x = this.vm.canvas.width / 2;
-      const y = this.vm.canvas.height / 2;
-      let width = 0;
-      let height = 0;
-      if (options) {
-        width = options.width;
-        height = options.height;
-        this.vm.canvas.rotationPoint = {
-          x: (width > this.vm.canvas.width) ? x : options.rotationCenter.x
-          + (this.vm.canvas.width - width) / 2,
-          y: (height > this.vm.canvas.height) ? y : options.rotationCenter.y
-          + (this.vm.canvas.height - height) / 2,
-        };
-        this.vm.canvas.callback = options.callback;
-      }
-      this.vm.canvas.clear();
+    this.vm.zIndex = '100';
+    const x = this.vm.canvas.width / 2;
+    const y = this.vm.canvas.height / 2;
+    let width = 0;
+    let height = 0;
+    if (options) {
+      width = options.width;
+      height = options.height;
+      this.vm.canvas.rotationPoint = {
+        x: (width > this.vm.canvas.width) ? x : options.rotationCenter.x
+        + (this.vm.canvas.width - width) / 2,
+        y: (height > this.vm.canvas.height) ? y : options.rotationCenter.y
+        + (this.vm.canvas.height - height) / 2,
+      };
+      this.vm.canvas.callback = options.callback;
+    }
+    this.vm.canvas.clear();
 
     this.store.state.costumeTitle = name;
 
-      this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
-      this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
-      this.vm.canvas.renderAll();
+    this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
+    this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
+    if (img) {
       this.addImage(img, (this.vm.canvas.width - width) / 2, (this.vm.canvas.height - height) / 2);
-
-    this.vm.canvas.setFreeDrawingBrush('pencil', {
-      width: 5,
-      color: '#333',
-      opacity: 1,
-    });
-    this.vm.canvas.setDrawingMode(true);
-
     }
+
+    this.store.refreshThumbnails();
+    this.vm.canvas.layerManager.setBackgroundImageURL('');
+    this.vm.canvas.layerManager.setBackgroundColor('transparent');
+    this.vm.canvas.renderAll();
+
+    // this.vm.canvas.setFreeDrawingBrush('pencil', {
+    //   width: 5,
+    //   color: '#333',
+    //   opacity: 1,
+    // });
+    //  this.vm.canvas.setDrawingMode(true);
+  }
 
   save() {
     const param = {};
@@ -219,7 +231,7 @@ class Painter {
       const objectsInGroup = activeGroup.getObjects();
       this.vm.canvas.discardActiveGroup();
       objectsInGroup.forEach((obj) => {
-        Object.assign(obj, {active: false});
+        Object.assign(obj, { active: false });
       });
     }
     if (activeObj) {
@@ -242,26 +254,31 @@ class Painter {
       this.vm.canvas.callback(param);
     }
 
-    this.vm.isShowPainter = false;
+    this.close();
   }
 
-  cancel() {
+  close() {
     this.vm.isShowPainter = false;
+    this.vm.zIndex = '';
+    this.vm.canvas.clear();
+    this.vm.canvas.layerManager.setBackgroundImageURL('');
+    this.vm.canvas.layerManager.setBackgroundColor('transparent');
+    // this.vm.canvas.renderAll();
   }
-    
-    addImage(path, x, y) {
-        fabric.Image.fromURL(path, (image) => {
-          image.set({
-            left: x || 0,
-            top: y || 0,
-            angle: 0,
-          }).scale(1).setCoords();
-          this.vm.canvas.add(image);
-          this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
-          this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
-          this.vm.canvas.renderAll();
-        });
-      }
+
+  addImage(path, x, y) {
+    fabric.Image.fromURL(path, (image) => {
+      image.set({
+        left: x || 0,
+        top: y || 0,
+        angle: 0,
+      }).scale(1).setCoords();
+      this.vm.canvas.add(image);
+      this.vm.canvas.setHeight(this.canvasWrapperEl.clientHeight);
+      this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
+      this.vm.canvas.renderAll();
+    });
+  }
 }
 
 window.painterObject = new Painter('painter-wrapper');
