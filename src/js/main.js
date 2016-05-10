@@ -80,11 +80,13 @@ class Painter {
           layerManager: null,
           painter: this,
           isShowPainter: false,
-          zIndex: '',
         },
         computed: {
           painterVisibility() {
             return this.isShowPainter ? '' : 'hidden';
+          },
+          zIndex() {
+            return this.isShowPainter? '100': '';
           },
         },
         methods: {
