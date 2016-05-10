@@ -46,6 +46,9 @@
         width: 20%;
         height: 100%;
         background: #ECE7DD;
+
+        display: flex;
+        flex-direction: column;
     }
 
     .painter-tools-tabs {
@@ -59,12 +62,12 @@
 
     .painter-tools-container {
         width: 100%;
-        height: 84%;
+        height: calc(94% - 6rem);
     }
 
     .painter-tools-buttons {
         width: 100%;
-        height: 10%;
+        height: 6rem;
     }
 
     .painter-tools .tab-button {
@@ -89,7 +92,7 @@
         display: none;
         width: 100%;
         position: absolute;
-        top: 100%;
+        top: calc(100% - 0.1rem);
         left: 0;
     }
 

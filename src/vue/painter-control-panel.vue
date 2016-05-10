@@ -19,14 +19,30 @@
         background-color: #F8F8F8;
     }
 
+    .control-buttons-container {
+        height: 100%;
+    }
+
     .control-panel .control-button {
-        margin:0 1rem;
+        width:3rem;
+        height:calc(100% - 0.2rem);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin:0.1rem;
 
         font-family: STHeitiTC-Medium,serif;
         font-size: 18px;
         color: #645542;
 
         cursor: pointer;
+    }
+
+    .control-panel .control-button img {
+        max-height:100%;
+        max-width: 100%;
     }
 </style>
 <script>
