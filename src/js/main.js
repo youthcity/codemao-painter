@@ -1,5 +1,6 @@
 //  todo: 多图层时,上下图层关系在绘制完毕后才应用,upper 处在最高层,透明度没有应用在 upper 层上
 // import Vue from 'vue';
+import 'babel-polyfill';
 import '../css/common.css';
 
 import '../js/override/static-canvas';
