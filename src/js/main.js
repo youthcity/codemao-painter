@@ -80,11 +80,12 @@ class Painter {
           layerManager: null,
           painter: this,
           isShowPainter: false,
+          zIndex: '',
         },
         computed: {
           painterVisibility() {
-            return this.isShowPainter? '':'hidden';
-          }
+            return this.isShowPainter ? '' : 'hidden';
+          },
         },
         methods: {
           setCanvasSize(width, height) {

@@ -108,11 +108,13 @@
             if (position.top > window.innerHeight - 200) {
               colorPickerUI.style.cssText =
                 'position: absolute;' +
+                'z-index: 1000;' +
                 'left:' + (position.left + options.margin.left) + 'px;' +
                 'bottom:' + (window.innerHeight - position.top - options.margin.top) + 'px;';
             } else {
               colorPickerUI.style.cssText =
                 'position: absolute;' +
+                'z-index: 1000;' +
                 'left:' + (position.left + options.margin.left) + 'px;' +
                 'top:' + (position.top + +input.offsetHeight + options.margin.top) + 'px;';
             }
