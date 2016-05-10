@@ -3,12 +3,31 @@
         <div class="painter-tools-tabs">
             <div class="tab-button tabs-painting" v-on:click="switchTool(0)" v-bind:class="{'active':isCurrentTool(0)}">
                 画图
+                <svg width="16px" height="7px" viewBox="49 48 16 7" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon id="rect-tab-painting" stroke="none" fill="#F2524C" fill-rule="evenodd"
+                             transform="translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) "
+                             points="57 48 65 55 49 55"></polygon>
+                </svg>
             </div>
             <div class="tab-button tabs-background" v-on:click="switchTool(1)"
-                 v-bind:class="{'active':isCurrentTool(1)}">背景
+                 v-bind:class="{'active':isCurrentTool(1)}">
+                背景
+                <svg width="16px" height="7px" viewBox="49 48 16 7" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon id="rect-tab-background" stroke="none" fill="#EEB000" fill-rule="evenodd"
+                             transform="translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) "
+                             points="57 48 65 55 49 55"></polygon>
+                </svg>
             </div>
             <div class="tab-button tabs-layers" v-on:click="switchTool(2)" v-bind:class="{'active':isCurrentTool(2)}">
                 图层
+                <svg width="16px" height="7px" viewBox="49 48 16 7" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <polygon id="rect-tab-layers" stroke="none" fill="#44BFD2" fill-rule="evenodd"
+                             transform="translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) "
+                             points="57 48 65 55 49 55"></polygon>
+                </svg>
             </div>
         </div>
         <div class="painter-tools-container">
@@ -49,8 +68,10 @@
     }
 
     .painter-tools .tab-button {
-        height: 90%;
+        height: calc(85% - 0.3rem);
         flex-grow: 1;
+
+        position: relative;
 
         display: flex;
         align-items: center;
@@ -59,11 +80,26 @@
         font-size: 18px;
         color: #FFFFFF;
 
+        margin-top: 0.3rem;
+
         cursor: pointer;
     }
 
-    .painter-tools .tab-button.active {
-        height: 100%;
+    .painter-tools .tab-button svg {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .painter-tools .tab-button.active{
+        height: 85%;
+        margin-top:0;
+    }
+
+    .painter-tools .tab-button.active svg{
+        display: block;
     }
 
     .painter-tools .tabs-painting {

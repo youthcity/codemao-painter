@@ -81,7 +81,7 @@
 
         padding: 1rem 0;
 
-        background-color: #e6e0d8;
+        background-color: #ECE7DD;
     }
 
     .tools-buttons-container {
@@ -108,9 +108,8 @@
         justify-content: center;
 
         margin: 0 0.1rem;
-        /*color: #333;*/
 
-        /*border: solid;*/
+        cursor: pointer;
     }
 
     .tools-button img {
@@ -185,6 +184,8 @@
         width: 90%;
         display: flex;
         align-items: center;
+
+        margin:0.5rem 0;
     }
 
     .item-title {
@@ -218,7 +219,7 @@
         align-items: center;
         flex-wrap: wrap;
 
-        margin: 1rem 0;
+        margin: 0.5rem 0;
         padding: 1rem 0.1rem;
 
         background: #E1D6BE;
@@ -235,6 +236,7 @@
         border-radius: 1.1rem;
         box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.50);
 
+        cursor: pointer;
     }
 
 </style>

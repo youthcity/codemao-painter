@@ -11,14 +11,16 @@
         <input title="字号" type="number" class="font-size" v-show="curObject&&showText"
                v-model="curFontSize">
         <textArea class="object-text" title="文字内容" v-model="curText" v-show="curObject&&showText"></textArea>
-        <div class="remove-button" v-show="curObject||curGroup" v-on:click="removeSelected()">删除</div>
+        <div title="删除对象" class="remove-button" v-show="curObject||curGroup" v-on:click="removeSelected()">
+            <img src="/assets/remove.png" alt="删除对象">
+        </div>
     </div>
 </template>
 <style>
     .painter-object-panel {
         width: 85%;
-        height: 6%;
-        padding: 2%;
+        height: calc(10% - 1rem);
+        padding: 0.5rem;
         background-color: #F8F8F8;
 
         display: flex;

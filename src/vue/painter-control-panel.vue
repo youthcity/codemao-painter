@@ -1,7 +1,9 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="control-panel">
         <div class="control-buttons-container">
-            <div class="control-button" v-on:click="clear()">清空</div>
+            <div title="清空画布" class="control-button" v-on:click="clear()">
+                <img src="/assets/clear.png" alt="清空画布">
+            </div>
         </div>
     </div>
 </template>
@@ -23,6 +25,8 @@
         font-family: STHeitiTC-Medium,serif;
         font-size: 18px;
         color: #645542;
+
+        cursor: pointer;
     }
 </style>
 <script>

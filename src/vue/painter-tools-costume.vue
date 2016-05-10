@@ -41,6 +41,8 @@
         justify-content: space-between;
 
         margin:0 0.5rem;
+
+        cursor: pointer;
     }
 
     .costume-buttons img {
