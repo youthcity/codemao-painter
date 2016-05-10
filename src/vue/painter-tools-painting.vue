@@ -50,13 +50,13 @@
             <span class="input-plus">+</span>
             <span class="number-input" v-text="curStrokeWidth"></span>
         </div>
-        <div class="tools-slider-container">
-            <span class="tools-container-title">透明</span>
-            <span class="input-minus">-</span>
-            <input title="透明度" type="range" value="1" min="0" max="1" step="0.01" v-model="curObjectOpacity"/>
-            <span class="input-plus">+</span>
-            <span class="number-input" v-text="curObjectOpacity"></span>
-        </div>
+        <!--<div class="tools-slider-container">-->
+            <!--<span class="tools-container-title">透明</span>-->
+            <!--<span class="input-minus">-</span>-->
+            <!--<input title="透明度" type="range" value="1" min="0" max="1" step="0.01" v-model="curObjectOpacity"/>-->
+            <!--<span class="input-plus">+</span>-->
+            <!--<span class="number-input" v-text="curObjectOpacity"></span>-->
+        <!--</div>-->
         <div class="tools-item">
             <span class="item-title">颜色</span>
             <input title="颜色" type="color" class="color" v-model="curColor"
