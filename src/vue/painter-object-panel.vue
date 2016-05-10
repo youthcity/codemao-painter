@@ -12,7 +12,7 @@
                v-model="curFontSize">
         <textArea class="object-text" title="文字内容" v-model="curText" v-show="curObject&&showText"></textArea>
         <div title="删除对象" class="remove-button" v-show="curObject||curGroup" v-on:click="removeSelected()">
-            <img src="/assets/remove.png" alt="删除对象">
+            <img src="//o44j7l4g3.qnssl.com/program/painter/delete.png" alt="删除对象">
         </div>
     </div>
 </template>

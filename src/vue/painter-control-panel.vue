@@ -2,7 +2,7 @@
     <div class="control-panel">
         <div class="control-buttons-container">
             <div title="清空画布" class="control-button" v-on:click="clear()">
-                <img src="/assets/clear.png" alt="清空画布">
+                <img src="//o44j7l4g3.qnssl.com/program/painter/clear.png" alt="清空画布">
             </div>
         </div>
     </div>
