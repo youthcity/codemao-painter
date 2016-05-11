@@ -43,7 +43,7 @@ class RoundBrush extends fabric.RectBrush {
     this.canvas.renderAll();
 
     // fire event 'path' created
-    this.canvas.fire('circle:created', { round });
+    this.canvas.fire('path:created', { path: round });
   }
 }
 

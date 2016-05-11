@@ -147,15 +147,6 @@ export default{
     addShape(shape) {
       this.selectBrush();
       switch (shape) {
-        case 'circle':
-          this.addCircle();
-          break;
-        case 'rect':
-          this.addRect();
-          break;
-        case 'line':
-          this.addLine();
-          break;
         case 'text':
           this.addText();
           break;
@@ -171,8 +162,7 @@ export default{
     },
     addText() {
       const text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
-
-      this.canvas.add(new fabric.Text(text, {
+      const object = new fabric.Text(text, {
         left: this.canvas.getWidth() / 2,
         top: this.canvas.getHeight() / 2,
         fontFamily: 'Microsoft YaHei',
@@ -184,7 +174,10 @@ export default{
         originX: 'left',
         hasRotatingPoint: true,
         centerTransform: true,
-      }));
+      });
+      this.canvas.add(object);
+      // fire event 'path' created
+      this.canvas.fire('path:created', { path: object });
     },
   },
 };

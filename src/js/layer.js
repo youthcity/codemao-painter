@@ -16,6 +16,8 @@
       this.backgroundColor = null;
       this.backgroundImageURL = null;
       // this.thumbnail = null;
+      this.undoStack = [];
+      this.redoStack = [];
     }
 
     static resetCount() {

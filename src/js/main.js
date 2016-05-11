@@ -87,7 +87,7 @@ class Painter {
             return this.isShowPainter ? '' : 'hidden';
           },
           zIndex() {
-            return this.isShowPainter? '100': '';
+            return this.isShowPainter ? '100' : '';
           },
         },
         methods: {
@@ -153,34 +153,55 @@ class Painter {
   }
 
   initListener() {
-    //  Global Events
-    //  Listener of Resize
+    /**
+     * Global Events
+     * Listener of Resize
+     */
     this.onPainterResize = () => {
       this.vm.setCanvasSize(this.canvasWrapperEl.clientWidth, this.canvasWrapperEl.clientHeight);
     };
     window.addEventListener('resize', this.onPainterResize.bind(this));
-    //
-    //  Fabric Events
-    //  Object selected events
+    /**
+     * Fabric Events
+     * Object selected events
+     */
     this.onObjectSelected = () => {
       this.store.updateObject();
     };
     this.vm.canvas.on('object:selected', this.onObjectSelected.bind(this));
-    //
-    //  Object removed events
+    /**
+     * Object removed events
+     */
     this.onObjectRemoved = () => {
       this.store.updateObject();
     };
     this.vm.canvas.on('object:removed', this.onObjectRemoved.bind(this));
-    //
-    //  Mouse up events
+    /**
+     *  Mouse up events
+     */
     this.onMouseUpFabric = () => {
       this.store.refreshThumbnails();
     };
     this.vm.canvas.on('mouse:up', this.onMouseUpFabric.bind(this));
-    //
-    //  Slection cleared events
+    /**
+     *  Selection cleared events
+     */
     this.vm.canvas.on('selection:cleared', this.store.updateObject.bind(this.store));
+    /**
+     *  Path created events (Objects created)
+     * @param event
+     */
+    this.onPathCreated = (event) => {
+      this.toUndoStack(event, 'pathCreated');
+    };
+    this.vm.canvas.on('path:created', this.onPathCreated.bind(this));
+    /**
+     *  Object modified events
+     * @param event
+     */
+    this.onObjectModified = (event) => {
+    };
+    this.vm.canvas.on('object:modified', this.onObjectModified.bind(this));
   }
 
   openIn(img, name, options) {
@@ -281,6 +302,48 @@ class Painter {
       this.vm.canvas.setWidth(this.canvasWrapperEl.clientWidth);
       this.vm.canvas.renderAll();
     });
+  }
+
+  /**
+   * Push state to undo stack
+   */
+  toUndoStack(event, type) {
+    const currentLayer = this.vm.canvas.layerManager.currentLayer;
+    currentLayer.undoStack.push({
+      event,
+      type,
+    });
+    currentLayer.redoStack = [];
+  }
+
+  undo() {
+    const canvas = this.vm.canvas;
+    const currentLayer = canvas.layerManager.currentLayer;
+    const action = currentLayer.undoStack.pop();
+    if (action) {
+      switch (action.type) {
+        case 'pathCreated':
+          canvas.remove(action.event.path);
+          break;
+        default:
+      }
+      currentLayer.redoStack.push(action);
+    }
+  }
+
+  redo() {
+    const canvas = this.vm.canvas;
+    const currentLayer = canvas.layerManager.currentLayer;
+    const action = currentLayer.redoStack.pop();
+    if (action) {
+      switch (action.type) {
+        case 'pathCreated':
+          canvas.add(action.event.path);
+          break;
+        default:
+      }
+      currentLayer.undoStack.push(action);
+    }
   }
 }
 

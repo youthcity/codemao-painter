@@ -57,7 +57,7 @@ class RectBrush extends fabric.LineBrush {
     this.canvas.renderAll();
 
     // fire event 'path' created
-    this.canvas.fire('rect:created', { rect });
+    this.canvas.fire('path:created', { path: rect });
   }
 }
 
