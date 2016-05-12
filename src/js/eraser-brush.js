@@ -263,6 +263,10 @@ import './trim-canvas.js';
           // this.canvas.setHeight(this.height);
           // this.canvas.setWidth(this.width);
           // this.canvas.renderAll();
+          myself.canvas.fire('eraser:done', {
+            objects: currentLayer.objects.slice(),
+            image,
+          });
           this.canvas.add(image);
           myself.canvas.contextTop.imageSmoothingEnabled = false;
           myself.canvas.clearContext(myself.canvas.contextTop);

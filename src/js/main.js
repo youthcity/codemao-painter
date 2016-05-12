@@ -1,4 +1,5 @@
 //  todo: 多图层时,上下图层关系在绘制完毕后才应用,upper 处在最高层,透明度没有应用在 upper 层上
+//  todo: 撤销功能还需完成: 对象字号, 对象文字, 图层透明度
 // import Vue from 'vue';
 import 'babel-polyfill';
 import '../css/common.css';
@@ -38,27 +39,32 @@ class Painter {
       state: {
         currentObject: null,
         currentGroup: null,
-        currentObjectType: null,
+        currentObjectType: '',
         needRefreshThumbnails: false,
         costumeTitle: '',
         rotationCenter: {
           x: null,
           y: null,
         },
+        objectOpacity: 1,
       },
       updateObject() {
         const canvas = this.painter.vm.canvas;
+        const currentObject = canvas.getActiveObject();
         if (canvas) {
           //  currentObject & currentObjectType
-          this.state.currentObject = canvas.getActiveObject();
+          this.state.currentObject = currentObject;
           if (this.state.currentObject) {
-            if (this.state.currentObject.text !== undefined) {
+            if (currentObject.text !== undefined) {
               this.state.currentObjectType = 'text';
-            } else if (this.state.currentObject.stroke) {
+            } else if (currentObject.stroke) {
               this.state.currentObjectType = 'line';
+            } else if (currentObject instanceof fabric.Image) {
+              this.state.currentObjectType = 'image';
             } else {
-              this.state.currentObjectType = null;
+              this.state.currentObjectType = '';
             }
+            this.state.objectOpacity = currentObject.opacity;
           }
           //  currentGroup
           this.state.currentGroup = canvas.getActiveGroup();
@@ -170,13 +176,6 @@ class Painter {
     };
     this.vm.canvas.on('object:selected', this.onObjectSelected.bind(this));
     /**
-     * Object removed events
-     */
-    this.onObjectRemoved = () => {
-      this.store.updateObject();
-    };
-    this.vm.canvas.on('object:removed', this.onObjectRemoved.bind(this));
-    /**
      *  Mouse up events
      */
     this.onMouseUpFabric = () => {
@@ -200,8 +199,69 @@ class Painter {
      * @param event
      */
     this.onObjectModified = (event) => {
+      this.toUndoStack(event, 'objectModified');
     };
     this.vm.canvas.on('object:modified', this.onObjectModified.bind(this));
+    this.vm.canvas.on('object:removed', this.onObjectRemoved.bind(this));
+    this.vm.canvas.on('selected:removed', this.onSelectedRemoved.bind(this));
+    this.vm.canvas.on('canvas:cleared', this.onCanvasCleared.bind(this));
+    this.vm.canvas.on('eraser:done', this.onEraserDone.bind(this));
+    this.vm.canvas.on('color:changed', this.onColorChanged.bind(this));
+    this.vm.canvas.on('opacity:changed', this.onOpacityChanged.bind(this));
+    this.vm.canvas.on('text:changed', this.onTextChanged.bind(this));
+    this.vm.canvas.on('fontSize:changed', this.onFontSizeChanged.bind(this));
+  }
+
+  /**
+   * Object removed events
+   */
+  onObjectRemoved() {
+    this.store.updateObject();
+  }
+
+  /**
+   * Selected removed events
+   * @param event
+   */
+  onSelectedRemoved(event) {
+    this.toUndoStack(event, 'selectedRemoved');
+  }
+
+  /**
+   * Canvas cleared events
+   * @param event
+   */
+  onCanvasCleared(event) {
+    this.toUndoStack(event, 'canvasCleared');
+  }
+
+  /**
+   * Eraser done events
+   * @param event
+   */
+  onEraserDone(event) {
+    this.toUndoStack(event, 'eraserDone');
+  }
+
+  /**
+   * Color changed events
+   * @param event
+   */
+  onColorChanged(event) {
+    this.toUndoStack(event, 'colorChanged');
+  }
+
+  onOpacityChanged(event) {
+    this.toUndoStack(event, 'opacityChanged');
+    this.store.updateObject();
+  }
+
+  onTextChanged(event) {
+    this.toUndoStack(event, 'textChanged');
+  }
+
+  onFontSizeChanged(event) {
+    this.toUndoStack(event, 'fontSizeChanged');
   }
 
   openIn(img, name, options) {
@@ -320,10 +380,83 @@ class Painter {
     const canvas = this.vm.canvas;
     const currentLayer = canvas.layerManager.currentLayer;
     const action = currentLayer.undoStack.pop();
+    let target;
     if (action) {
+      const event = action.event;
       switch (action.type) {
         case 'pathCreated':
-          canvas.remove(action.event.path);
+          canvas.remove(event.path);
+          break;
+        case 'eraserDone':
+          // canvas.remove(event.image);
+          currentLayer.objects.splice(0);
+          Array.prototype.push.apply(currentLayer.objects, event.objects);
+          canvas.renderAll();
+          break;
+        case 'objectModified':
+          switch (event.action) {
+            case 'drag':
+              event.target.setLeft(event.oldLeft);
+              event.target.setTop(event.oldTop);
+              break;
+            case 'rotate':
+              event.target.setAngle(event.oldAngle);
+              break;
+            case 'scale':
+              event.target.setScaleX(event.oldScaleX);
+              event.target.setScaleY(event.oldScaleY);
+              event.target.setLeft(event.oldLeft);
+              event.target.setTop(event.oldTop);
+              break;
+            case 'scaleX':
+              event.target.setScaleX(event.oldScaleX);
+              event.target.setLeft(event.oldLeft);
+              break;
+            case 'scaleY':
+              event.target.setScaleY(event.oldScaleY);
+              event.target.setTop(event.oldTop);
+              break;
+            default:
+          }
+          canvas.renderAll();
+          break;
+        case 'selectedRemoved':
+          if (event.group) {
+            event.group.forEach((object) => {
+              canvas.add(object);
+            });
+          } else {
+            canvas.add(event.object);
+          }
+          break;
+        case 'canvasCleared':
+          event.objects.forEach((object) => {
+            canvas.add(object);
+          });
+          break;
+        case 'colorChanged':
+          target = event.target;
+          if (target.stroke) {
+            target.stroke = event.oldColor;
+          } else if (target.fill) {
+            target.fill = event.oldColor;
+          }
+          canvas.renderAll();
+          break;
+        case 'opacityChanged':
+          event.target.opacity = event.oldValue;
+          canvas.renderAll();
+          this.store.updateObject();
+          break;
+        case 'textChanged':
+          event.target.text = event.oldValue;
+          canvas.renderAll();
+          // this.store.updateObject();
+          break;
+        case 'fontSizeChanged':
+          event.target.fontSize = event.oldValue;
+          canvas.renderAll();
+          // this.store.updateObject();
           break;
         default:
       }
@@ -335,10 +468,81 @@ class Painter {
     const canvas = this.vm.canvas;
     const currentLayer = canvas.layerManager.currentLayer;
     const action = currentLayer.redoStack.pop();
+    let target;
     if (action) {
+      const event = action.event;
       switch (action.type) {
         case 'pathCreated':
-          canvas.add(action.event.path);
+          canvas.add(event.path);
+          break;
+        case 'eraserDone':
+          currentLayer.objects.splice(0, Number.MAX_VALUE, event.image);
+          canvas.renderAll();
+          break;
+        case 'objectModified':
+          switch (event.action) {
+            case 'drag':
+              event.target.setLeft(event.newLeft);
+              event.target.setTop(event.newTop);
+              break;
+            case 'rotate':
+              event.target.setAngle(event.newAngle);
+              break;
+            case 'scale':
+              event.target.setScaleX(event.newScaleX);
+              event.target.setScaleY(event.newScaleY);
+              event.target.setLeft(event.newLeft);
+              event.target.setTop(event.newTop);
+              break;
+            case 'scaleX':
+              event.target.setScaleX(event.newScaleX);
+              event.target.setLeft(event.newLeft);
+              break;
+            case 'scaleY':
+              event.target.setScaleY(event.newScaleY);
+              event.target.setTop(event.newTop);
+              break;
+            default:
+          }
+          canvas.renderAll();
+          break;
+        case 'selectedRemoved':
+          if (event.group) {
+            event.group.forEach((object) => {
+              canvas.remove(object);
+            });
+          } else {
+            canvas.remove(event.object);
+          }
+          break;
+        case 'canvasCleared':
+          event.objects.forEach((object) => {
+            canvas.remove(object);
+          });
+          break;
+        case 'colorChanged':
+          target = event.target;
+          if (target.stroke) {
+            target.stroke = event.newColor;
+          } else if (target.fill) {
+            target.fill = event.newColor;
+          }
+          canvas.renderAll();
+          break;
+        case 'opacityChanged':
+          event.target.opacity = event.newValue;
+          canvas.renderAll();
+          this.store.updateObject();
+          break;
+        case 'textChanged':
+          event.target.text = event.newValue;
+          canvas.renderAll();
+          // this.store.updateObject();
+          break;
+        case 'fontSizeChanged':
+          event.target.fontSize = event.newValue;
+          canvas.renderAll();
+          // this.store.updateObject();
           break;
         default:
       }

@@ -23,6 +23,9 @@ export default {
     showText() {
       return this.curObjectType === 'text';
     },
+    isImage() {
+      return this.curObjectType === 'image';
+    },
 //            curObject() {
 //                if(this.context) {
 //                    return this.context.currentObject;
@@ -53,18 +56,26 @@ export default {
       },
       set(newValue) {
         if (this.curObject) {
+          let oldColor;
           switch (this.curObjectType) {
             case 'text':
+              oldColor = this.curObject.fill;
               this.curObject.fill = newValue;
               break;
             case 'line':
+              oldColor = this.curObject.stroke;
               this.curObject.stroke = newValue;
               break;
             default:
+              oldColor = this.curObject.fill;
               this.curObject.fill = newValue;
           }
           this.currentColor = newValue;
           this.canvas.renderAll();
+          if (oldColor !== newValue) {
+            this.canvas.fire('color:changed',
+              { target: this.curObject, oldColor, newColor: newValue });
+          }
         }
       },
     },
@@ -78,8 +89,13 @@ export default {
       },
       set(newValue) {
         if (this.curObjectType === 'text' && this.curObject) {
+          const oldValue = this.curObject.fontSize;
           this.curObject.fontSize = newValue;
           this.canvas.renderAll();
+          if (oldValue !== newValue) {
+            this.canvas.fire('fontSize:changed',
+              { target: this.curObject, oldValue, newValue });
+          }
         }
       },
     },
@@ -93,14 +109,22 @@ export default {
       },
       set(newValue) {
         if (this.curObjectType === 'text' && this.curObject) {
+          const oldValue = this.curObject.text;
           this.curObject.text = newValue;
           this.canvas.renderAll();
+          if (oldValue !== newValue) {
+            this.canvas.fire('text:changed',
+              { target: this.curObject, oldValue, newValue });
+          }
         }
       },
     },
     curOpacity: {
       get() {
-        let opacity = this.currentOpacity;
+        let opacity = this.oldOpacity;
+        if (this.currentOpacity) {
+          opacity = this.currentOpacity;
+        }
         if (this.curObject) {
           opacity = this.curObject.opacity;
         }
@@ -114,20 +138,32 @@ export default {
         this.currentOpacity = newValue;
       },
     },
+    oldOpacity() {
+      return this.$root.painter.store.state.objectOpacity;
+    },
   },
   methods: {
     removeSelected() {
       const activeObject = this.curObject;
       const activeGroup = this.canvas.getActiveGroup();
+      let objectsInGroup;
 
       if (activeGroup) {
-        const objectsInGroup = activeGroup.getObjects();
+        objectsInGroup = activeGroup.getObjects();
         this.canvas.discardActiveGroup();
         objectsInGroup.forEach((object) => {
           this.canvas.remove(object);
         });
       } else if (activeObject) {
         this.canvas.remove(activeObject);
+      }
+
+      this.canvas.fire('selected:removed', { group: objectsInGroup, object: activeObject });
+    },
+    fireOpacityChanged() {
+      if (this.oldOpacity !== this.currentOpacity) {
+        this.canvas.fire('opacity:changed',
+          { target: this.curObject, oldValue: this.oldOpacity, newValue: this.currentOpacity });
       }
     },
   },

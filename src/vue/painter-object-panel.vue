@@ -1,11 +1,11 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="painter-object-panel">
-        <input title="颜色" class="color object-color" v-show="curObject"
+        <input title="颜色" class="color object-color" v-show="curObject&&!isImage"
                v-bind:style="{backgroundColor: curColor}"
                v-model="curColor">
-        <label class="object-opacity" v-show="curObject"> 透明度 -
+        <label class="object-opacity" v-show="curObject&&isImage"> 透明度 -
             <input title=" 透明度" type="range" min="0" max="1" step="0.01"
-                   v-model="curOpacity">+
+                   v-model="curOpacity"  @mouseup="fireOpacityChanged">+
             <span v-text="curOpacity"></span>
         </label>
         <input title="字号" type="number" class="font-size" v-show="curObject&&showText"
@@ -37,6 +37,8 @@
         border: 2px solid #DDD0C3;
         box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.30);
         border-radius: 4px;
+
+        cursor: pointer;
     }
 
     .painter-object-panel .object-opacity {

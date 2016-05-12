@@ -1,8 +1,3 @@
-/**
- * Created by GreenDou on 16/4/28.
- * Static Canvas Override
- */
-
 (() => {
   if (!fabric) {
     return;

@@ -73,7 +73,10 @@
   };
 
   fabric.Canvas.prototype.clear = function () {
-    this.layerManager.clearLayers();
+    const objects = this._objects.slice();
+    if (this.layerManager) {
+      this.layerManager.clearLayers();
+    }
     this._objects.length = 0;
     if (this.discardActiveGroup) {
       this.discardActiveGroup();
@@ -85,7 +88,7 @@
     if (this.contextTop) {
       this.clearContext(this.contextTop);
     }
-    this.fire('canvas:cleared');
+    this.fire('canvas:cleared', { objects });
     this.renderAll();
     return this;
   };
@@ -206,5 +209,62 @@
       this.upperCanvasEl.removeEventListener('mouseout', this._onMouseOut);
     }
   };
+
+  /**
+   * @private
+   * @param {Event} e Event object
+   * @param {fabric.Object} target
+   */
+  fabric.Canvas.prototype._setupCurrentTransform = function (e, target) {
+    if (!target) {
+      return;
+    }
+
+    var pointer = this.getPointer(e),
+      corner = target._findTargetCorner(this.getPointer(e, true)),
+      action = this._getActionFromCorner(target, corner, e),
+      origin = this._getOriginFromCorner(target, corner);
+
+    this._currentTransform = {
+      target: target,
+      action: action,
+      corner: corner,
+      scaleX: target.scaleX,
+      scaleY: target.scaleY,
+      skewX: target.skewX,
+      skewY: target.skewY,
+      offsetX: pointer.x - target.left,
+      offsetY: pointer.y - target.top,
+      originX: origin.x,
+      originY: origin.y,
+      ex: pointer.x,
+      ey: pointer.y,
+      lastX: pointer.x,
+      lastY: pointer.y,
+      left: target.left,
+      top: target.top,
+      theta: fabric.util.radiansToDegrees(target.angle),
+      width: target.width * target.scaleX,
+      mouseXSign: 1,
+      mouseYSign: 1,
+      shiftKey: e.shiftKey,
+      altKey: e.altKey
+    };
+
+    this._currentTransform.original = {
+      angle: target.angle,
+      left: target.left,
+      top: target.top,
+      scaleX: target.scaleX,
+      scaleY: target.scaleY,
+      skewX: target.skewX,
+      skewY: target.skewY,
+      originX: origin.x,
+      originY: origin.y,
+    };
+
+    this._resetCurrentTransform();
+  };
+
 
 })(fabric);
