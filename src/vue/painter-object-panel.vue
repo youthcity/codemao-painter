@@ -9,8 +9,9 @@
             <span v-text="curOpacity"></span>
         </label>
         <input title="字号" type="number" class="font-size" v-show="curObject&&showText"
-               v-model="curFontSize">
-        <textArea class="object-text" title="文字内容" v-model="curText" v-show="curObject&&showText"></textArea>
+               v-model="curFontSize" @focus="getOldFontSize" @blur="fireFontSizeChanged">
+        <textArea class="object-text" title="文字内容" v-model="curText" v-show="curObject&&showText"
+            @focus="getOldValue($event)" @blur="fireTextChanged"></textArea>
         <div title="删除对象" class="remove-button" v-show="curObject||curGroup" v-on:click="removeSelected()">
             <img src="//o44j7l4g3.qnssl.com/program/painter/delete.png" alt="删除对象">
         </div>

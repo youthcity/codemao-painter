@@ -5,6 +5,8 @@ export default {
       currentObjectType: this.$root.painter.store.state.currentObjectType,
       currentObject: this.$root.painter.store.state.currentObject,
       currentOpacity: 1,
+      oldValue: null,
+      oldTarget: null,
     };
   },
   computed: {
@@ -81,22 +83,15 @@ export default {
     },
     curFontSize: {
       get() {
-        let fontSize;
-        if (this.curObjectType === 'text' && this.curObject) {
-          fontSize = this.curObject.fontSize;
-        }
-        return fontSize;
+        return this.$root.painter.store.state.currentFontSize;
       },
-      set(newValue) {
+      set(newVal) {
+        const newValue = parseInt(newVal);
         if (this.curObjectType === 'text' && this.curObject) {
-          const oldValue = this.curObject.fontSize;
           this.curObject.fontSize = newValue;
           this.canvas.renderAll();
-          if (oldValue !== newValue) {
-            this.canvas.fire('fontSize:changed',
-              { target: this.curObject, oldValue, newValue });
-          }
         }
+        this.$root.painter.store.state.currentFontSize = newValue;
       },
     },
     curText: {
@@ -109,16 +104,12 @@ export default {
       },
       set(newValue) {
         if (this.curObjectType === 'text' && this.curObject) {
-          const oldValue = this.curObject.text;
           this.curObject.text = newValue;
           this.canvas.renderAll();
-          if (oldValue !== newValue) {
-            this.canvas.fire('text:changed',
-              { target: this.curObject, oldValue, newValue });
-          }
         }
       },
     },
+
     curOpacity: {
       get() {
         let opacity = this.oldOpacity;
@@ -164,6 +155,34 @@ export default {
       if (this.oldOpacity !== this.currentOpacity) {
         this.canvas.fire('opacity:changed',
           { target: this.curObject, oldValue: this.oldOpacity, newValue: this.currentOpacity });
+      }
+    },
+    getOldFontSize() {
+      this.oldFontSize = this.curFontSize;
+      this.oldTarget = this.curObject;
+    },
+    getOldValue(event) {
+      this.oldValue = event.target.value;
+      this.oldTarget = this.curObject;
+    },
+    fireFontSizeChanged() {
+      if (this.oldFontSize !== this.curFontSize) {
+        this.canvas.fire('fontSize:changed',
+          {
+            target: this.oldTarget ? this.oldTarget : this.curObject,
+            oldValue: this.oldValue,
+            newValue: this.curFontSize,
+          });
+      }
+    },
+    fireTextChanged() {
+      if (this.oldValue !== this.curText) {
+        this.canvas.fire('text:changed',
+          {
+            target: this.oldTarget ? this.oldTarget : this.curObject,
+            oldValue: this.oldValue,
+            newValue: this.curText,
+          });
       }
     },
   },

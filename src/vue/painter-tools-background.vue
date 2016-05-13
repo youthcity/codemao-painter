@@ -50,12 +50,12 @@
     }
 
     .custom-color {
-        width:100%;
+        width: 100%;
         height: 3rem;
 
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         border-bottom: 2px dashed #DDD0C3;
 
         font-family: STHeitiTC-Medium, serif;
@@ -64,12 +64,12 @@
     }
 
     .custom-color input {
-        width:7rem;
-        height:1.5rem;
+        width: 7rem;
+        height: 1.5rem;
 
-        margin:0 0.5rem;
+        margin: 0 0.5rem;
 
-        background: #8B572A;
+        background: transparent;
         border: 4px solid #FFFFFF;
         border: 2px solid #AA9278;
         box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.30);
@@ -104,7 +104,7 @@
     export default {
         data(){
             return {
-                backgroundColor: 'transparent',
+                backgroundColor: null,
                 backgroundImageList: [
                     {
                         title: '舞台区域',
@@ -128,6 +128,15 @@
                 set(newValue) {
                     if (this.canvas) {
                         this.canvas.layerManager.setBackgroundColor(newValue);
+//                        if (this.backgroundColor !== newValue) {
+//                            this.canvas.fire('background:changed',
+//                                    {
+//                                        target: this.canvas.layerManager.currentLayer,
+//                                        type: 'color',
+//                                        oldValue: this.backgroundColor,
+//                                        newValue,
+//                                    });
+//                        }
                     }
                     this.backgroundColor = newValue;
                 }
@@ -136,7 +145,12 @@
         methods: {
             setBackgroundImage(url) {
                 this.canvas.layerManager.setBackgroundImageURL(url);
+//                if (url) {
+//                    this.canvas.fire('background:changed');
+//                } else {
                 this.canvas.layerManager.setBackgroundColor('transparent');
+//                    this.canvas.fire('background:changed');
+//                }
             }
         },
     }

@@ -1,5 +1,5 @@
 //  todo: 多图层时,上下图层关系在绘制完毕后才应用,upper 处在最高层,透明度没有应用在 upper 层上
-//  todo: 撤销功能还需完成: 对象字号, 对象文字, 图层透明度
+//  todo: 撤销功能还需完成: 图层透明度, 设置清除背景, 显示隐藏
 // import Vue from 'vue';
 import 'babel-polyfill';
 import '../css/common.css';
@@ -47,6 +47,7 @@ class Painter {
           y: null,
         },
         objectOpacity: 1,
+        currentFontSize: 40,
       },
       updateObject() {
         const canvas = this.painter.vm.canvas;
@@ -65,6 +66,9 @@ class Painter {
               this.state.currentObjectType = '';
             }
             this.state.objectOpacity = currentObject.opacity;
+            if (this.state.currentObjectType === 'text') {
+              this.state.currentFontSize = currentObject.fontSize;
+            }
           }
           //  currentGroup
           this.state.currentGroup = canvas.getActiveGroup();
@@ -210,6 +214,7 @@ class Painter {
     this.vm.canvas.on('opacity:changed', this.onOpacityChanged.bind(this));
     this.vm.canvas.on('text:changed', this.onTextChanged.bind(this));
     this.vm.canvas.on('fontSize:changed', this.onFontSizeChanged.bind(this));
+    // this.vm.canvas.on('background:changed', this.onBackgroundChanged.bind(this));
   }
 
   /**
@@ -263,6 +268,10 @@ class Painter {
   onFontSizeChanged(event) {
     this.toUndoStack(event, 'fontSizeChanged');
   }
+
+  // onBackgroundChanged(event) {
+  //   this.toUndoStack(event, 'backgroundChanged');
+  // }
 
   openIn(img, name, options) {
     this.vm.isShowPainter = true;
@@ -388,7 +397,6 @@ class Painter {
           canvas.remove(event.path);
           break;
         case 'eraserDone':
-          // canvas.remove(event.image);
           currentLayer.objects.splice(0);
           Array.prototype.push.apply(currentLayer.objects, event.objects);
           canvas.renderAll();
@@ -451,12 +459,11 @@ class Painter {
         case 'textChanged':
           event.target.text = event.oldValue;
           canvas.renderAll();
-          // this.store.updateObject();
           break;
         case 'fontSizeChanged':
           event.target.fontSize = event.oldValue;
+          this.store.updateObject();
           canvas.renderAll();
-          // this.store.updateObject();
           break;
         default:
       }
@@ -537,12 +544,11 @@ class Painter {
         case 'textChanged':
           event.target.text = event.newValue;
           canvas.renderAll();
-          // this.store.updateObject();
           break;
         case 'fontSizeChanged':
           event.target.fontSize = event.newValue;
+          this.store.updateObject();
           canvas.renderAll();
-          // this.store.updateObject();
           break;
         default:
       }

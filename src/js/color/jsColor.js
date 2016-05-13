@@ -32,7 +32,7 @@
         }
       },
       extractValue = function (elm) {
-        return elm.value || elm.getAttribute('value') || elm.style.backgroundColor || '#FFFFFF';
+        return elm.value || elm.getAttribute('value') || elm.style.backgroundColor || '#DDDDDD';
       },
       actionCallback = function (event, action) {
         var options = this,
