@@ -23,10 +23,12 @@
 
     .right-panel {
         width: 75%;
-        height: calc(100% - 4rem);
+        /*height: calc(100% - 4rem);*/
+        height: 100%;
 
         display: flex;
         flex-direction: row;
+        flex-grow: 1;
 
         padding: 2rem 0 2rem 5%;
 
