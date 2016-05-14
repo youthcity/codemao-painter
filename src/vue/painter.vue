@@ -6,7 +6,9 @@
                 <painter-canvas-wrapper></painter-canvas-wrapper>
                 <painter-object-panel></painter-object-panel>
             </div>
-            <painter-control-panel></painter-control-panel>
+            <div class="painter-control-wrapper">
+                <painter-control-panel></painter-control-panel>
+            </div>
         </div>
     </div>
 </template>
@@ -20,23 +22,38 @@
     }
 
     .right-panel {
-        width: 80%;
-        height: 100%;
-        background-color: blueviolet;
+        width: 75%;
+        height: calc(100% - 4rem);
+
+        display: flex;
+        flex-direction: row;
+
+        padding: 2rem 0 2rem 5%;
+
+        background-color: rgb(248, 248, 248);
     }
 
     .paint-panel {
-        width: 100%;
-        height: 95%;
+        height: 100%;
+        width:70%;
 
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-end;
 
+        flex-grow: 1;
+        flex-shrink: 1;
+
         background-color: #F8F8F8;
     }
+    .painter-control-wrapper {
+        width:10%;
+        max-width: 6rem;
+        height:100%;
 
+        flex-shrink: 0;
+    }
 
 </style>
 <script src="../js/painter.js"></script>
