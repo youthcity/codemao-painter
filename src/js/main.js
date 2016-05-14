@@ -426,6 +426,7 @@ class Painter {
               break;
             default:
           }
+          event.target.setCoords();
           canvas.renderAll();
           break;
         case 'selectedRemoved':
