@@ -26,6 +26,8 @@
 
         display: flex;
         align-items: center;
+
+        flex-shrink: 0;
     }
 
     .painter-object-panel .object-color {

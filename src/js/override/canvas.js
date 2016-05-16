@@ -102,7 +102,7 @@
 
     this._copyCanvasStyle(this.lowerCanvasEl, this.cursorCanvasEl);
     this._applyCanvasStyle(this.cursorCanvasEl);
-    this.cursorCanvasEl.style.pointerEvents = "none";
+    this.cursorCanvasEl.style.pointerEvents = 'none';
 
     this.contextCursor = this.cursorCanvasEl.getContext('2d');
   };

@@ -110,7 +110,7 @@
                         title: '舞台区域',
                         url: 'https://o44j7l4g3.qnssl.com/program/painter/stage-size.png',
                     }
-                ]
+                ],
             }
         },
         computed: {

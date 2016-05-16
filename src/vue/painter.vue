@@ -23,8 +23,8 @@
 
     .right-panel {
         width: 75%;
-        /*height: calc(100% - 4rem);*/
-        height: 100%;
+        height: calc(100% - 4rem);
+        /*height: 100%;*/
 
         display: flex;
         flex-direction: row;
