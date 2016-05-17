@@ -26,6 +26,9 @@
     }
 
     .tools-panel .background-container {
+        display: flex;
+        justify-content: center;
+
         width: 100%;
         flex-grow: 1;
 
@@ -39,6 +42,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        margin: 0.3rem;
 
         border: 1px solid #CCCCCC;
         border-radius: 4px;
@@ -107,9 +112,13 @@
                 backgroundColor: null,
                 backgroundImageList: [
                     {
-                        title: '舞台区域',
-                        url: 'https://o44j7l4g3.qnssl.com/program/painter/stage-size.png',
-                    }
+                        title: '纯白的开始',
+                        url: '//7xpw4q.com1.z0.glb.clouddn.com/0/%E7%BA%AF%E7%99%BD%E7%9A%84%E5%BC%80%E5%A7%8B',
+                    },
+                    {
+                        title: '绿荫之森',
+                        url: 'http://7xpw4q.com1.z0.glb.clouddn.com/0/%E7%BB%BF%E8%90%8C%E4%B9%8B%E6%A3%AE',
+                    },
                 ],
             }
         },

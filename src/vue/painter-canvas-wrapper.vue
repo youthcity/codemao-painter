@@ -7,6 +7,7 @@
 </template>
 <style scoped>
     .painter-canvas-wrapper {
+        position: relative;
         width: calc(100% - 8px);
         height: calc(100% - 8px);
         background-image: url("//o44j7l4g3.qnssl.com/program/painter/grid.png");
@@ -19,7 +20,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-left: -150px;
+        margin-left: -155px;
         margin-top: -225px;
         width: 310px;
         height: 450px;
