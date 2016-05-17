@@ -22,6 +22,9 @@
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/round.png" alt="圆">
                 <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/round-on.png" alt="圆">
             </div>
+            <div title="三角" class="tools-button tools-triangle" v-on:click="addShape('triangle')">
+                <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/triangle-off.png" alt="角">
+            </div>
         </div>
         <div class="tools-buttons-container">
             <div title="橡皮" class="tools-button tools-eraser" v-on:click="selectBrush('eraser')"

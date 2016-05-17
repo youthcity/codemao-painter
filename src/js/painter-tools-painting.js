@@ -150,6 +150,9 @@ export default{
         case 'text':
           this.addText();
           break;
+        case 'triangle':
+          this.addTriangle();
+          break;
         default:
       }
     },
@@ -159,6 +162,15 @@ export default{
         isCurrent = tool === this.currentBrush;
       }
       return isCurrent;
+    },
+    addTriangle() {
+      this.canvas.add(new fabric.Triangle({
+        left: this.canvas.getWidth() / 2,
+        top: this.canvas.getHeight() / 2,
+        fill: this.currentColor,
+        width: this.currentStrokeWidth * 10,
+        height: this.currentStrokeWidth * 10,
+      }));
     },
     addText() {
       const text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
