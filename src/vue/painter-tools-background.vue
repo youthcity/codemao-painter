@@ -113,7 +113,7 @@
                 backgroundImageList: [
                     {
                         title: '纯白的开始',
-                        url: '//7xpw4q.com1.z0.glb.clouddn.com/0/%E7%BA%AF%E7%99%BD%E7%9A%84%E5%BC%80%E5%A7%8B',
+                        url: 'http://7xpw4q.com1.z0.glb.clouddn.com/0/%E7%BA%AF%E7%99%BD%E7%9A%84%E5%BC%80%E5%A7%8B',
                     },
                     {
                         title: '绿荫之森',
