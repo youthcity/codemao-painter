@@ -29,7 +29,8 @@
 
     .control-panel .control-button {
         width: 60%;
-        padding-bottom: 60%;
+        height: 60%;
+        max-height: 6rem;
 
         margin: 10%;
 

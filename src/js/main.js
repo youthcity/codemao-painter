@@ -343,11 +343,11 @@ class Painter {
     param.rc = this.vm.canvas.rotationPoint;
     param.name = this.store.state.costumeTitle;
 
+    this.close();
     if (this.vm.canvas.callback) {
       this.vm.canvas.callback(param);
     }
 
-    this.close();
   }
 
   close() {
