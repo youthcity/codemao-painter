@@ -229,7 +229,7 @@
                     if (this.curLayer) {
                         opacity = this.curLayer.opacity;
                     }
-                    return opacity;
+                    return opacity.toFixed(2);
                 },
                 set(newValue) {
                     if (this.curLayer) {
