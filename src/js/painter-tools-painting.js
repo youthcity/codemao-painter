@@ -5,6 +5,7 @@ export default{
         pencil: 5,
         eraser: 15,
         line: 5,
+        pointer: 10,
       },
       brushColor: {
         pencil: '#333333',
@@ -12,6 +13,7 @@ export default{
         line: '#333',
         rect: '#333',
         round: '#333',
+        pointer: '#333',
       },
       objectOpacity: {
         pencil: 1,
@@ -35,6 +37,8 @@ export default{
         '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986',
         '#000', '#4A4A4A', '#9B9B9B', '#D3D3D3', '#FFF',
       ],
+      shapeOffset: 0,
+      lastShape: null,
     };
   },
   computed: {
@@ -53,8 +57,8 @@ export default{
         let width;
         if (this.currentBrush) {
           width = this.lineWidth[this.currentBrush];
-        } else if (this.curObject) {
-          width = this.curObject.strokeWidth;
+        // } else if (this.curObject) {
+        //   width = this.curObject.strokeWidth;
         } else {
           width = this.currentStrokeWidth;
         }
@@ -65,9 +69,9 @@ export default{
           if (this.currentBrush) {
             this.lineWidth[this.currentBrush] = newValue;
             this.canvas.freeDrawingBrush.width = newValue;
-          } else if (this.curObject) {
-            this.curObject.strokeWidth = newValue;
-            this.canvas.renderAll();
+          // } else if (this.curObject) {
+          //   this.curObject.strokeWidth = newValue;
+          //   this.canvas.renderAll();
           }
           this.currentStrokeWidth = newValue;
         }
@@ -135,6 +139,7 @@ export default{
         });
         this.canvas.setDrawingMode(true);
         this.isDrawingMode = true;
+        this.lastShape = null;
       } else {
         this.canvas.setDrawingMode(false);
         this.isDrawingMode = false;
@@ -146,15 +151,27 @@ export default{
     },
     addShape(shape) {
       this.selectBrush();
+      if (shape === this.lastShape) {
+        this.shapeOffset += 10;
+      } else {
+        this.shapeOffset = 0;
+      }
       switch (shape) {
         case 'text':
           this.addText();
+          break;
+        case 'round':
+          this.addCircle();
+          break;
+        case 'rect':
+          this.addRect();
           break;
         case 'triangle':
           this.addTriangle();
           break;
         default:
       }
+      this.lastShape = shape;
     },
     isCurrentTool(tool) {
       let isCurrent = !this.isDrawingMode;
@@ -163,31 +180,60 @@ export default{
       }
       return isCurrent;
     },
-    addTriangle() {
-      this.canvas.add(new fabric.Triangle({
-        left: this.canvas.getWidth() / 2,
-        top: this.canvas.getHeight() / 2,
+    addRect() {
+
+      const rect = new fabric.Rect({
+        left: this.canvas.getWidth() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
+        top: this.canvas.getHeight() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
         fill: this.currentColor,
         width: this.currentStrokeWidth * 10,
         height: this.currentStrokeWidth * 10,
-      }));
+      });
+      this.canvas.add(rect);
+      this.canvas.setActiveObject(rect);
+      this.canvas.fire('path:created', { path: rect });
+    },
+    addCircle() {
+      const circle = new fabric.Circle({
+        left: this.canvas.getWidth() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
+        top: this.canvas.getHeight() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
+        fill: this.currentColor,
+        radius: this.currentStrokeWidth * 10,
+      });
+      this.canvas.add(circle);
+      this.canvas.setActiveObject(circle);
+      this.canvas.fire('path:created', { path: circle });
+    },
+    addTriangle() {
+      const triangle = new fabric.Triangle({
+        left: this.canvas.getWidth() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
+        top: this.canvas.getHeight() / 2 - this.currentStrokeWidth * 5 + this.shapeOffset,
+        fill: this.currentColor,
+        width: this.currentStrokeWidth * 10,
+        height: this.currentStrokeWidth * 10,
+      });
+      this.canvas.add(triangle);
+      this.canvas.setActiveObject(triangle);
+      this.canvas.fire('path:created', { path: triangle });
     },
     addText() {
       const text = '点我选中文字，在画布下方可以修改文字内容和样式哦~';
       const object = new fabric.Text(text, {
-        left: this.canvas.getWidth() / 2,
-        top: this.canvas.getHeight() / 2,
+        left: this.canvas.getWidth() / 2 + this.shapeOffset,
+        top: this.canvas.getHeight() / 2 + this.shapeOffset,
         fontFamily: 'Microsoft YaHei',
         angle: 0,
         fill: this.currentColor,
         scaleX: 1,
         scaleY: 1,
         fontWeight: '',
-        originX: 'left',
+        originX: 'center',
+        originY: 'center',
         hasRotatingPoint: true,
         centerTransform: true,
       });
       this.canvas.add(object);
+      this.canvas.setActiveObject(object);
       // fire event 'path' created
       this.canvas.fire('path:created', { path: object });
     },

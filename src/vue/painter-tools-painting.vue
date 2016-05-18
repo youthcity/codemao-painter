@@ -12,18 +12,17 @@
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/line.png" alt="线">
                 <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/line-on.png" alt="线">
             </div>
-            <div title="矩形" class="tools-button tools-rect" v-on:click="selectBrush('rect')"
-                 v-bind:class="{'active': isCurrentTool('rect')}">
+            <div title="矩形" class="tools-button tools-rect" v-on:click="addShape('rect')">
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/rect.png" alt="方">
                 <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/rect-on.png" alt="方">
             </div>
-            <div title="圆形" class="tools-button tools-round" v-on:click="selectBrush('round')"
-                 v-bind:class="{'active': isCurrentTool('round')}">
+            <div title="圆形" class="tools-button tools-round" v-on:click="addShape('round')">
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/round.png" alt="圆">
                 <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/round-on.png" alt="圆">
             </div>
             <div title="三角" class="tools-button tools-triangle" v-on:click="addShape('triangle')">
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/triangle-off.png" alt="角">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/triangle-on.png" alt="圆">
             </div>
         </div>
         <div class="tools-buttons-container">
@@ -39,6 +38,7 @@
             </div>
             <div title="文字" class="tools-button tools-text" v-on:click="addShape('text')">
                 <img class="button-img" src="//o44j7l4g3.qnssl.com/program/painter/text.png" alt="字">
+                <img class="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/text-on.png" alt="字">
             </div>
             <div title="旋转中心" class="tools-button tools-select" v-on:click="selectBrush('rotation')"
                  v-bind:class="{'active': isCurrentTool('rotation')}">
@@ -130,6 +130,14 @@
 
     .tools-button .button-img-on {
         display: none;
+    }
+    
+    .tools-button:active .button-img {
+        display: none;
+    }
+
+    .tools-button:active .button-img-on {
+        display: block;
     }
 
     .tools-slider-container {
