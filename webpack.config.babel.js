@@ -2,35 +2,52 @@
 import webpack from 'webpack';
 import cssnext from 'postcss-cssnext';
 
+/**
+ * Usage: if(__DEV__) {
+ *          console.warn();
+ *        }
+ * @type {Plugin}
+ */
 const definePlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
   __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false')),
 });
 
 module.exports = {
-  entry: './src/js/main.js', // 入口文件
+  entry: './src/index.tsx', // 入口文件
   output: {
-    filename: './dist/js/bundle.js', // 打包输出的文件
+    filename: './dist/bundle.js', // 打包输出的文件
+  },
+  // Enable sourcemaps for debugging webpack's output.
+  devtool: 'source-map',
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
   },
   module: {
     loaders: [
       {
         test: /\.js$/, // test 去判断是否为.js,是的话就是进行es6和jsx的编译
-        loader: 'babel-loader',
+        loader: 'babel-loader!',
         query: {
           presets: ['es2015'],
         },
       },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
+      { test: /\.tsx?$/, loader: 'ts-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }, // 用!去链式调用loader
-      {
-        test: /\.vue$/, // a regex for matching all files that end in `.vue`
-        loader: 'vue',   // loader to use for matched files
-      },
     ],
+  },
+  // When importing a module whose path matches one of the following, just
+  // assume a corresponding global variable exists and use that instead.
+  // This is important because it allows us to avoid bundling all of our
+  // dependencies, which allows browsers to cache those libraries between builds.
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
   },
   postcss() {
     return [cssnext];
   },
-  devtool: 'source-map',
   plugins: [definePlugin],
 };
