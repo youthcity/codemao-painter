@@ -118,6 +118,7 @@
     .tools-button img {
         max-height: 100%;
         max-width: 100%;
+        pointer-events: none;
     }
 
     .tools-button.active .button-img {
