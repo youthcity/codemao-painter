@@ -16,6 +16,7 @@ import { ControlButton } from './buttons/ControlButton';
 import { painterStore } from '../painterStore';
 import { PainterStates } from '../PainterStates';
 import { colorButtonActions } from "../actions/ColorButtonActions";
+import {ReactElement} from "~react/react";
 
 export interface PainterProps {
   compiler: string;
@@ -50,7 +51,7 @@ let Painter = React.createClass <PainterProps, PainterStates>({
     let control_buttons = config.control_buttons.map((value) => {
       return <ControlButton key={ value.title } control_button={ value } />;
     });
-    let panel_element: JSX.Element;
+    let panel_element: ReactElement;
     switch (this.state.panel_type) {
       case 'background':
         panel_element = <BackgroundPanel className="painter-tools-background"/>;
