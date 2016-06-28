@@ -1,0 +1,153 @@
+.tools-layers {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 5%;
+
+  background: #ECE7DD;
+}
+
+.panel-slider-item label {
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-slider-item input {
+  width: 6rem;
+}
+
+.panel-slider-item span {
+  margin: 0 0.1rem;
+
+  font-family: STHeitiTC-Medium, serif;
+  font-size: 18px;
+  color: #645542;
+}
+
+.panel-slider-item span.slider-title {
+  margin-right: 0.5rem;
+  font-size: 18px;
+}
+
+.panel-slider-item span.slider-value {
+  font-size: 14px;
+
+  margin-left: 0.5rem;
+}
+
+.layers-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 0 1rem;
+}
+
+.layers-item {
+  width: 100%;
+  height: 3.5rem;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  margin: 0.2rem 0;
+  padding: 0 0.1rem;
+
+  /*background: #FFFFFF;*/
+}
+
+.layers-item.active {
+  background: #FFF;
+}
+
+.layers-item-right {
+  flex-grow: 1;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.layers-thumbnail {
+  width: 3.5rem;
+  height: 3rem;
+
+  margin: 0 0.2rem;
+
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+}
+
+.layers-thumbnail img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.layers-name {
+  font-family: STHeitiTC-Medium, serif;
+  font-size: 14px;
+  color: #645542;
+}
+
+.layers-tools-container {
+  height: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.layers-tool {
+  height: 1.5rem;
+  width: 2.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0.2rem;
+  background-color: #fff;
+  color: #CFBE90;
+
+  cursor: pointer;
+}
+
+.layers-delete {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  cursor: pointer;
+}
+
+.layers-item.active .layers-delete {
+  display: block;
+}
+
+.layers-visible {
+  width: 1.2rem;
+  height: 1.2rem;
+
+  text-align: center;
+  line-height: 1.2rem;
+
+  background: #D8D8D8;
+  border: 1px solid #979797;
+
+  font-family: STHeitiTC-Medium, serif;
+  font-size: 12px;
+  color: #645542;
+
+  cursor: pointer;
+}

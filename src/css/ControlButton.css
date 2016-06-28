@@ -1,0 +1,36 @@
+.control-panel .control-button {
+  width: 60%;
+  height: 60%;
+  max-height: 6rem;
+
+  margin: 10%;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  cursor: pointer;
+}
+
+.clear {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/clear.png');
+}
+
+.clear:hover {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/clear-hover.png');
+}
+
+.undo {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/undo.png');
+}
+
+.undo:hover {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/undo-hover.png ');
+}
+
+.redo {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/redo.png');
+}
+
+.redo:hover {
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/redo-hover.png ');
+}

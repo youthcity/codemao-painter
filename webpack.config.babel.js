@@ -14,8 +14,13 @@ const definePlugin = new webpack.DefinePlugin({
 });
 
 module.exports = {
-  entry: './src/index.tsx', // 入口文件
+  entry: [  // 入口文件
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/main.tsx',
+  ],
   output: {
+    publicPath: 'http://localhost:8080/',
     filename: './dist/bundle.js', // 打包输出的文件
   },
   // Enable sourcemaps for debugging webpack's output.
@@ -28,14 +33,22 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/, // test 去判断是否为.js,是的话就是进行es6和jsx的编译
-        loader: 'babel-loader!',
-        query: {
-          presets: ['es2015'],
-        },
+        loader: 'babel-loader?presets=es2015',
       },
       // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules)/,
+        loaders: [
+          'react-hot',
+          'ts-loader',
+        ],
+      },
       { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }, // 用!去链式调用loader
+    ],
+    preLoaders: [
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { test: /\.js$/, loader: 'source-map-loader' },
     ],
   },
   // When importing a module whose path matches one of the following, just

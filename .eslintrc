@@ -17,7 +17,10 @@
     "template": true,
     "webpack": true,
     "jsColorPicker": true,
-    "Colors": true,
+    "Colors": true
   },
-  "extends": "airbnb/base"
+  "extends": "airbnb/base",
+  "plugins": [
+    "react"
+  ]
 }

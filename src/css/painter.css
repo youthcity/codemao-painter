@@ -1,26 +1,200 @@
 .painter {
-    width: 100%;
-    height: 100%;
-    display: flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
 
-    background-color: #fdb336;
+  background-color: #fdb336;
 }
 
 .right-panel {
-    width: 80%;
-    height: 100%;
-    background-color: blueviolet;
+  width: 75%;
+  /*height: calc(100% - 4rem);*/
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+
+  padding: 2rem 0 2rem 5%;
+
+  background-color: rgb(248, 248, 248);
 }
 
 .paint-panel {
-    width:100%;
-    height:90%;
+  height: calc(100% - 2rem);
+  width: 70%;
 
-    display: flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 
-    background-color: darkgoldenrod;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  background-color: #F8F8F8;
 }
 
+.painter-control-wrapper {
+  width: 10%;
+  max-width: 6rem;
+  height: 100%;
+
+  flex-shrink: 0;
+}
+
+.painter-tools {
+  width: 20%;
+  height: 100%;
+  background: #ECE7DD;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.painter-tools-tabs {
+  width: 100%;
+  height: 6%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.painter-tools-container {
+  width: 100%;
+  height: calc(94% - 6rem);
+}
+
+.painter-tools-buttons {
+  width: 100%;
+  height: 6rem;
+}
+
+.painter-tools .tab-button {
+  height: calc(85% - 0.3rem);
+  flex-grow: 1;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: STHeitiTC-Light, serif;
+  font-size: 18px;
+  color: #FFFFFF;
+
+  margin-top: 0.3rem;
+
+  cursor: pointer;
+}
+
+.painter-tools .tab-button svg {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: calc(100% - 0.1rem);
+  left: 0;
+}
+
+.painter-tools .tab-button.active {
+  height: 85%;
+  margin-top: 0;
+}
+
+.painter-tools .tab-button.active svg {
+  display: block;
+}
+
+.painter-tools .tabs-painting {
+  background: #F2524C;
+}
+
+.painter-tools .tabs-background {
+  background: #EEB000;
+}
+
+.painter-tools .tabs-layers {
+  background: #44BFD2;
+}
+
+.painter-canvas-wrapper {
+  position: relative;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-image: url("//o44j7l4g3.qnssl.com/program/painter/grid.png");
+
+  border: 4px solid rgba(198, 177, 155, 0.60);
+  border-radius: 4px;
+}
+
+.stage-size {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -155px;
+  margin-top: -225px;
+  width: 310px;
+  height: 450px;
+  background-image: url('//o44j7l4g3.qnssl.com/program/painter/stage-size.png');
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.control-panel {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  background-color: #F8F8F8;
+}
+
+/*.control-buttons-container {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*}*/
+
+.tools-costume {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background: #E1D6BE;
+}
+
+.costume-title {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: #ECE2CA;
+  border: 1px solid #DDD0C3;
+  border-radius: 4px;
+  font-family: STHeitiSC-Light, serif;
+  font-size: 14px;
+  color: #6D4C41;
+}
+
+.costume-title:focus {
+  outline: none;
+}
+
+.costume-buttons {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0 0.5rem;
+
+  cursor: pointer;
+}
+
+.costume-buttons img {
+  max-width: 100%;
+  max-height: 100%;
+}
