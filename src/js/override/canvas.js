@@ -159,7 +159,7 @@
           this.freeDrawingBrush = new fabric.EraserBrush(this, options);
         }
         break;
-      case 'rotation':
+      case 'rotate_center':
         if (this.rotationPoint) {
           options.point = {
             x: this.rotationPoint.x,

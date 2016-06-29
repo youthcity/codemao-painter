@@ -1,3 +1,4 @@
+import {Brush} from "./def/Brush";
 export const config = {
   control_buttons: [
     {
@@ -24,5 +25,17 @@ export const config = {
   default_states: {
     panel_type: 'painting',
     current_color: '#333',
+    current_width: 7,
+    current_brush: Brush.pencil,
+    line_width: {
+      pencil: 7,
+      pointer: 7,
+      line: '#333'
+    },
+    brush_color: {
+      pencil: '#333',
+      pointer: '#333',
+      line: '#333'
+    },
   },
 };

@@ -1,7 +1,8 @@
-import { painterDispatcher, Payload } from '../painterDispatcher';
+import { painter_dispatcher, Payload } from '../painter_dispatcher';
 
 export abstract class Actions {
-  protected dispatch_action(payload: Payload) {
-    painterDispatcher.dispatch(payload);
+
+  protected static dispatch_action(payload: Payload) {
+    painter_dispatcher.dispatch(payload);
   }
 }
