@@ -6,6 +6,10 @@ export interface PainterStates {
   current_brush:Brush;
   current_color:string;
   current_width:number;
-  line_width:{};
-  brush_color:{};
+  line_width:{
+    [prop_name:string]:any
+  };
+  brush_color:{
+    [prop_name:string]:any
+  };
 }

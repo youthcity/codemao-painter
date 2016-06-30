@@ -1,9 +1,9 @@
 import { Actions } from './Actions';
 
 export class ColorButtonActions extends Actions {
-  select_color(color: string) {
+  set_brush_color(color: string) {
     Actions.dispatch_action({
-      action_type: 'select_color',
+      action_type: 'set_brush_color',
       color: color,
     });
   }

@@ -1,6 +1,7 @@
 // definePlugin 会把定义的string 变量插入到Js代码中。
 import webpack from 'webpack';
 import cssnext from 'postcss-cssnext';
+import path from 'path';
 import nodeExternals from 'webpack-node-externals';
 
 
@@ -10,10 +11,10 @@ import nodeExternals from 'webpack-node-externals';
  *        }
  * @type {Plugin}
  */
-const definePlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-  __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false')),
-});
+//const definePlugin = new webpack.DefinePlugin({
+//  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
+//  __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false')),
+//});
 
 module.exports = {
   entry: [  // 入口文件
@@ -26,7 +27,7 @@ module.exports = {
     filename: './dist/bundle.js', // 打包输出的文件
   },
   // Enable sourcemaps for debugging webpack's output.
-  devtool: 'source-map',
+  //devtool: 'source-map',
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
@@ -35,6 +36,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/, // test 去判断是否为.js,是的话就是进行es6和jsx的编译
+        exclude: /(node_modules)/,
         loader: 'babel-loader?presets=es2015',
       },
       // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
@@ -46,11 +48,15 @@ module.exports = {
           'ts-loader',
         ],
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' }, // 用!去链式调用loader
+      {
+        test: /\.css$/,
+        exclude: /(node_modules)/,
+        loader: 'style-loader!css-loader!postcss-loader'
+      }, // 用!去链式调用loader
     ],
     preLoaders: [
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { test: /\.js$/, loader: 'source-map-loader' },
+      //{ test: /\.js$/, loader: 'source-map-loader' },
     ],
   },
   //target: 'node',
@@ -60,11 +66,12 @@ module.exports = {
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
     'react': 'React',
-    'react-dom': 'ReactDOM'
+    'react-dom': 'ReactDOM',
+    //'react-color': 'commonjs react-color'
   },
   //externals: [nodeExternals()],
   postcss() {
     return [cssnext];
   },
-  plugins: [definePlugin],
+  //plugins: [definePlugin],
 };

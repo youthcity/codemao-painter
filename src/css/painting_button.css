@@ -1,0 +1,38 @@
+.painting-button {
+  height: 2.5rem;
+  width: 2.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 0.1rem;
+
+  cursor: pointer;
+}
+
+.painting-button img {
+  max-height: 100%;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.painting-button.active .button-img {
+  display: none;
+}
+
+.painting-button.active .button-img-on {
+  display: block;
+}
+
+.painting-button .button-img-on {
+  display: none;
+}
+
+.painting-button:active .button-img {
+  display: none;
+}
+
+.painting-button:active .button-img-on {
+  display: block;
+}

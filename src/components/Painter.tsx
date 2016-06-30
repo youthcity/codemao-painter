@@ -1,30 +1,25 @@
 import * as React from 'react';
 import '../css/painter.css';
 
-import '../js/color/colors.js';
-import '../js/color/colorPicker.data.js';
-import '../js/color/colorPicker.js';
-import '../js/color/jsColor.js';
-
-import { config } from '../config';
-import { fabric_canvas } from '../fabric_canvas';
-import { PaintingPanel } from './panels/PaintingPanel';
-import { BackgroundPanel } from './panels/BackgroundPanel';
-import { LayerPanel } from './panels/LayerPanel';
-import { ObjectPanel } from './panels/ObjectPanel';
-import { ControlButton } from './buttons/ControlButton';
-import { painterStore } from '../painterStore';
-import { PainterStates } from '../PainterStates';
-import { colorButtonActions } from "../actions/ColorButtonActions";
+import {config} from '../config';
+import {fabric_canvas} from '../fabric_canvas';
+import {PaintingPanel} from './panels/PaintingPanel';
+import {BackgroundPanel} from './panels/BackgroundPanel';
+import {LayerPanel} from './panels/LayerPanel';
+import {ObjectPanel} from './panels/ObjectPanel';
+import {ControlButton} from './buttons/ControlButton';
+import {painterStore} from '../painterStore';
+import {PainterStates} from '../PainterStates';
+import {colorButtonActions} from "../actions/ColorButtonActions";
 import ComponentSpec = __React.ComponentSpec;
 
 export interface PainterProps {
-  compiler: string;
-  framework: string;
+  compiler:string;
+  framework:string;
 }
 
 // class Painter extends React.Component<PainterProps, { panel_type: number }>
-const global: any = window;
+const global:any = window;
 let Painter = React.createClass <PainterProps, PainterStates>(({
   getInitialState() {
     return painterStore.states;
@@ -44,7 +39,7 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
    * Select tool panel
    * @param event
    */
-  selectPanel(event: any) {
+    selectPanel(event:any) {
     this.setState({panel_type: event.target.value});
   },
   render() {
@@ -52,7 +47,7 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
     // let control_buttons = config.control_buttons.map((value) => {
     //   return <ControlButton key={ value.title } control_button={ value } />;
     // });
-    let panel_element: JSX.Element;
+    let panel_element:JSX.Element;
     switch (this.state.panel_type) {
       //  todo: will use these panels soon
       // case 'background':
@@ -63,7 +58,9 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
       //   break;
       default:
       case 'painting':
-        panel_element = <PaintingPanel className="painter-tools-painting" current_color={this.state.current_color}/>;
+        panel_element =<PaintingPanel className="painter-tools-painting" current_color={this.state.current_color}
+                                      current_brush={this.state.current_brush}
+                                      current_width={this.state.current_width}/>;
     }
     return <div className="painter">
       <div className="painter-tools">
@@ -134,6 +131,6 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
 //             </svg>
 //           </button>
 
-export { Painter };
+export {Painter};
 
 global.Painter = Painter;

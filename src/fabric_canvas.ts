@@ -1,8 +1,9 @@
-import './js/override/static-canvas';
-import './js/override/canvas.js';
-import './js/override/canvas-events.js';
-import './js/override/base-brush.js';
-import './js/override/pencil-brush.js';
+// import './js/override/static-canvas';
+// import './js/override/canvas.js';
+// import './js/override/canvas-events.js';
+// import './js/override/base-brush.js';
+// import './js/override/pencil-brush.js';
+import '../libs/fabric.js/dist/fabric.min.js';
 import './js/layer.js';
 import './js/layer-manager.js';
 import './js/cursor-render.js';
@@ -55,7 +56,7 @@ class FabricCanvas {
    * Select color and set fabric color.
    * @param color
    */
-  select_color(color:string) {
+  set_brush_color(color:string) {
     if (this._canvas) {
       if (this._canvas.freeDrawingBrush) {
         this._canvas.freeDrawingBrush.color = color;
@@ -76,6 +77,11 @@ class FabricCanvas {
     } else {
       this.canvas.setDrawingMode(false);
     }
+  }
+  
+  set_brush_width(width:number) {
+    if (this.canvas.freeDrawingBrush)
+    this.canvas.freeDrawingBrush.width = width;
   }
 
   add_shape(shape:Shape, width = 7, color = '#333') {
