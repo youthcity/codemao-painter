@@ -170,7 +170,12 @@
   background: #E1D6BE;
 }
 
-.costume-title {
+.tools-costume input {
+  width: auto;
+  height: auto;
+}
+
+.painter-title {
   margin: 0.5rem;
   padding: 0.5rem;
   background: #ECE2CA;
@@ -181,7 +186,7 @@
   color: #6D4C41;
 }
 
-.costume-title:focus {
+.painter-title:focus {
   outline: none;
 }
 

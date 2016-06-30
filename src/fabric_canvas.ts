@@ -12,8 +12,9 @@ import './js/line-brush.js';
 import './js/rect-brush.js';
 import './js/round-brush.js';
 
-import {Brush} from './def/Brush.ts';
-import {Shape} from './def/Shape.ts';
+import {Brush} from './def/Brush';
+import {Shape} from './def/Shape';
+import {Point} from "./def/Point";
 
 //  todo: use modules
 const global:any = window;
@@ -137,8 +138,66 @@ class FabricCanvas {
     this.canvas.setActiveObject(shape_object);
     this.canvas.fire('path:created', {path: shape_object});
 
-
     this.last_shape = shape;
+  }
+
+  add_image(url:string, x:number, y:number) {
+    let image = global.fabric.Image.fromURL(url, (image:any) => {
+      image.set({
+        left: x || 0,
+        top: y || 0,
+        angle: 0,
+      }).scale(1).setCoords();
+      this.canvas.add(image);
+      this.canvas.renderAll();
+    },{crossOrigin:'*'});
+  }
+
+  set_rotate_center(point:Point) {
+    this.canvas.rotationPoint = point;
+  }
+
+  get_rotate_center():Point {
+    return this.canvas.rotationPoint;
+  }
+
+  clear() {
+    this.canvas.clear();
+  }
+
+  get_canvas_width() {
+    return this.canvas.width;
+  }
+
+  get_canvas_height() {
+    return this.canvas.height;
+  }
+
+  get_base64_data_url():string {
+    const param = {};
+    this.canvas.setDrawingMode(false);
+    this.canvas.layerManager.combineAllLayers();
+    const activeObj = this.canvas.getActiveObject();
+    const activeGroup = this.canvas.getActiveGroup();
+    if (activeGroup) {
+      const objectsInGroup = activeGroup.getObjects();
+      this.canvas.discardActiveGroup();
+      objectsInGroup.forEach((obj:any) => {
+        obj.active = false;
+      });
+    }
+    if (activeObj) {
+      activeObj.active = false;
+    }
+    this.canvas.renderAll();
+    this.canvas.setZoom(1);
+
+    const data = document.createElement('canvas');
+    data.width = this.canvas.lowerCanvasEl.width;
+    data.height = this.canvas.lowerCanvasEl.height;
+    (data.getContext('2d') as any).imageSmoothingEnabled = false;
+    data.getContext('2d').drawImage(this.canvas.lowerCanvasEl, 0, 0);
+    return data.toDataURL();
   }
 }
 

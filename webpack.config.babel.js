@@ -1,6 +1,8 @@
 // definePlugin 会把定义的string 变量插入到Js代码中。
 import webpack from 'webpack';
 import cssnext from 'postcss-cssnext';
+import nodeExternals from 'webpack-node-externals';
+
 
 /**
  * Usage: if(__DEV__) {
@@ -15,12 +17,12 @@ const definePlugin = new webpack.DefinePlugin({
 
 module.exports = {
   entry: [  // 入口文件
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
+    //'webpack-dev-server/client?http://localhost:8080',
+    //'webpack/hot/only-dev-server',
     './src/main.tsx',
   ],
   output: {
-    publicPath: 'http://localhost:8080/',
+    //publicPath: 'http://localhost:8080/',
     filename: './dist/bundle.js', // 打包输出的文件
   },
   // Enable sourcemaps for debugging webpack's output.
@@ -40,7 +42,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /(node_modules)/,
         loaders: [
-          'react-hot',
+          //'react-hot',
           'ts-loader',
         ],
       },
@@ -51,14 +53,16 @@ module.exports = {
       { test: /\.js$/, loader: 'source-map-loader' },
     ],
   },
+  //target: 'node',
   // When importing a module whose path matches one of the following, just
   // assume a corresponding global variable exists and use that instead.
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
     'react': 'React',
-    'react-dom': 'ReactDOM',
+    'react-dom': 'ReactDOM'
   },
+  //externals: [nodeExternals()],
   postcss() {
     return [cssnext];
   },

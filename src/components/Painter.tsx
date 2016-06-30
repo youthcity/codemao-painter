@@ -16,6 +16,7 @@ import { ControlButton } from './buttons/ControlButton';
 import { painterStore } from '../painterStore';
 import { PainterStates } from '../PainterStates';
 import { colorButtonActions } from "../actions/ColorButtonActions";
+import ComponentSpec = __React.ComponentSpec;
 
 export interface PainterProps {
   compiler: string;
@@ -24,7 +25,7 @@ export interface PainterProps {
 
 // class Painter extends React.Component<PainterProps, { panel_type: number }>
 const global: any = window;
-let Painter = React.createClass <PainterProps, PainterStates>({
+let Painter = React.createClass <PainterProps, PainterStates>(({
   getInitialState() {
     return painterStore.states;
   },
@@ -82,7 +83,7 @@ let Painter = React.createClass <PainterProps, PainterStates>({
         </div>
         <div className="painter-tools-buttons">
           <div className="tools-costume">
-            <input title="造型名称" className="costume-title" placeholder="请输入造型名称"/>
+            <input title="造型名称" className="painter-title" placeholder="请输入造型名称"/>
             <div className="costume-buttons">
               <div className="save-button">
                 <img src="//o44j7l4g3.qnssl.com/program/painter/save.png" alt="保存"/>
@@ -111,7 +112,7 @@ let Painter = React.createClass <PainterProps, PainterStates>({
     </div>;
     // return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
   }
-});
+} as ComponentSpec<PainterProps, PainterStates>));
 
 //  todo: will use these buttons soon
 // <button value="background" className="tab-button tabs-background" onClick={this.selectPanel}>
@@ -134,3 +135,5 @@ let Painter = React.createClass <PainterProps, PainterStates>({
 //           </button>
 
 export { Painter };
+
+global.Painter = Painter;
