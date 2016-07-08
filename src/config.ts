@@ -30,7 +30,8 @@ export const config = {
     line_width: {
       pencil: 7,
       pointer: 7,
-      line: 7
+      line: 7,
+      eraser: 7
     },
     brush_color: {
       pencil: '#333',

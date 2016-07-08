@@ -13,9 +13,12 @@ import './js/line-brush.js';
 import './js/rect-brush.js';
 import './js/round-brush.js';
 
+
+
 import {Brush} from './def/Brush';
 import {Shape} from './def/Shape';
 import {Point} from "./def/Point";
+import { trim_canvas } from "./trim-canvas";
 
 //  todo: use modules
 const global:any = window;
@@ -68,17 +71,17 @@ class FabricCanvas {
     if (brush !== Brush.pointer) {
       this.canvas.deactivateAll();
       this.canvas.renderAll();
+      this.canvas.setDrawingMode(true);
       this.canvas.setFreeDrawingBrush(Brush[brush], {
         width: width,
         color: color,
       });
-      this.canvas.setDrawingMode(true);
       this.last_shape = undefined;
     } else {
       this.canvas.setDrawingMode(false);
     }
   }
-  
+
   set_brush_width(width:number) {
     if (this.canvas.freeDrawingBrush)
     this.canvas.freeDrawingBrush.width = width;
@@ -179,7 +182,7 @@ class FabricCanvas {
     return this.canvas.height;
   }
 
-  get_base64_data_url():string {
+  get_data_url():string {
     const param = {};
     this.canvas.setDrawingMode(false);
     this.canvas.layerManager.combineAllLayers();
@@ -204,6 +207,28 @@ class FabricCanvas {
     (data.getContext('2d') as any).imageSmoothingEnabled = false;
     data.getContext('2d').drawImage(this.canvas.lowerCanvasEl, 0, 0);
     return data.toDataURL();
+  }
+
+  get_trimed_data_url():string {
+    const param = {};
+    this.canvas.setDrawingMode(false);
+    this.canvas.layerManager.combineAllLayers();
+    const activeObj = this.canvas.getActiveObject();
+    const activeGroup = this.canvas.getActiveGroup();
+    if (activeGroup) {
+      const objectsInGroup = activeGroup.getObjects();
+      this.canvas.discardActiveGroup();
+      objectsInGroup.forEach((obj:any) => {
+        obj.active = false;
+      });
+    }
+    if (activeObj) {
+      activeObj.active = false;
+    }
+    this.canvas.renderAll();
+    this.canvas.setZoom(1);
+
+    return trim_canvas(this.canvas.lowerCanvasEl).toDataURL();
   }
 }
 
