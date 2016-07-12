@@ -5,6 +5,7 @@
   },
   "globalDependencies": {
     "eventemitter3": "registry:dt/eventemitter3#1.1.1+20151208234524",
+    "fabricjs": "registry:dt/fabricjs#1.5.0+20160317120654",
     "react": "registry:dt/react#0.14.0+20160621225615",
     "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
   }
