@@ -7,21 +7,16 @@ import cssnext from 'postcss-cssnext';
 //  Declare before you use in .ts files.
 //  example: declare const DEBUG: boolean; 
 const define_plugin = new webpack.DefinePlugin({
-  DEV: true
+  DEBUG: true
 });
 
 module.exports = {
   entry: [  // 入口文件
-    //'webpack-dev-server/client?http://localhost:8080',
-    //'webpack/hot/only-dev-server',
     './src/main.tsx'
   ],
   output: {
-    publicPath: 'http://localhost:8080/',
-    filename: './dist/bundle.js' // 打包输出的文件
+    filename: './dist/bundle.js', // 打包输出的文件
   },
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: 'eval-source-map',
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
@@ -38,7 +33,6 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /(node_modules)/,
         loaders: [
-          'react-hot',
           'ts-loader'
         ]
       },
@@ -48,7 +42,7 @@ module.exports = {
         loader: 'style-loader!css-loader!postcss-loader'
       }, // 用!去链式调用loader
       {
-        test: /\.png$/,
+        test: /\.(jpg|png|gif|svg)$/,
         exclude: /(node_modules)/,
         loader: 'url-loader',
         query: {
@@ -56,10 +50,6 @@ module.exports = {
         }
       }
     ]
-    //preLoaders: [
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      //{ test: /\.js$/, loader: 'source-map-loader' }
-    //]
   },
   //target: 'node',
   // When importing a module whose path matches one of the following, just

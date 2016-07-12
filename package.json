@@ -27,11 +27,15 @@
     "ts-loader": "^0.8.2",
     "tslint": "^3.11.0",
     "typescript": "^1.8.10",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-node-externals": "^1.2.0"
   },
-  "scripts": {},
+  "scripts": {
+    "dev": "webpack-dev-server --inline --hot --progress --colors",
+    "pub": "webpack -p --config webpack.publish.babel.js --progress --colors"
+  },
   "author": "GreenDou",
   "license": "ISC",
   "main": "main.js",
