@@ -38,5 +38,6 @@ export const config = {
       pointer: '#333',
       line: '#333'
     },
+    is_selected: false
   },
 };

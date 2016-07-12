@@ -2,6 +2,7 @@ import {Dispatcher} from 'flux';
 import {painterStore} from "./painterStore";
 import {Brush} from "./def/Brush";
 import {ActionPayload} from "./def/ActionPayload";
+import { fabric_canvas } from "./fabric_canvas";
 
 interface ActionList {
   [action:string]:any;
@@ -24,6 +25,16 @@ const action_list:ActionList = {
     painterStore.set_brush_width_handler(payload.width);
     painterStore.emit_change();
   },
+  'set_selected_text': (payload:ActionPayload) => {
+    fabric_canvas.set_selected_text(payload.text);
+    painterStore.set_selected_text(payload.text);
+    painterStore.emit_change();
+  },
+  'set_selected_opacity': (payload:ActionPayload) => {
+    fabric_canvas.set_selected_opacity(payload.opacity);
+    painterStore.set_selected_opacity(payload.opacity);
+    painterStore.emit_change();
+  }
 };
 
 const painter_dispatcher = new Dispatcher();

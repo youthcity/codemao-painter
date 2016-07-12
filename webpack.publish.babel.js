@@ -7,7 +7,7 @@ import cssnext from 'postcss-cssnext';
 //  Declare before you use in .ts files.
 //  example: declare const DEBUG: boolean; 
 const define_plugin = new webpack.DefinePlugin({
-  DEBUG: true
+  DEV: false,
 });
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     './src/main.tsx'
   ],
   output: {
-    filename: './dist/bundle.js', // 打包输出的文件
+    filename: 'codemao_painter.js', // 打包输出的文件
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.

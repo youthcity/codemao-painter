@@ -12,6 +12,7 @@ interface ColorButtonConfig {
 export class ColorButton extends React.Component<ColorButtonConfig, {}> {
   on_click_color() {
     colorButtonActions.set_brush_color(this.props.color);
+    fabric_canvas.set_selected_color(this.props.color);
   }
   render() {
     let style = {

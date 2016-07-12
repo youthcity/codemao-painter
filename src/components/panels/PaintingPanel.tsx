@@ -44,6 +44,7 @@ export let PaintingPanel = React.createClass<PaintingPanelProps, { display_color
 
   set_brush_color(color: {hex: string}) {
     PaintingActions.set_brush_color(color.hex);
+    fabric_canvas.set_selected_color(color.hex);
   },
 
   handle_click_color () {
@@ -79,12 +80,13 @@ export let PaintingPanel = React.createClass<PaintingPanelProps, { display_color
                         onClick={this.select_brush.bind(this, Brush.pointer)}/>
         <PaintingButton title="旋转中心" type="rotation" active={this.is_current_brush(Brush.rotate_center)}
                         onClick={this.select_brush.bind(this, Brush.rotate_center)}/>
+        <PaintingButton title="添加文字" type="text" active={false} onClick={this.add_shape.bind(this, Shape.text)}/>
       </div>
       <div className="tools-slider-container">
         <span className="tools-container-title">粗细</span>
         <span className="input-minus">-</span>
         <input title="粗细" type="range" value={this.props.current_width} min="1" max="100" step="1"
-               ref="brush_width_input" onChange={this.set_brush_width.bind(this)}/>
+               ref="brush_width_input" onChange={this.set_brush_width}/>
         <span className="input-plus">+</span>
       </div>
       <div className="tools-item">
@@ -96,7 +98,6 @@ export let PaintingPanel = React.createClass<PaintingPanelProps, { display_color
           </div>
           <div className="color-picker-cover" onClick={this.handle_click_color}></div>
         </div> : null }
-
       </div>
       <div className="tools-area">
         {default_colors}
@@ -104,10 +105,3 @@ export let PaintingPanel = React.createClass<PaintingPanelProps, { display_color
     </div>;
   }
 });
-
-//  todo: will use these soon
-// <div title="文字" className="tools-button tools-text"
-//              onClick={PaintingPanel.add_shape.bind(this, Shape.text)}>
-//           <img className="button-img" src="//o44j7l4g3.qnssl.com/program/painter/text.png" alt="字"/>
-//           <img className="button-img-on" src="//o44j7l4g3.qnssl.com/program/painter/text-on.png" alt="字"/>
-//         </div>

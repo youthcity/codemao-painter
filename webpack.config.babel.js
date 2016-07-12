@@ -5,20 +5,25 @@ import cssnext from 'postcss-cssnext';
 //import nodeExternals from 'webpack-node-externals';
 
 //  Declare before you use in .ts files.
-//  example: declare const DEBUG: boolean; 
+//  example: declare const DEBUG: boolean;
 const define_plugin = new webpack.DefinePlugin({
   DEV: true
 });
 
 module.exports = {
-  entry: [  // 入口文件
-    //'webpack-dev-server/client?http://localhost:8080',
-    //'webpack/hot/only-dev-server',
-    './src/main.tsx'
-  ],
+  //entry: [  // 入口文件
+  //  './src/main.tsx'
+  //],
+  entry: {
+    app: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      './src/main.tsx'
+    ]
+  },
   output: {
     publicPath: 'http://localhost:8080/',
-    filename: './dist/bundle.js' // 打包输出的文件
+    filename: 'codemao_painter.js' // 打包输出的文件
   },
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'eval-source-map',
@@ -48,12 +53,9 @@ module.exports = {
         loader: 'style-loader!css-loader!postcss-loader'
       }, // 用!去链式调用loader
       {
-        test: /\.png$/,
+        test: /\.(jpg|png|gif|svg)$/,
         exclude: /(node_modules)/,
-        loader: 'url-loader',
-        query: {
-          limit: '8192'
-        }
+        loader: 'url?limit=8192'
       }
     ]
     //preLoaders: [
@@ -66,11 +68,11 @@ module.exports = {
   // assume a corresponding global variable exists and use that instead.
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
+  //externals: {
+    //'react': 'React',
+    //'react-dom': 'ReactDOM'
     //'react-color': 'commonjs react-color'
-  },
+  //},
   //externals: [nodeExternals()],
   postcss() {
     return [cssnext];

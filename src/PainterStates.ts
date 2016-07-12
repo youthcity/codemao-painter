@@ -12,4 +12,7 @@ export interface PainterStates {
   brush_color:{
     [prop_name:string]:any
   };
+  is_selected:boolean;
+  selected_text?:string;
+  selected_opacity?:number;
 }

@@ -1,17 +1,16 @@
 import * as React from 'react';
 import '../css/painter.css';
 
-import {config} from '../config';
-import {fabric_canvas} from '../fabric_canvas';
-import {PaintingPanel} from './panels/PaintingPanel';
-import {BackgroundPanel} from './panels/BackgroundPanel';
-import {LayerPanel} from './panels/LayerPanel';
-import {ObjectPanel} from './panels/ObjectPanel';
-import {ControlButton} from './buttons/ControlButton';
-import {painterStore} from '../painterStore';
-import {PainterStates} from '../PainterStates';
-import {colorButtonActions} from "../actions/ColorButtonActions";
-import ComponentSpec = __React.ComponentSpec;
+import { config } from '../config';
+import { fabric_canvas } from '../fabric_canvas';
+import { PaintingPanel } from './panels/PaintingPanel';
+import { BackgroundPanel } from './panels/BackgroundPanel';
+import { LayerPanel } from './panels/LayerPanel';
+import { ObjectPanel } from './panels/object_panel/ObjectPanel';
+import { ControlButton } from './buttons/ControlButton';
+import { painterStore } from '../painterStore';
+import { PainterStates } from '../PainterStates';
+import { colorButtonActions } from "../actions/ColorButtonActions";
 
 export interface PainterProps {
   compiler:string;
@@ -20,20 +19,36 @@ export interface PainterProps {
 
 // class Painter extends React.Component<PainterProps, { panel_type: number }>
 const global:any = window;
-let Painter = React.createClass <PainterProps, PainterStates>(({
+let Painter = React.createClass <PainterProps, PainterStates>({
   getInitialState() {
     return painterStore.states;
   },
   componentDidMount() {
     fabric_canvas.init(this.canvas_element, this.canvas_wrapper_element);
     painterStore.add_change_listener(this.onChange);
+    fabric_canvas.add_listener('object:selected', this.on_object_update);
+    fabric_canvas.add_listener('selection:cleared', this.on_object_update);
   },
   componentWillUnmount() {
     painterStore.remove_change_listener(this.onChange);
+    fabric_canvas.remove_listener('object:selected', this.on_object_update);
+    fabric_canvas.remove_listener('selection:cleared', this.on_object_update);
   },
   onChange() {
     this.setState(painterStore.states);
-    console.log(this.state);
+  },
+  on_object_update() {
+    const is_selected = fabric_canvas.is_selected();
+    const selected_text = fabric_canvas.get_selected_text();
+    const selected_opacity = fabric_canvas.get_selected_opacity();
+    painterStore.set_is_selected(is_selected);
+    painterStore.set_selected_text(selected_text);
+    painterStore.set_selected_opacity(selected_opacity);
+    this.setState({
+      is_selected: is_selected,
+      selected_text: selected_text,
+      selected_opacity: selected_opacity
+    });
   },
   /**
    * Select tool panel
@@ -47,7 +62,7 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
     // let control_buttons = config.control_buttons.map((value) => {
     //   return <ControlButton key={ value.title } control_button={ value } />;
     // });
-    let panel_element:JSX.Element;
+    let panel_element:any;
     switch (this.state.panel_type) {
       //  todo: will use these panels soon
       // case 'background':
@@ -99,7 +114,8 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
             <canvas ref={(canvas) => this.canvas_element = canvas} className="painter-canvas"/>
             <div className="stage-size"></div>
           </div>
-          <ObjectPanel/>
+          <ObjectPanel is_show={this.state.is_selected} text={this.state.selected_text}
+                       opacity={this.state.selected_opacity}/>
         </div>
         <div className="painter-control-wrapper">
           <div className="control-panel">
@@ -109,7 +125,7 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
     </div>;
     // return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
   }
-} as ComponentSpec<PainterProps, PainterStates>));
+});
 
 //  todo: will use these buttons soon
 // <button value="background" className="tab-button tabs-background" onClick={this.selectPanel}>
@@ -131,6 +147,6 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
 //             </svg>
 //           </button>
 
-export {Painter};
+export { Painter };
 
 global.Painter = Painter;

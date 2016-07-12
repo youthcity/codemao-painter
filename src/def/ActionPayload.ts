@@ -5,4 +5,6 @@ export interface ActionPayload {
   color?:string;
   brush?:Brush;
   width?:number;
+  text?:string;
+  opacity?:number;
 }

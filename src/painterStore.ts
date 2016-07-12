@@ -39,6 +39,18 @@ class PainterStore extends EventEmitter {
     this._states.current_width = width;
     fabric_canvas.set_brush_width(width);
   }
+  
+  set_selected_text(text:string) {
+    this._states.selected_text = text;
+  }
+  
+  set_selected_opacity(opacity:number) {
+    this._states.selected_opacity = opacity;
+  }
+  
+  set_is_selected(is_selected:boolean) {
+    this._states.is_selected = is_selected;
+  }
 
   // emit_select_color() {
   //   this.emit('set_brush_color');
