@@ -215,7 +215,7 @@ class FabricCanvas {
     return data.toDataURL();
   }
 
-  get_trimed_data_url():string {
+  get_trimed_data_url() {
     const param = {};
     this._canvas.setDrawingMode(false);
     this._canvas.layerManager.combineAllLayers();
@@ -234,7 +234,14 @@ class FabricCanvas {
     this._canvas.renderAll();
     this._canvas.setZoom(1);
 
-    return trim_canvas(this._canvas.lowerCanvasEl).toDataURL();
+    const trimmed = trim_canvas(this._canvas.lowerCanvasEl, this.get_rotate_center());
+
+    return {
+      url: trimmed.canvas.toDataURL(),
+      height: trimmed.canvas.height,
+      width:trimmed.canvas.width,
+      rotate_center: trimmed.rotate_center
+    };
   }
 
   public remove_selected() {

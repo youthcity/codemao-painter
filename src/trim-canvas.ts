@@ -1,3 +1,4 @@
+import { Point } from "./def/Point";
 interface Bound {
   top:number;
   left:number;
@@ -7,9 +8,10 @@ interface Bound {
 /**
  * Trim canvas element
  * @param c
+ * @param rotate_center
  * @returns {HTMLCanvasElement}
  */
-export function trim_canvas(c:HTMLCanvasElement) {
+export function trim_canvas(c:HTMLCanvasElement, rotate_center?:Point) {
 
   var ctx = c.getContext('2d'),
     copy = document.createElement('canvas').getContext('2d'),
@@ -62,5 +64,11 @@ export function trim_canvas(c:HTMLCanvasElement) {
   copy.canvas.height = trimHeight;
   copy.putImageData(trimmed, 0, 0);
   // open new window with trimmed image:
-  return copy.canvas;
+  return {
+    canvas: copy.canvas,
+    rotate_center: {
+      x: rotate_center.x - bound.left,
+      y: rotate_center.y - bound.top
+    }
+  };
 }
