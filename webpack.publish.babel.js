@@ -42,11 +42,21 @@ module.exports = {
         loader: 'style-loader!css-loader!postcss-loader'
       }, // 用!去链式调用loader
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.(jpg|gif|svg)$/,
         exclude: /(node_modules)/,
         loader: 'url-loader',
         query: {
           limit: '8192'
+        },
+      },
+      {
+        test: /\.png$/,
+        exclude: /(node_modules)/,
+        loader: 'url',
+        query: {
+          limit: '8192',
+          mimetype: 'image/png',
+          name: '//o44j7l4g3.qnssl.com/painter/[name].[ext]'
         }
       }
     ]

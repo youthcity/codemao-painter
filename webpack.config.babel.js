@@ -53,9 +53,14 @@ module.exports = {
         loader: 'style-loader!css-loader!postcss-loader'
       }, // 用!去链式调用loader
       {
-        test: /\.(jpg|png|gif|svg)$/,
+        test: /\.png$/,
         exclude: /(node_modules)/,
-        loader: 'url?limit=8192'
+        loader: 'url?mimetype=image/png'
+      },
+      {
+        test: /\.(jpg|gif|svg)$/,
+        exclude: /(node_modules)/,
+        loader: 'url'
       }
     ]
     //preLoaders: [
