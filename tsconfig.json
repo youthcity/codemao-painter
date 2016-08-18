@@ -1,16 +1,8 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
     "sourceMap": true,
-    "noImplicitAny": true,
-//    "moduleResolution": "node",
     "module": "commonjs",
     "target": "es5",
     "jsx": "react"
-  },
-  "files": [
-    "./src/main.tsx",
-    "./typings/index.d.ts",
-    "./js_transition.d.ts"
-  ]
+  }
 }

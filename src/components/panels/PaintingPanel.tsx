@@ -11,24 +11,24 @@ import { Shape } from "../../def/Shape";
 
 import { ChromePicker } from 'react-color';
 
-let pencil_png = require('../../../assets/pencil.png');
-let pencil_on_png = require('../../../assets/pencil_on.png');
-let line_png = require('../../../assets/line.png');
-let line_on_png = require('../../../assets/line_on.png');
-let round_png = require('../../../assets/round.png');
-let round_on_png = require('../../../assets/round_on.png');
-let triangle_png = require('../../../assets/triangle.png');
-let triangle_on_png = require('../../../assets/triangle_on.png');
-let text_png = require('../../../assets/text.png');
-let text_on_png = require('../../../assets/text_on.png');
-let rect_png = require('../../../assets/rect.png');
-let rect_on_png = require('../../../assets/rect_on.png');
-let eraser_png = require('../../../assets/eraser.png');
-let eraser_on_png = require('../../../assets/eraser_on.png');
-let pointer_png = require('../../../assets/pointer.png');
-let pointer_on_png = require('../../../assets/pointer_on.png');
-let rotation_png = require('../../../assets/rotation.png');
-let rotation_on_png = require('../../../assets/rotation_on.png');
+let pencil_png = require('../../assets/pencil.png');
+let pencil_on_png = require('../../assets/pencil_on.png');
+let line_png = require('../../assets/line.png');
+let line_on_png = require('../../assets/line_on.png');
+let round_png = require('../../assets/round.png');
+let round_on_png = require('../../assets/round_on.png');
+let triangle_png = require('../../assets/triangle.png');
+let triangle_on_png = require('../../assets/triangle_on.png');
+let text_png = require('../../assets/text.png');
+let text_on_png = require('../../assets/text_on.png');
+let rect_png = require('../../assets/rect.png');
+let rect_on_png = require('../../assets/rect_on.png');
+let eraser_png = require('../../assets/eraser.png');
+let eraser_on_png = require('../../assets/eraser_on.png');
+let pointer_png = require('../../assets/pointer.png');
+let pointer_on_png = require('../../assets/pointer_on.png');
+let rotation_png = require('../../assets/rotation.png');
+let rotation_on_png = require('../../assets/rotation_on.png');
 
 
 interface PaintingPanelProps {

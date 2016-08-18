@@ -1,6 +1,3 @@
-[submodule "assets/lib/fabric.js"]
-	path = assets/lib/fabric.js
-	url = https://github.com/GreenDou/fabric.js.git
-[submodule "libs/fabric.js"]
-	path = libs/fabric.js
+[submodule "src/libs/fabricjs"]
+	path = src/libs/fabricjs
 	url = https://github.com/GreenDou/fabric.js.git

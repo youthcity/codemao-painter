@@ -3,7 +3,7 @@
  * Eraser Brush
  */
 
-import './trim-canvas.js';
+// import './trim-canvas.js';
 
 (() => {
   /**

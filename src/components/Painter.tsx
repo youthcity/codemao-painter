@@ -12,9 +12,9 @@ import { painterStore } from '../painterStore';
 import { PainterStates } from '../PainterStates';
 import { colorButtonActions } from "../actions/ColorButtonActions";
 
-let save_png = require('../../assets/save.png');
+let save_png = require('../assets/save.png');
 // let save_on_png = require('../../assets/save_on.png');
-let cancel_png = require('../../assets/cancel.png');
+let cancel_png = require('../assets/cancel.png');
 // let cancel_on_png = require('../../assets/cancel_on.png');
 
 export interface PainterProps {
@@ -89,7 +89,7 @@ let Painter = React.createClass <PainterProps, PainterStates>(({
             画图
             <svg width="16px" height="7px" viewBox="49 48 16 7" version="1.1"
                  xmlns="http://www.w3.org/2000/svg">
-              <polygon id="rect-tab-painting" stroke="none" fill="#F2524C" fill-rule="evenodd"
+              <polygon id="rect-tab-painting" stroke="none" fill="#F2524C" fillRule="evenodd"
                        transform="translate(57.000000, 51.500000) scale(1, -1) translate(-57.000000, -51.500000) "
                        points="57 48 65 55 49 55"/>
             </svg>

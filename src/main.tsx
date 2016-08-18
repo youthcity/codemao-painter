@@ -20,3 +20,6 @@ export let codemao_fabric = {
 const global = (window as any);
 
 global.codemao_fabric = codemao_fabric;
+
+codemao_fabric.init();
+

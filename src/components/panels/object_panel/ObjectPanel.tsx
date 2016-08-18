@@ -9,7 +9,7 @@ export interface ObjectPanelProps {
   opacity:number;
 }
 
-let remove_png = require('../../../../assets/remove.png');
+let remove_png = require('../../../assets/remove.png');
 
 export class ObjectPanel extends React.Component<ObjectPanelProps, {}> {
   private set_selected_text() {
