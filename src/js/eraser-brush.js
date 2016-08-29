@@ -2,8 +2,7 @@
  * Created by GreenDou on 16/4/9.
  * Eraser Brush
  */
-
-// import './trim-canvas.js';
+import { trimCanvasWithPosition } from "../trim-canvas";
 
 (() => {
   /**

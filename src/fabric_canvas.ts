@@ -3,7 +3,7 @@
 // import './js/override/canvas-events.js';
 // import './js/override/base-brush.js';
 // import './js/override/pencil-brush.js';
-import './libs/fabricjs/dist/fabric.min.js';
+import './libs/fabricjs/dist/fabric.js';
 import './js/layer.js';
 import './js/layer-manager.js';
 import './js/cursor-render.js';
