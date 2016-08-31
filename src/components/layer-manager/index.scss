@@ -1,0 +1,76 @@
+.layer-manager {
+    width: 100%;
+    height: 100%;
+    .layer-list {
+        color: #373737;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        .layer-item {
+            list-style: none;
+            width: 242px;
+            height: 78px;
+            margin: 0 auto 10px;
+            background: #FAFAFA;
+            border: 1px solid #EBE8DE;
+            border-radius: 4px;
+            display: flex;
+            .left {
+                width: 70px;
+                height: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                .preview {
+                    background-color: #E0E0E0;
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+            .right {
+                flex-grow: 1;
+                padding: 10px 6px;
+                .name-row {
+                    .name-input {
+                        padding: 0 4px;
+                        margin: 0 auto;
+                        font-size: 100%;
+                        width: 155px;
+                        height: 28px;
+                        outline: none;
+                        border: 1px solid transparent;
+                        background-color: transparent;
+                        color: #CDCDCD;
+                        &:focus {
+                            border: 1px solid #5FACFE;
+                            background-color: white;
+                            color: #373737;
+                        }
+                    }
+                }
+                .tool-row {
+                    height: 28px;
+                    background-color: #79fca6;
+                    visibility: hidden;
+                }
+            }
+            &:hover {
+                border: 1px solid #5FACFE;
+                .tool-row {
+                    visibility: visible;
+                }
+            }
+            &.selected {
+                .name-input {
+                    border: 1px solid #5FACFE;
+                    background-color: white;
+                    color: #373737 !important;
+                }
+                border: 1px solid #5FACFE;
+                .tool-row {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

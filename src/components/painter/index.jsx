@@ -1,19 +1,63 @@
 import React from 'react';
 import cx from 'classnames';
+import _ from 'lodash/object';
 
 require('./index.scss');
 
 import PainterTools from '../painter-tools/';
+import LayerManager from '../layer-manager';
 
 const tool_panel = {
     DRAWING_TOOLS: 0,
-    LAYER: 1
+    LAYER_MANAGER: 1
 };
 
 const Painter = React.createClass({
     getInitialState() {
         return {
-            selectedPanel: tool_panel.DRAWING_TOOLS
+            selectedPanel: tool_panel.LAYER_MANAGER,
+            layerList: [
+                {
+                    id: 1,
+                    selected: true
+                },
+                {
+                    id: 2,
+                    selected: false
+                },
+                {
+                    id: 3,
+                    selected: false
+                },
+                {
+                    id: 4,
+                    selected: false
+                },
+                {
+                    id: 5,
+                    selected: false
+                },
+                {
+                    id: 6,
+                    selected: false
+                },
+                {
+                    id: 7,
+                    selected: false
+                },
+                {
+                    id: 8,
+                    selected: false
+                },
+                {
+                    id: 9,
+                    selected: false
+                },
+                {
+                    id: 10,
+                    selected: false
+                }
+            ]
         }
     },
     render() {
@@ -21,6 +65,12 @@ const Painter = React.createClass({
         if (this.state.selectedPanel === tool_panel.DRAWING_TOOLS) {
             innerWrapper = (
                 <PainterTools/>
+            )
+        } else if (this.state.selectedPanel === tool_panel.LAYER_MANAGER) {
+            innerWrapper = (
+                <LayerManager
+                    selectLayer={this.selectLayer}
+                    layerList={this.state.layerList}/>
             )
         }
         return (
@@ -46,8 +96,8 @@ const Painter = React.createClass({
                                 'selected': this.state.selectedPanel === tool_panel.DRAWING_TOOLS
                             })} onClick={this.toggleToolPanel.bind(this,tool_panel.DRAWING_TOOLS)}>画图</div>
                             <div className={cx('btn', {
-                                'selected': this.state.selectedPanel === tool_panel.LAYER
-                            })} onClick={this.toggleToolPanel.bind(this,tool_panel.LAYER)}>图层</div>
+                                'selected': this.state.selectedPanel === tool_panel.LAYER_MANAGER
+                            })} onClick={this.toggleToolPanel.bind(this,tool_panel.LAYER_MANAGER)}>图层</div>
                         </div>
                         <div className="inner-wrapper">
                             {innerWrapper}
@@ -82,13 +132,26 @@ const Painter = React.createClass({
                     selectedPanel: which
                 })
             }
-        } else if (which === tool_panel.LAYER) {
+        } else if (which === tool_panel.LAYER_MANAGER) {
             if (this.state.selectedPanel !== which) {
                 this.setState({
                     selectedPanel: which
                 })
             }
         }
+    },
+    selectLayer(which) {
+        let list = _.assign([], this.state.layerList);
+        list.forEach((item) => {
+            if (item.id === which) {
+                item.selected = true;
+            } else {
+                item.selected = false;
+            }
+        });
+        this.setState({
+            layerList: list
+        });
     }
 });
 
