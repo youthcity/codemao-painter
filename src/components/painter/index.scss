@@ -1,0 +1,212 @@
+.painter {
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    background: #FDFDFD;
+    box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.27);
+    border-radius: 6px;
+    .header {
+        height: 36px;
+        background: #F4BF00;
+        box-shadow: 0px 3px 0px 0px #C39800;
+        padding: 0 28px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        position: relative;
+        .import-stuff-btn {
+            width: 92px;
+            height: 100%;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            vertical-align: top;
+            .icon {
+                width: 21px;
+                height: 21px;
+                display: inline-block;
+                background-image: url(./assets/images/import-stuff-btn.png);
+            }
+            .text {
+                font-size: 16px;
+                color: white;
+                display: inline-block;
+            }
+        }
+        .split-bar {
+            background: #C39800;
+            width: 1px;
+            height: 30px;
+            display: inline-block;
+            margin: 4px 36px;
+        }
+        .drawing-name-input-wrapper {
+            display: inline-flex;
+            align-items: center;
+            width: 200px;
+            height: 100%;
+            vertical-align: top;
+            .input {
+                outline: none;
+                font-size: 100%;
+                background: hsla(0, 0%, 0%, 0.15);
+                border: none;
+                border-radius: 4px;
+                width: 200px;
+                height: 28px;
+                color: hsl(0, 0%, 100%);
+                padding: 2px 8px;
+            }
+        }
+        .save-btn-wrapper {
+            width: 70px;
+            height: 100%;
+            display: inline-flex;
+            align-items: center;
+            vertical-align: top;
+            margin-left: 16px;
+            .save-btn {
+                color: white;
+                text-align: center;
+                line-height: 22px;
+                width: 100%;
+                height: 28px;
+                background-image: linear-gradient(-180deg, #5FACFE 0%, #5FA4FE 100%);
+                border: 2px solid #2790FF;
+                border-radius: 100px;
+            }
+        }
+        .close-btn {
+            vertical-align: top;
+            width: 24px;
+            height: 100%;
+            position: absolute;
+            right: 20px;
+            top: 0;
+            cursor: pointer;
+            background-image: url(./assets/images/close-painter-btn.png);
+            background-repeat: no-repeat;
+            background-position: 2px 8px;
+        }
+    }
+    .wrapper {
+        width: 100%;
+        height: calc(100% - 36px);
+        padding: 32px;
+        display: flex;
+        .tool-panel {
+            display: flex;
+            flex-direction: column;
+            width: 260px;
+            min-width: 260px;
+            height: 100%;
+            background: #FEFBF1;
+            border: 1px solid #EBE9DF;
+            margin-right: 12px;
+            .btns-wrapper {
+                height: 38px;
+                display: flex;
+                flex-shrink: 0;
+                .btn {
+                    width: 50%;
+                    height: 100%;
+                    flex-shrink: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    background-color: #EBE9DF;
+                    color: hsla(0, 0%, 22%, 0.49);
+                    &.selected {
+                        color: #373737;
+                        background-color: transparent;
+                    }
+                }
+            }
+            .inner-wrapper {
+                flex-grow: 1;
+            }
+        }
+        .right-part {
+            flex-grow: 1;
+            height: 100%;
+            position: relative;
+            .drawing-area {
+                background-color: #FAFAFA;
+                border: 1px solid #EBE9DF;
+                height: calc(100% - 55px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .drawing-board {
+                    %style-drawing-corner {
+                        width: 79px;
+                        height: 79px;
+                        position: absolute;
+                    }
+                    position: relative;
+                    width: 447px;
+                    height: 663px;
+                    .corner-top-left {
+                        @extend %style-drawing-corner;
+                        top: 0;
+                        left: 0;
+                        border-top: 2px solid #C1C1C1;
+                        border-left: 2px solid #C1C1C1;
+                    }
+                    .corner-top-right {
+                        @extend %style-drawing-corner;
+                        top: 0;
+                        right: 0;
+                        border-top: 2px solid #C1C1C1;
+                        border-right: 2px solid #C1C1C1;
+                    }
+                    .corner-bottom-left {
+                        @extend %style-drawing-corner;
+                        bottom: 0;
+                        left: 0;
+                        border-bottom: 2px solid #C1C1C1;
+                        border-left: 2px solid #C1C1C1;
+                    }
+                    .corner-bottom-right {
+                        @extend %style-drawing-corner;
+                        bottom: 0;
+                        right: 0;
+                        border-bottom: 2px solid #C1C1C1;
+                        border-right: 2px solid #C1C1C1;
+                    }
+                }
+            }
+            .player-row {
+                height: 55px;
+                background-color: hsl(46, 87%, 97%);
+                border: 1px solid #E3E1D7;
+                border-top: none;
+                .player-btn {
+                    cursor: pointer;
+                    width: 55px;
+                    height: 100%;
+                    background: #5FACFE;
+                    border: 1px solid #3798FF;
+                }
+            }
+            .btn-wrapper {
+                width: 56px;
+                position: absolute;
+                right: 36px;
+                top: 40px;
+                .btn {
+                    height: 56px;
+                    border-radius: 50%;
+                    background-color: hsla(0, 0%, 0%, 0.16);
+                    margin-bottom: 30px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #AEAEAE;
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

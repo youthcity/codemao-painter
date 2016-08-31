@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "本项目还只是个基于FabricJS的临时项目，各位不用关注。 This project is a temp-project based on Fabric.js.",
   "dependencies": {
+    "classnames": "^2.2.5",
     "eventemitter3": "^1.2.0",
     "flux": "^2.1.1",
     "lodash": "^4.14.1",

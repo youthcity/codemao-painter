@@ -17,7 +17,7 @@ process.argv.forEach(function (item) {
 module.exports = {
   entry: {
     'codemao-painter': [
-      './src/main.tsx'
+      './src/main.jsx'
     ],
     'react-libs': ['react', 'react-dom']
   },
@@ -31,7 +31,7 @@ module.exports = {
     root: path.join(__dirname, 'node_modules')
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.tsx']
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx']
   },
   module: {
     loaders: [
