@@ -19,43 +19,53 @@ const Painter = React.createClass({
             layerList: [
                 {
                     id: 1,
-                    selected: true
+                    selected: true,
+                    transparent: 10
                 },
                 {
                     id: 2,
-                    selected: false
+                    selected: false,
+                    transparent: 20
                 },
                 {
                     id: 3,
-                    selected: false
+                    selected: false,
+                    transparent: 30
                 },
                 {
                     id: 4,
-                    selected: false
+                    selected: false,
+                    transparent: 40
                 },
                 {
                     id: 5,
-                    selected: false
+                    selected: false,
+                    transparent: 50
                 },
                 {
                     id: 6,
-                    selected: false
+                    selected: false,
+                    transparent: 60
                 },
                 {
                     id: 7,
-                    selected: false
+                    selected: false,
+                    transparent: 70
                 },
                 {
                     id: 8,
-                    selected: false
+                    selected: false,
+                    transparent: 80
                 },
                 {
                     id: 9,
-                    selected: false
+                    selected: false,
+                    transparent: 90
                 },
                 {
                     id: 10,
-                    selected: false
+                    selected: false,
+                    transparent: 100
                 }
             ]
         }
@@ -69,6 +79,8 @@ const Painter = React.createClass({
         } else if (this.state.selectedPanel === tool_panel.LAYER_MANAGER) {
             innerWrapper = (
                 <LayerManager
+                    onLayerTransparentChange={this.onLayerTransparentChange}
+                    selectedLayer={this._getSelectedLayer()}
                     selectLayer={this.selectLayer}
                     layerList={this.state.layerList}/>
             )
@@ -147,6 +159,26 @@ const Painter = React.createClass({
                 item.selected = true;
             } else {
                 item.selected = false;
+            }
+        });
+        this.setState({
+            layerList: list
+        });
+    },
+    _getSelectedLayer() {
+        let cur = null;
+        for (let i = 0, len = this.state.layerList.length; i < len; i++) {
+            if (this.state.layerList[i].selected) {
+                cur = this.state.layerList[i];
+            }
+        }
+        return cur;
+    },
+    onLayerTransparentChange(val) {
+        let list = _.assign([], this.state.layerList);
+        list.forEach((item) => {
+            if (item.selected) {
+                item.transparent = val;
             }
         });
         this.setState({

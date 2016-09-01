@@ -10,6 +10,17 @@ const LayerManager = React.createClass({
     render() {
         return (
             <section className="layer-manager">
+                <div className="row">
+                    <p className="text-row">
+                        <span className="transparent-text">透明度</span>
+                        <span className="percentage">{`${this.props.selectedLayer.transparent}%`}</span>
+                    </p>
+                    <div className="range-wrapper">
+                        <input type="range" min={0} max={100}
+                               onChange={this.onLayerTransparentChange}
+                               value={this.props.selectedLayer.transparent}/>
+                    </div>
+                </div>
                 <ul className="layer-list" ref="layerList">
                     {
                         this.props.layerList.map((item) => {
@@ -36,6 +47,9 @@ const LayerManager = React.createClass({
     },
     selectLayer(which) {
         this.props.selectLayer(which);
+    },
+    onLayerTransparentChange(ev) {
+        this.props.onLayerTransparentChange(ev.target.value)
     }
 });
 
