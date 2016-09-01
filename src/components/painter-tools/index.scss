@@ -142,6 +142,9 @@
                 }
             }
             .cube-x {
+                &:hover .circle {
+                    border: 1px solid hsl(211, 99%, 68%);
+                }
                 @extend %style-cube;
                 &::after {
                     content: '';
