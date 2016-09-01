@@ -21,7 +21,9 @@
             height: 40px;
             margin-right: 2px;
             margin-bottom: 2px;
-            display: inline-block;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             background: #FFFFFF;
             border: 1px solid #ECEAE0;
             border-radius: 4px;
@@ -30,8 +32,92 @@
             &:last-child {
                 margin-right: 0;
             }
+            &.arrow {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -22px -14px;
+                    width: 15px;
+                    height: 21px;
+                }
+            }
+            &.pencil {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -71px -13px;
+                    width: 20px;
+                    height: 29px;
+                }
+            }
+            &.eraser {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -117px -15px;
+                    width: 21px;
+                    height: 27px;
+                }
+            }
+            &.paint-bucket {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -166px -12px;
+                    width: 24px;
+                    height: 30px;
+                }
+            }
+            &.scissors {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -216px -13px;
+                    width: 25px;
+                    height: 28px;
+                }
+            }
+            &.circle {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -16px -64px;
+                    width: 26px;
+                    height: 26px;
+                }
+            }
+            &.rectangle {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -67px -65px;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+            &.triangle {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -117px -65px;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+            &.straight-line {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -166px -64px;
+                    width: 26px;
+                    height: 26px;
+                }
+            }
+            &.central-point {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -215px -63px;
+                    width: 27px;
+                    height: 27px;
+                }
+            }
+            &.text {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -15px -119px;
+                    width: 26px;
+                    height: 16px;
+                }
+            }
+            &.text-bubble {
+                .icon {
+                    background: url(./assets/images/feature-icons.svg) no-repeat -66px -115px;
+                    width: 26px;
+                    height: 23px;
+                }
+            }
         }
-        .pencil {
+        .pencil-row {
             border-radius: 4px;
             border: 1px solid #EBE9DF;
             height: 44px;

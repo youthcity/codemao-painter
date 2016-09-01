@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="258px" height="153px" viewBox="0 0 258 153" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M30.3362328,26.0907365 L30.3362328,33.8713728 L26.5714088,33.8713728 L26.5714088,26.0907365 L22.1791141,26.9691954 L28.4538208,13.7923113 L34.7285275,26.9691954 L30.3362328,26.0907365 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.7" y="-0.7" width="13.9494135" height="21.4790615">
+            <rect x="21.4791141" y="13.0923113" width="13.9494135" height="21.4790615" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+        <polygon id="path-3" points="2.48689958e-13 -1.63523612e-07 9 -6.19304049e-14 9 12.4 4.5 20.3714286 3.26752514e-13 12.4"></polygon>
+        <linearGradient x1="26.6701054%" y1="50%" x2="22.0757297%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#B4D576" offset="0%"></stop>
+            <stop stop-color="#ACCD6D" offset="19.7143023%"></stop>
+            <stop stop-color="#89AB4A" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-6" x="0" y="0" width="19" height="25"></rect>
+        <rect id="path-8" x="-5.32907052e-15" y="4.97379915e-14" width="1.08695652" height="6.52173913" rx="0.543478261"></rect>
+        <mask id="mask-9" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.7" y="-0.7" width="2.48695652" height="7.92173913">
+            <rect x="-0.7" y="-0.7" width="2.48695652" height="7.92173913" fill="white"></rect>
+            <use xlink:href="#path-8" fill="black"></use>
+        </mask>
+        <rect id="path-10" x="-1.77635684e-15" y="18.4782609" width="1.08695652" height="6.52173913" rx="0.543478261"></rect>
+        <mask id="mask-11" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.7" y="-0.7" width="2.48695652" height="7.92173913">
+            <rect x="-0.7" y="17.7782609" width="2.48695652" height="7.92173913" fill="white"></rect>
+            <use xlink:href="#path-10" fill="black"></use>
+        </mask>
+        <rect id="path-12" x="1.04805054e-13" y="-1.13686838e-13" width="1.08695652" height="6.52173913" rx="0.543478261"></rect>
+        <mask id="mask-13" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.7" y="-0.7" width="2.48695652" height="7.92173913">
+            <rect x="-0.7" y="-0.7" width="2.48695652" height="7.92173913" fill="white"></rect>
+            <use xlink:href="#path-12" fill="black"></use>
+        </mask>
+        <rect id="path-14" x="1.08357767e-13" y="18.4782609" width="1.08695652" height="6.52173913" rx="0.543478261"></rect>
+        <mask id="mask-15" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-0.7" y="-0.7" width="2.48695652" height="7.92173913">
+            <rect x="-0.7" y="17.7782609" width="2.48695652" height="7.92173913" fill="white"></rect>
+            <use xlink:href="#path-14" fill="black"></use>
+        </mask>
+        <path d="M11,17 C15,26.0673575 16,16.4145078 19,16.4145078 C23,16.4145078 24,11.8628511 24,9.16062176 C24,3.15130583 21,-5.79634925e-16 12,0 C3,7.24543657e-16 0,3.15130583 0,9.16062176 C0,15.1699377 3,17 11,17 Z" id="path-16"></path>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Combined-Shape" transform="translate(28.453821, 23.831842) rotate(-30.000000) translate(-28.453821, -23.831842) ">
+            <use fill="#F7BCC9" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use stroke="#7D7161" mask="url(#mask-2)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" xlink:href="#path-1"></use>
+        </g>
+        <g id="Group-3" transform="translate(79.897114, 28.106406) rotate(-330.000000) translate(-79.897114, -28.106406) translate(75.397114, 12.106406)">
+            <path d="M2.7,5.31428571 C2.7,3.54285714 2.7,1.77635684e-15 5.4,1.77635684e-15 C0.9,1.77635684e-15 2.84217094e-14,2.86845325 2.84217094e-14,5.31428571 C2.7,5.31428571 0.214718626,5.31428571 2.7,5.31428571 Z" id="Oval-6" fill="#FCE2E2"></path>
+            <path d="M2.69104183e-13,4.4285711 C2.69104183e-13,0.885714271 2.7,-1.41830991e-14 4.5,-1.33226763e-14 C6.3,-1.26773592e-14 9,0.885714264 9,4.42857126 C9,7.97142826 9,23.0285714 9,23.0285714 L4.5,31 L2.68229883e-13,23.0285714 L2.69104183e-13,4.4285711 Z" id="Rectangle-18" stroke="#979797" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"></path>
+            <g id="Rectangle-20" transform="translate(0.000000, 10.628571)">
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <use id="Mask" stroke="#7D7161" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" fill="#FEEBB0" xlink:href="#path-3"></use>
+                <polygon id="Rectangle-21" fill="#DDC785" style="mix-blend-mode: darken;" mask="url(#mask-4)" points="3.90798505e-14 12.4 1.8 10.6285714 2.7 11.5142857 4.5 20.3714286"></polygon>
+                <rect fill="#7D7161" mask="url(#mask-4)" x="1.8" y="18.6" width="5.4" height="3.54285714"></rect>
+            </g>
+            <polygon id="Rectangle-19" stroke="#7D7161" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" fill="url(#linearGradient-5)" points="2.13162821e-14 5.31428571 9 5.31428571 9 21.2571429 7.2 23.0285714 5.4 21.2571429 3.6 23.0285714 1.8 21.2571429 2.13162821e-14 23.0285714"></polygon>
+            <path d="M2.115,5.31428571 L2.115,21.2571429" id="Path-8" stroke="#7D7161" stroke-width="0.7"></path>
+        </g>
+        <g id="橡皮擦" transform="translate(118.000000, 16.000000)">
+            <mask id="mask-7" fill="white">
+                <use xlink:href="#path-6"></use>
+            </mask>
+            <use id="Mask" stroke="#7D7161" stroke-width="0.7" fill="#FFFFFF" xlink:href="#path-6"></use>
+            <polygon id="Rectangle-25" stroke="#7D7161" stroke-width="0.7" fill="#BCC2F7" mask="url(#mask-7)" points="0 6.73076923 19 6.73076923 19 21.1538462 3.61904762 21.1538462 0 21.1538462"></polygon>
+            <rect id="Mask" stroke="#7D7161" stroke-width="0.7" mask="url(#mask-7)" x="0" y="0" width="19" height="25"></rect>
+            <path d="M14.7777778,4.80769231 C14.7777778,1.80144361e-16 12.6666667,0 12.6666667,0 L20.0555556,0 L20.0555556,25.9615385 L14.7777778,25.9615385 L14.7777778,4.80769231 Z" id="Rectangle-24" fill-opacity="0.0703408062" fill="#000000" mask="url(#mask-7)"></path>
+        </g>
+        <g id="Group-13" transform="translate(166.000000, 13.000000)" stroke="#7D7161" stroke-width="0.7">
+            <rect id="Rectangle-26" fill="#D8D8D8" x="1" y="6.75862069" width="18.24" height="21.2413793" rx="2"></rect>
+            <path d="M19.8141532,14.4480981 C21.4047332,14.4480981 22.6941532,13.1512677 22.6941532,11.5515464 C22.6941532,9.95182504 19.8141532,6.72396018 19.8141532,6.72396018 C19.8141532,6.72396018 16.9341532,9.95182504 16.9341532,11.5515464 C16.9341532,13.1512677 18.2235731,14.4480981 19.8141532,14.4480981 Z" id="Oval-4" fill="#E8BFEE" transform="translate(19.814153, 10.586029) rotate(-30.000000) translate(-19.814153, -10.586029) "></path>
+            <rect id="Rectangle-27" stroke-linejoin="round" fill="#D8D8D8" transform="translate(6.309117, 5.339629) rotate(-45.000000) translate(-6.309117, -5.339629) " x="4.86911688" y="-0.763470908" width="2.88" height="12.2061999" rx="0.5"></rect>
+        </g>
+        <g id="Group-7" transform="translate(215.000000, 13.000000)">
+            <g id="Group-4" transform="translate(10.860892, 13.643401) rotate(-90.000000) translate(-10.860892, -13.643401) translate(-2.639108, 10.143401)" stroke="#7D7161">
+                <rect id="Rectangle-29" stroke-width="0.7" fill="#F5F5F5" x="-1.0658141e-14" y="2.88235294" width="18.1096156" height="3.29411765" rx="1.64705882"></rect>
+                <path d="M26.2914338,6.17647059 C26.2914338,2.76530007 23.5440902,2.04281037e-14 20.1550701,2.04281037e-14 C16.7660501,2.04281037e-14 14.0187065,2.76530007 14.0187065,6.17647059 L26.2914338,6.17647059 Z" id="Oval-5" stroke-width="0.7" stroke-linejoin="round" fill="#6376CB"></path>
+                <path d="M22.7354851,4.52941176 C22.5407258,3.36094157 21.5311029,2.47058824 20.3148771,2.47058824 C19.0986514,2.47058824 18.0890285,3.36094157 17.8942692,4.52941176 L22.7354851,4.52941176 Z" id="Combined-Shape" stroke-width="0.5" stroke-linejoin="round" fill="#F5F5F5"></path>
+            </g>
+            <g id="Group-4" transform="translate(14.301892, 15.935690) scale(1, -1) rotate(-330.000000) translate(-14.301892, -15.935690) translate(0.801892, 12.435690)">
+                <rect id="Rectangle-29" stroke="#7D7161" stroke-width="0.7" fill="#F5F5F5" x="5.68434189e-14" y="2.88235294" width="18.1096156" height="3.29411765" rx="1.64705882"></rect>
+                <path d="M11.4692312,5.4632732 C12.0340678,5.4632732 12.4919584,5.00238985 12.4919584,4.43386143 C12.4919584,3.86533301 12.0340678,3.40444967 11.4692312,3.40444967 C10.9043945,3.40444967 10.4465039,3.86533301 10.4465039,4.43386143 C10.4465039,5.00238985 10.9043945,5.4632732 11.4692312,5.4632732 Z" id="Oval-7" fill="#7D7161"></path>
+                <path d="M26.2914338,6.17647059 C26.2914338,2.76530007 23.5440902,7.01660952e-14 20.1550701,7.01660952e-14 C16.7660501,7.01660952e-14 14.0187065,2.76530007 14.0187065,6.17647059 L26.2914338,6.17647059 Z" id="Oval-5" stroke="#7D7161" stroke-width="0.7" stroke-linejoin="round" fill="#6376CB"></path>
+                <path d="M22.7354851,4.52941176 C22.5407258,3.36094157 21.5311029,2.47058824 20.3148771,2.47058824 C19.0986514,2.47058824 18.0890285,3.36094157 17.8942692,4.52941176 L22.7354851,4.52941176 Z" id="Combined-Shape" stroke="#7D7161" stroke-width="0.5" stroke-linejoin="round" fill="#F5F5F5"></path>
+            </g>
+        </g>
+        <circle id="Oval-11" stroke="#736857" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" fill="#F7BCC9" cx="29" cy="77" r="12"></circle>
+        <rect id="Rectangle-34" stroke="#746857" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" fill="#F7BCC9" x="68" y="66" width="22" height="22"></rect>
+        <polygon id="Triangle" stroke="#746857" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" fill="#F7BCC9" points="129 66 140 88 118 88"></polygon>
+        <g id="Group-12" transform="translate(166.000000, 64.000000)">
+            <g id="Group-14" transform="translate(12.727922, 12.727922) rotate(-225.000000) translate(-12.727922, -12.727922) translate(-3.772078, 11.227922)">
+                <rect id="Rectangle-35" fill="#746857" x="2" y="1" width="29" height="1"></rect>
+                <circle id="Oval-12" stroke="#746857" fill="#F7BCC9" cx="1.5" cy="1.5" r="1.5"></circle>
+                <circle id="Oval-12-Copy" stroke="#746857" fill="#F7BCC9" cx="31.5" cy="1.5" r="1.5"></circle>
+            </g>
+        </g>
+        <g id="Group-12" transform="translate(216.000000, 64.000000)">
+            <g id="Group-16">
+                <circle id="Oval-8" stroke="#746857" stroke-width="0.7" cx="12.5" cy="12.5" r="9.23913043"></circle>
+                <g id="Group-15">
+                    <g id="Group-11" transform="translate(12.500000, 12.956522) rotate(-270.000000) translate(-12.500000, -12.956522) translate(11.500000, 0.456522)">
+                        <g id="Rectangle-37">
+                            <use fill="#F7BCC9" fill-rule="evenodd" xlink:href="#path-8"></use>
+                            <use stroke="#746857" mask="url(#mask-9)" stroke-width="1.4" xlink:href="#path-8"></use>
+                        </g>
+                        <g id="Rectangle-37-Copy">
+                            <use fill="#F7BCC9" fill-rule="evenodd" xlink:href="#path-10"></use>
+                            <use stroke="#746857" mask="url(#mask-11)" stroke-width="1.4" xlink:href="#path-10"></use>
+                        </g>
+                    </g>
+                    <g id="Group-11" transform="translate(12.043478, 12.500000) rotate(-180.000000) translate(-12.043478, -12.500000) translate(11.043478, -0.000000)">
+                        <g id="Rectangle-37">
+                            <use fill="#F7BCC9" fill-rule="evenodd" xlink:href="#path-12"></use>
+                            <use stroke="#746857" mask="url(#mask-13)" stroke-width="1.4" xlink:href="#path-12"></use>
+                        </g>
+                        <g id="Rectangle-37-Copy">
+                            <use fill="#F7BCC9" fill-rule="evenodd" xlink:href="#path-14"></use>
+                            <use stroke="#746857" mask="url(#mask-15)" stroke-width="1.4" xlink:href="#path-14"></use>
+                        </g>
+                    </g>
+                </g>
+                <circle id="Oval-8" stroke="#746857" stroke-width="0.7" fill="#F7BCC9" cx="12.5" cy="12.5" r="2.7173913"></circle>
+            </g>
+        </g>
+        <text id="Aa" font-family="Helvetica-Light, Helvetica" font-size="20" font-weight="300" fill="#746857">
+            <tspan x="16" y="134">Aa</tspan>
+        </text>
+        <g id="Oval-9" transform="translate(67.000000, 116.000000)">
+            <mask id="mask-17" fill="white">
+                <use xlink:href="#path-16"></use>
+            </mask>
+            <use id="Mask" stroke="#746857" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" fill="#E0EBC6" xlink:href="#path-16"></use>
+            <rect id="Rectangle-30" fill="#746857" mask="url(#mask-17)" x="11" y="4" width="2" height="7" rx="1"></rect>
+            <circle id="Oval-10" fill="#746857" mask="url(#mask-17)" cx="12" cy="13" r="1"></circle>
+            <path d="M16,17.0000009 C14.9999999,19.0000018 14,22.0000009 14,22.0000009 C14,22.0000009 17.5671704,18 19,18 C22.8659932,18 26,18 26,8.5 C26,-0.99999996 18,1.45906968e-08 13,7.32808536e-10 C7.99999995,-1.31250789e-08 19.9999999,-1.00000005 20,7.99999996 C20,15 17,15 16,17.0000009 Z" fill-opacity="0.0799999982" fill="#000000" mask="url(#mask-17)"></path>
+        </g>
+    </g>
+</svg>

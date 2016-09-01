@@ -35,7 +35,16 @@ const LayerManager = React.createClass({
                                         <div className="name-row">
                                             <input type="text" className="name-input"/>
                                         </div>
-                                        <div className="tool-row"></div>
+                                        <div className="tool-row">
+                                            <div className="show-btn" style={{
+                                                display: !item.visible ? 'block': 'none'
+                                            }} onClick={this.toggleLayerVisibility.bind(this, item.id)}></div>
+                                            <div className="hide-btn"  style={{
+                                                display: item.visible ? 'block': 'none'
+                                            }} onClick={this.toggleLayerVisibility.bind(this, item.id)}></div>
+                                            <div className="clone-btn"></div>
+                                            <div className="delete-btn"></div>
+                                        </div>
                                     </div>
                                 </li>
                             )
@@ -50,6 +59,9 @@ const LayerManager = React.createClass({
     },
     onLayerTransparentChange(ev) {
         this.props.onLayerTransparentChange(ev.target.value)
+    },
+    toggleLayerVisibility(which) {
+        this.props.toggleLayerVisibility(which);
     }
 });
 

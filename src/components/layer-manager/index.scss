@@ -51,8 +51,55 @@
                 }
                 .tool-row {
                     height: 28px;
-                    background-color: #79fca6;
                     visibility: hidden;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    %style-tool-btn {
+                        background-image: url(./assets/images/10.svg);
+                        margin-right: 14px;
+                        cursor: pointer;
+                    }
+                    .show-btn {
+                        background-repeat: no-repeat;
+                        background-position: -36px -4px;
+                        width: 19px;
+                        height: 13px;
+                        @extend %style-tool-btn;
+                        &:hover {
+                            background-position: -36px -30px;
+                        }
+                    }
+                    .hide-btn {
+                        background-repeat: no-repeat;
+                        background-position: 0 -8px;
+                        width: 20px;
+                        height: 9px;
+                        @extend %style-tool-btn;
+                        &:hover {
+                            background-position: 0 -34px;
+                        }
+                    }
+                    .clone-btn {
+                        background-repeat: no-repeat;
+                        background-position: -107px -1px;
+                        @extend %style-tool-btn;
+                        width: 18px;
+                        height: 19px;
+                        &:hover {
+                            background-position: -107px -27px;
+                        }
+                    }
+                    .delete-btn {
+                        background-repeat: no-repeat;
+                        background-position:  -142px -2px;
+                        @extend %style-tool-btn;
+                        width: 16px;
+                        height: 16px;
+                        &:hover {
+                            background-position: -142px -28px;
+                        }
+                    }
                 }
             }
             &:hover {

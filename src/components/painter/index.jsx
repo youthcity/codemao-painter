@@ -20,52 +20,62 @@ const Painter = React.createClass({
                 {
                     id: 1,
                     selected: true,
-                    transparent: 10
+                    transparent: 10,
+                    visible: true
                 },
                 {
                     id: 2,
                     selected: false,
-                    transparent: 20
+                    transparent: 20,
+                    visible: true
                 },
                 {
                     id: 3,
                     selected: false,
-                    transparent: 30
+                    transparent: 30,
+                    visible: true
                 },
                 {
                     id: 4,
                     selected: false,
-                    transparent: 40
+                    transparent: 40,
+                    visible: false
                 },
                 {
                     id: 5,
                     selected: false,
-                    transparent: 50
+                    transparent: 50,
+                    visible: false
                 },
                 {
                     id: 6,
                     selected: false,
-                    transparent: 60
+                    transparent: 60,
+                    visible: false
                 },
                 {
                     id: 7,
                     selected: false,
-                    transparent: 70
+                    transparent: 70,
+                    visible: true
                 },
                 {
                     id: 8,
                     selected: false,
-                    transparent: 80
+                    transparent: 80,
+                    visible: true
                 },
                 {
                     id: 9,
                     selected: false,
-                    transparent: 90
+                    transparent: 90,
+                    visible: true
                 },
                 {
                     id: 10,
                     selected: false,
-                    transparent: 100
+                    transparent: 100,
+                    visible: false
                 }
             ]
         }
@@ -79,6 +89,7 @@ const Painter = React.createClass({
         } else if (this.state.selectedPanel === tool_panel.LAYER_MANAGER) {
             innerWrapper = (
                 <LayerManager
+                    toggleLayerVisibility={this.toggleLayerVisibility}
                     onLayerTransparentChange={this.onLayerTransparentChange}
                     selectedLayer={this._getSelectedLayer()}
                     selectLayer={this.selectLayer}
@@ -117,12 +128,12 @@ const Painter = React.createClass({
                     </div>
                     <div className="right-part">
                         <div className="drawing-area">
-                            <div className="drawing-board">
-                                <div className="corner-top-left"></div>
-                                <div className="corner-top-right"></div>
-                                <div className="corner-bottom-left"></div>
-                                <div className="corner-bottom-right"></div>
-                            </div>
+                            {/*<div className="drawing-board">*/}
+                                {/*<div className="corner-top-left"></div>*/}
+                                {/*<div className="corner-top-right"></div>*/}
+                                {/*<div className="corner-bottom-left"></div>*/}
+                                {/*<div className="corner-bottom-right"></div>*/}
+                            {/*</div>*/}
                         </div>
                         <div className="player-row">
                             <div className="player-btn"></div>
@@ -161,6 +172,21 @@ const Painter = React.createClass({
                 item.selected = false;
             }
         });
+        this.setState({
+            layerList: list
+        });
+    },
+    toggleLayerVisibility(which) {
+        let list = _.assign([], this.state.layerList);
+        for (let i = 0, len = list.length; i < len; i++) {
+            if (list[i].id === which) {
+                if (list[i].visible) {
+                    list[i].visible = false;
+                } else {
+                    list[i].visible = true;
+                }
+            }
+        }
         this.setState({
             layerList: list
         });
