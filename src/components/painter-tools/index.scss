@@ -137,8 +137,18 @@
             }
             .cube {
                 @extend %style-cube;
-                &.cur-color {
-                    background-color: hsl(330, 91%, 59%);
+            }
+            .cur-color {
+                position: relative;
+                .color-picker-wrapper {
+                    position: absolute;
+                    z-index: 10;
+                    left: -6px;
+                    top: -4px;
+                    visibility: hidden;
+                    &.open {
+                        visibility: visible;
+                    }
                 }
             }
             .cube-x {

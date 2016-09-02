@@ -15,7 +15,7 @@ const tool_panel = {
 const Painter = React.createClass({
     getInitialState() {
         return {
-            selectedPanel: tool_panel.LAYER_MANAGER,
+            selectedPanel: tool_panel.DRAWING_TOOLS,
             layerList: [
                 {
                     id: 1,
@@ -77,14 +77,28 @@ const Painter = React.createClass({
                     transparent: 100,
                     visible: false
                 }
-            ]
+            ],
+            showColorPicker: true,
+            palette: {
+                curColor: 'hsl(330, 91%, 59%)',
+                curColorObj: {
+                    a: 1,
+                    h: 330,
+                    s: '91%',
+                    l: '59%'
+                }
+            }
         }
     },
     render() {
         let innerWrapper = null;
         if (this.state.selectedPanel === tool_panel.DRAWING_TOOLS) {
             innerWrapper = (
-                <PainterTools/>
+                <PainterTools
+                    palette={this.state.palette}
+                    onCurColorChange={this.onCurColorChange}
+                    openColorPicker={this.openColorPicker}
+                    showColorPicker={this.state.showColorPicker}/>
             )
         } else if (this.state.selectedPanel === tool_panel.LAYER_MANAGER) {
             innerWrapper = (
@@ -97,7 +111,7 @@ const Painter = React.createClass({
             )
         }
         return (
-            <article className="painter">
+            <article className="painter" onClick={this.closeColorPicker}>
                 <header className="header">
                     <div className="import-stuff-btn">
                         <span className="icon"></span>
@@ -147,6 +161,30 @@ const Painter = React.createClass({
                 </div>
             </article>
         )
+    },
+    closeColorPicker() {
+        this.setState({
+            showColorPicker: false
+        });
+    },
+    openColorPicker() {
+        this.setState({
+            showColorPicker: 1
+        });
+    },
+    onCurColorChange(color) {
+        let h = parseInt(color.hsl.h);
+        let l = parseInt(color.hsl.l * 100);
+        let s = parseInt(color.hsl.s * 100);
+        let hsla = `hsla(${h},${s + '%'},${l + '%'},${color.hsl.a})`;
+        this.setState({
+            palette: _.assign(this.state.palette, {
+                curColorObj: color.hsl,
+                curColor: hsla
+            })
+        });
+        console.log(color.hsl);
+        console.log(hsla);
     },
     toggleToolPanel(which) {
         if (which === tool_panel.DRAWING_TOOLS) {

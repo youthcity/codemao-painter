@@ -1,4 +1,6 @@
 import React from 'react';
+import cx from 'classnames';
+import { SketchPicker as ColorPicker } from 'react-color';
 
 require('./index.scss');
 
@@ -22,7 +24,19 @@ const PainterTools = React.createClass({
                 </div>
                 <div className="row">
                     <div className="pencil-row">
-                        <div className="cube cur-color"></div>
+                        <div className="cube cur-color"
+                             style={{backgroundColor: this.props.palette.curColor}}
+                             onClick={this.openColorPicker}>
+                            <div className={cx('color-picker-wrapper', {
+                                'open': this.props.showColorPicker
+                            })} onClick={function (ev) {
+                                ev.stopPropagation();
+                            }}>
+                                <ColorPicker
+                                    color={this.props.palette.curColorObj}
+                                    onChange={this.onColorChange}/>
+                            </div>
+                        </div>
                         <div className="cube-x x1">
                             <div className="circle"></div>
                         </div>
@@ -74,6 +88,13 @@ const PainterTools = React.createClass({
                 </div>
             </section>
         )
+    },
+    onColorChange(color) {
+        this.props.onCurColorChange(color);
+    },
+    openColorPicker(ev) {
+        ev.stopPropagation();
+        this.props.openColorPicker()
     }
 });
 
