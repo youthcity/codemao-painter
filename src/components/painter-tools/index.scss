@@ -155,6 +155,11 @@
                 &:hover .circle {
                     border: 1px solid hsl(211, 99%, 68%);
                 }
+                &.selected {
+                    .circle {
+                        background-color: black !important;
+                    }
+                }
                 @extend %style-cube;
                 &::after {
                     content: '';

@@ -1,6 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import _ from 'lodash/object';
+import { fabric_canvas } from '../../fabric_canvas.ts';
+
 
 require('./index.scss');
 
@@ -10,6 +12,21 @@ import LayerManager from '../layer-manager';
 const tool_panel = {
     DRAWING_TOOLS: 0,
     LAYER_MANAGER: 1
+};
+
+const Shape = {
+    rect: 0,
+    round: 1,
+    triangle: 2,
+    text: 3
+};
+
+const Brush = {
+    pointer: 0,
+    pencil: 1,
+    line:2 ,
+    rotate_center: 3,
+    eraser: 4
 };
 
 const Painter = React.createClass({
@@ -78,7 +95,7 @@ const Painter = React.createClass({
                     visible: false
                 }
             ],
-            showColorPicker: true,
+            showColorPicker: false,
             palette: {
                 curColor: 'hsl(330, 91%, 59%)',
                 curColorObj: {
@@ -87,14 +104,37 @@ const Painter = React.createClass({
                     s: '91%',
                     l: '59%'
                 }
+            },
+            pencil: {
+                width: 5
             }
         }
+    },
+    componentDidMount() {
+        fabric_canvas.init(this.refs.canvasEl, this.refs.canvasElWrapper);
+        fabric_canvas.set_brush('pencil', this.state.pencil.width, this.state.palette.curColor);
+        fabric_canvas.add_listener('object:selected', this.on_object_update);
+        fabric_canvas.add_listener('selection:cleared', this.on_object_update);
+    },
+    componentWillUnmount() {
+        fabric_canvas.remove_listener('object:selected', this.on_object_update);
+        fabric_canvas.remove_listener('selection:cleared', this.on_object_update);
     },
     render() {
         let innerWrapper = null;
         if (this.state.selectedPanel === tool_panel.DRAWING_TOOLS) {
             innerWrapper = (
                 <PainterTools
+                    on_eraser_icon_click={this.on_eraser_icon_click}
+                    on_rectangle_icon_click={this.on_rectangle_icon_click}
+                    on_triangle_icon_click={this.on_triangle_icon_click}
+                    on_circle_icon_click={this.on_circle_icon_click}
+                    on_straight_line_icon_click={this.on_straight_line_icon_click}
+                    on_arrow_icon_click={this.on_arrow_icon_click}
+                    on_pencil_icon_click={this.on_pencil_icon_click}
+                    select_pencil={this.on_pencil_icon_click}
+                    pencil={this.state.pencil}
+                    change_pencil_width={this.change_pencil_width}
                     palette={this.state.palette}
                     onCurColorChange={this.onCurColorChange}
                     openColorPicker={this.openColorPicker}
@@ -141,7 +181,8 @@ const Painter = React.createClass({
                         </div>
                     </div>
                     <div className="right-part">
-                        <div className="drawing-area">
+                        <div className="drawing-area" ref="canvasElWrapper">
+                            <canvas ref="canvasEl"></canvas>
                             {/*<div className="drawing-board">*/}
                                 {/*<div className="corner-top-left"></div>*/}
                                 {/*<div className="corner-top-right"></div>*/}
@@ -161,6 +202,37 @@ const Painter = React.createClass({
                 </div>
             </article>
         )
+    },
+    on_object_update() {
+    },
+    change_pencil_width(width) {
+        this.setState({
+            pencil: _.assign(this.state.pencil, {
+                width: width
+            })
+        });
+        fabric_canvas.set_brush_width(width);
+    },
+    on_eraser_icon_click() {
+        fabric_canvas.set_brush(Brush.eraser, this.state.pencil.width);
+    },
+    on_circle_icon_click() {
+        fabric_canvas.add_shape(Shape.round, this.state.pencil.width, this.state.palette.curColor);
+    },
+    on_rectangle_icon_click() {
+        fabric_canvas.add_shape(Shape.rect, this.state.pencil.width, this.state.palette.curColor);
+    },
+    on_triangle_icon_click() {
+        fabric_canvas.add_shape(Shape.triangle, this.state.pencil.width, this.state.palette.curColor);
+    },
+    on_pencil_icon_click() {
+        fabric_canvas.set_brush(Brush.pencil, this.state.pencil.width, this.state.palette.curColor);
+    },
+    on_arrow_icon_click() {
+        fabric_canvas.set_brush(Brush.pointer);
+    },
+    on_straight_line_icon_click() {
+        fabric_canvas.set_brush(Brush.line, this.state.pencil.width, this.state.palette.curColor);
     },
     closeColorPicker() {
         this.setState({
@@ -183,8 +255,7 @@ const Painter = React.createClass({
                 curColor: hsla
             })
         });
-        console.log(color.hsl);
-        console.log(hsla);
+        fabric_canvas.set_brush_color(hsla);
     },
     toggleToolPanel(which) {
         if (which === tool_panel.DRAWING_TOOLS) {
