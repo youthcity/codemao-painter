@@ -178,7 +178,10 @@ class FabricCanvas {
 
   clear() {
     this._canvas.clear();
+    this._canvas.layerManager.clearLayers();
   }
+
+
 
   get_canvas_width() {
     return this._canvas.width;

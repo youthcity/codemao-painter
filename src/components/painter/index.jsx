@@ -194,9 +194,9 @@ const Painter = React.createClass({
                             <div className="player-btn"></div>
                         </div>
                         <div className="btn-wrapper">
-                            <div className="btn undo-btn"></div>
-                            <div className="btn scale-btn"></div>
-                            <div className="btn clear-btn"></div>
+                            <div className="btn undo-btn" onClick={this.on_undo_btn_click}></div>
+                            <div className="btn scale-btn"  onClick={this.on_scale_btn_click}></div>
+                            <div className="btn clear-btn"  onClick={this.on_clear_btn_click}></div>
                         </div>
                     </div>
                 </div>
@@ -204,6 +204,15 @@ const Painter = React.createClass({
         )
     },
     on_object_update() {
+    },
+    on_undo_btn_click() {
+
+    },
+    on_scale_btn_click() {
+
+    },
+    on_clear_btn_click() {
+        fabric_canvas.clear();
     },
     change_pencil_width(width) {
         this.setState({
