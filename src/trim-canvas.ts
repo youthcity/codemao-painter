@@ -13,7 +13,7 @@ interface Bound {
  */
 export function trim_canvas(c:HTMLCanvasElement, rotate_center?:Point) {
 
-  var ctx = c.getContext('2d'),
+  let ctx = c.getContext('2d'),
     copy = document.createElement('canvas').getContext('2d'),
     pixels = ctx.getImageData(0, 0, c.width, c.height),
     l = pixels.data.length,
@@ -56,9 +56,22 @@ export function trim_canvas(c:HTMLCanvasElement, rotate_center?:Point) {
     }
   }
 
-  var trimHeight = bound.bottom - bound.top + 1;
-  var trimWidth = bound.right - bound.left + 1;
-  var trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
+  const stage_width: number = 620;
+  const stage_height: number = 900;
+  let stage_bound: Bound = {
+    top: ~~((c.height - stage_height)/2),
+    left: ~~((c.width - stage_width)/2),
+    right: ~~((c.width - stage_width)/2) + stage_width,
+    bottom: ~~((c.height - stage_height)/2) + stage_height
+  };
+  bound.left = Math.min(bound.left, stage_bound.left);
+  bound.right = Math.max(bound.right, stage_bound.right);
+  bound.top = Math.min(bound.top, stage_bound.top);
+  bound.bottom = Math.max(bound.bottom, stage_bound.bottom);
+
+  let trimHeight = bound.bottom - bound.top + 1;
+  let trimWidth = bound.right - bound.left + 1;
+  let trimmed = ctx.getImageData(bound.left, bound.top, trimWidth, trimHeight);
 
   copy.canvas.width = trimWidth;
   copy.canvas.height = trimHeight;
